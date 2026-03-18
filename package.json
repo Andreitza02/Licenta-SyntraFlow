@@ -1,0 +1,35 @@
+{
+  "name": "syntraflow-ai",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": "20.x || 22.x"
+  },
+  "scripts": {
+    "dev": "next dev --webpack",
+    "dev:turbo": "next dev --turbopack",
+    "dev:clean": "node scripts/run-next-clean.mjs dev --webpack",
+    "dev:turbo:clean": "node scripts/run-next-clean.mjs dev --turbopack",
+    "build": "next build",
+    "build:clean": "node scripts/run-next-clean.mjs build",
+    "preview": "npm run build && npm run start",
+    "start": "next start",
+    "start:clean": "node scripts/run-next-clean.mjs start",
+    "check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@openai/chatkit-react": "^1.5.0",
+    "next": "^16.1.6",
+    "openai": "^6.25.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.2.1",
+    "@types/node": "^25.3.2",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "tailwindcss": "^4.2.1",
+    "typescript": "^5.9.3"
+  }
+}
