@@ -7,7 +7,6 @@ import { CTAButton } from "@/components/ui/cta-button";
 import { AnimatedBackground } from "@/components/ui/animated-background";
 import { ArchitectureCard } from "@/components/ui/architecture-card";
 import { CaseStudyCard } from "@/components/ui/case-study-card";
-import { ChatDemo } from "@/components/ui/chat-demo";
 import { Chip } from "@/components/ui/chip";
 import { FAQAccordion } from "@/components/ui/faq-accordion";
 import { IndustryCard } from "@/components/ui/industry-card";
@@ -268,7 +267,6 @@ export function HomePage({ locale }: HomePageProps) {
     architectureLayers,
     benefits,
     caseStudies,
-    chatPresets,
     faqItems,
     industries,
     solutionTabs,
@@ -382,17 +380,6 @@ export function HomePage({ locale }: HomePageProps) {
               ? "Blocul demonstrativ simuleaza un asistent care intelege intentia, cere datele relevante si livreaza un pas urmator credibil."
               : "The demo block simulates an assistant that understands intent, requests relevant data, and delivers a credible next step."}
           />
-          <div className="reveal-section flex items-start gap-3 rounded-[1.5rem] border border-[#b7e5d6] bg-[#eefaf4] px-4 py-4 text-sm leading-7 text-[#285245] md:px-5">
-            <span className="mt-1 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-white text-[11px] font-semibold text-[#10a37f]">
-              AI
-            </span>
-            <p>
-              {locale === "ro"
-                ? "Avem deja un asistent cu iconita in dreapta jos, cu care poti interactiona live direct din pagina."
-                : "There is already an assistant available through the bottom-right icon, and you can interact with it live directly on the page."}
-            </p>
-          </div>
-          <ChatDemo presets={chatPresets} storageKey={`syntraflow-home-chat-${locale}`} locale={locale} />
           <div className="panel-surface reveal-section rounded-[2rem] p-6 md:p-8">
             <div className="grid gap-8 lg:grid-cols-[1fr_auto]">
               <div>

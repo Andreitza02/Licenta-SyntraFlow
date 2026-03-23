@@ -20,7 +20,7 @@ export const navigation = [
   { label: "Automatizari", href: "/automatizari", homeSectionId: "home-automations" },
   { label: "Studii de caz", href: "/studii-de-caz", homeSectionId: "home-cases" },
   { label: "Arhitectura", href: "/arhitectura", homeSectionId: "home-architecture" },
-  { label: "Contact", href: "/contact", homeSectionId: "home-final-cta" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export function buildMetadata(title: string, description: string, path = "/", locale: Locale = "ro"): Metadata {

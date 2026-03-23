@@ -58,7 +58,7 @@ export function DropdownMenu({
       <button
         type="button"
         className={cn(
-          "nav-pill shrink-0 whitespace-nowrap rounded-full px-1 py-1.5 text-[11px] font-medium 2xl:px-2.5 2xl:text-[13px]",
+          "nav-pill inline-flex h-10 shrink-0 items-center whitespace-nowrap rounded-full px-2.5 text-[11px] font-medium 2xl:px-3 2xl:text-[12px]",
           active || open ? "nav-pill-active text-white" : "text-[#0b1f35]",
         )}
         aria-expanded={open}

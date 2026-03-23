@@ -198,6 +198,7 @@ img {
 .nav-pill {
   position: relative;
   overflow: hidden;
+  will-change: transform, box-shadow;
   border: 1px solid transparent;
   background: rgba(255, 255, 255, 0.66);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
@@ -246,6 +247,9 @@ img {
 .nav-utility-button {
   position: relative;
   overflow: hidden;
+  box-shadow:
+    0 12px 24px rgba(11, 31, 53, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.65);
   transition:
     transform 0.28s ease,
     border-color 0.28s ease,
@@ -253,9 +257,25 @@ img {
     background-color 0.28s ease;
 }
 
+.nav-utility-button::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  background: linear-gradient(120deg, transparent 18%, rgba(255, 255, 255, 0.48) 48%, transparent 76%);
+  transform: translateX(-130%);
+  transition: transform 0.7s ease;
+  pointer-events: none;
+}
+
 .nav-utility-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 24px rgba(11, 31, 53, 0.08);
+  border-color: rgba(15, 121, 255, 0.16);
+  box-shadow: 0 16px 28px rgba(11, 31, 53, 0.09);
+}
+
+.nav-utility-button:hover::after {
+  transform: translateX(130%);
 }
 
 .drawer-nav-item {
@@ -298,6 +318,60 @@ img {
   transform: translateX(130%);
 }
 
+.contact-card-hover {
+  transition:
+    transform 0.32s ease,
+    border-color 0.32s ease,
+    box-shadow 0.32s ease,
+    background-color 0.32s ease;
+}
+
+.contact-card-hover:hover {
+  transform: translateY(-4px);
+  border-color: rgba(15, 121, 255, 0.14);
+  box-shadow:
+    0 22px 46px rgba(11, 31, 53, 0.09),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.contact-field-shell {
+  transition:
+    transform 0.26s ease,
+    border-color 0.26s ease,
+    box-shadow 0.26s ease,
+    background-color 0.26s ease;
+}
+
+.contact-field-shell:hover {
+  transform: translateY(-2px);
+  border-color: rgba(15, 121, 255, 0.14);
+  box-shadow: 0 18px 34px rgba(11, 31, 53, 0.08);
+}
+
+.contact-field-shell:focus-within {
+  transform: translateY(-2px);
+  border-color: rgba(15, 121, 255, 0.26);
+  box-shadow:
+    0 22px 38px rgba(15, 121, 255, 0.1),
+    0 0 0 4px rgba(15, 121, 255, 0.08);
+}
+
+.contact-orb {
+  animation: contact-float 7s ease-in-out infinite;
+}
+
+.contact-orb-delay {
+  animation-delay: -2.3s;
+}
+
+.menu-card-enter {
+  animation: menu-card-enter 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.contact-success-enter {
+  animation: contact-pop 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
 .assistant-launcher-logo {
   transform-origin: center;
   backface-visibility: visible;
@@ -325,6 +399,41 @@ img {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes menu-card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes contact-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -10px, 0);
+  }
+}
+
+@keyframes contact-pop {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
 
@@ -393,6 +502,8 @@ img {
 
   .nav-pill,
   .nav-utility-button,
+  .contact-card-hover,
+  .contact-field-shell,
   .drawer-nav-item,
   .interactive-button,
   .assistant-launcher {
@@ -400,6 +511,7 @@ img {
   }
 
   .nav-pill::after,
+  .nav-utility-button::after,
   .interactive-button::after {
     content: none;
   }
@@ -409,8 +521,16 @@ img {
     filter: none;
   }
 
+  .contact-orb,
+  .contact-success-enter,
+  .menu-card-enter {
+    animation: none;
+  }
+
   .assistant-launcher:hover,
   .nav-pill:hover,
+  .contact-card-hover:hover,
+  .contact-field-shell:hover,
   .nav-utility-button:hover,
   .drawer-nav-item:hover {
     transform: none;

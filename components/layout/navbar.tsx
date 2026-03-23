@@ -1,12 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import searchIcon from "../../icons-search-30.png";
-import { DropdownMenu } from "@/components/layout/dropdown-menu";
 import { MegaMenu } from "@/components/layout/mega-menu";
 import { MobileMenu } from "@/components/layout/mobile-menu";
 import { CommandPalette } from "@/components/ui/command-palette";
@@ -75,6 +73,8 @@ export function Navbar({ locale }: NavbarProps) {
   }, []);
 
   const shouldUseSolid = pathname !== "/" || isScrolled || isMenuOpen || Boolean(openMenuId);
+  const desktopNavItemClass =
+    "nav-pill inline-flex h-10 shrink-0 items-center whitespace-nowrap rounded-full px-2.5 text-[11px] font-medium 2xl:px-3 2xl:text-[12px]";
 
   function isItemActive(item: (typeof navbarMenu)[number]) {
     if (pathname === "/") {
@@ -101,7 +101,7 @@ export function Navbar({ locale }: NavbarProps) {
         <div
           ref={headerRef}
           className={cn(
-            "mx-auto max-w-[92rem] rounded-[1.6rem] border px-3 py-3 transition duration-300 md:px-5 2xl:px-6",
+            "mx-auto w-full max-w-[92rem] rounded-[1.6rem] border px-3 py-3 transition duration-300 md:px-4 xl:w-fit xl:max-w-[calc(100vw-4rem)] 2xl:px-5",
             shouldUseSolid
               ? "border-[#0d3358]/8 bg-white/88 shadow-[0_14px_36px_rgba(11,31,53,0.08)] backdrop-blur-xl"
               : "border-white/40 bg-white/12 backdrop-blur-md",
@@ -127,40 +127,40 @@ export function Navbar({ locale }: NavbarProps) {
               </div>
             </button>
 
-            <nav className="hidden min-w-0 flex-1 items-center justify-end gap-px pr-0 xl:flex 2xl:gap-1 2xl:pr-2" aria-label="Navigatie principala">
-              <button
-                type="button"
-                className="mr-0 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#0d3358]/10 bg-white/92 shadow-[0_10px_20px_rgba(11,31,53,0.07)] transition duration-300 hover:-translate-y-0.5 hover:border-[#0f79ff]/18 hover:bg-white 2xl:mr-1 2xl:h-11 2xl:w-11 2xl:shadow-[0_12px_24px_rgba(11,31,53,0.08)]"
-                aria-label={`${siteConfig.name} - pagina principala`}
-                onClick={() => navigateTo("/", "home-top")}
-              >
-                <LogoMark className="h-8 w-8 2xl:h-9 2xl:w-9" />
-              </button>
+            <div className="hidden min-w-0 items-center gap-1 xl:flex 2xl:gap-1.5">
+              <nav className="min-w-0 items-center gap-px xl:flex 2xl:gap-px" aria-label="Navigatie principala">
+                <button
+                  type="button"
+                  className="mr-0 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#0d3358]/10 bg-white/92 shadow-[0_10px_20px_rgba(11,31,53,0.07)] transition duration-300 hover:-translate-y-0.5 hover:border-[#0f79ff]/18 hover:bg-white 2xl:mr-1 2xl:shadow-[0_12px_24px_rgba(11,31,53,0.08)]"
+                  aria-label={`${siteConfig.name} - pagina principala`}
+                  onClick={() => navigateTo("/", "home-top")}
+                >
+                  <LogoMark className="h-8 w-8" />
+                </button>
 
-              {navbarMenu.map((item) => {
-                const isActive = isItemActive(item);
+                {navbarMenu.map((item) => {
+                  const isActive = isItemActive(item);
 
-                if (item.type === "link") {
+                  if (item.type === "link") {
+                    return (
+                      <button
+                        key={item.id}
+                        type="button"
+                        className={cn(
+                          desktopNavItemClass,
+                          isActive ? "nav-pill-active text-white" : "text-[#0b1f35]",
+                        )}
+                        onClick={() => navigateTo(item.href, item.homeSectionId)}
+                      >
+                        <span className={cn("relative z-[1] transition", isActive && "font-semibold")}>
+                          {item.label}
+                        </span>
+                      </button>
+                    );
+                  }
+
                   return (
-                    <button
-                      key={item.id}
-                      type="button"
-                      className={cn(
-                        "nav-pill shrink-0 whitespace-nowrap rounded-full px-1 py-1.5 text-[11px] font-medium 2xl:px-2.5 2xl:text-[13px]",
-                        isActive ? "nav-pill-active text-white" : "text-[#0b1f35]",
-                      )}
-                      onClick={() => navigateTo(item.href, item.homeSectionId)}
-                    >
-                      <span className={cn("relative z-[1] transition", isActive && "font-semibold")}>
-                        {item.label}
-                      </span>
-                    </button>
-                  );
-                }
-
-                if (item.type === "dropdown") {
-                  return (
-                    <DropdownMenu
+                    <MegaMenu
                       key={item.id}
                       item={item}
                       open={openMenuId === item.id}
@@ -172,28 +172,12 @@ export function Navbar({ locale }: NavbarProps) {
                       }}
                     />
                   );
-                }
+                })}
+              </nav>
 
-                return (
-                  <MegaMenu
-                    key={item.id}
-                    item={item}
-                    open={openMenuId === item.id}
-                    active={isActive}
-                    locale={locale}
-                    onOpen={() => setOpenMenuId(item.id)}
-                    onClose={() => {
-                      setOpenMenuId((current) => (current === item.id ? null : current));
-                    }}
-                  />
-                );
-              })}
-            </nav>
-
-            <div className="flex shrink-0 items-center gap-1 xl:gap-1.5 2xl:gap-2">
               <button
                 type="button"
-                className="nav-utility-button hidden h-11 w-11 items-center justify-center rounded-full border border-[#0d3358]/10 bg-white/80 text-[#0b1f35] hover:border-[#0f79ff]/25 xl:inline-flex 2xl:hidden"
+                className="nav-utility-button h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#0d3358]/10 bg-white/80 text-[#0b1f35] hover:border-[#0f79ff]/25 xl:inline-flex"
                 onClick={() => setIsCommandOpen(true)}
                 aria-label={locale === "ro" ? "Deschide cautarea rapida" : "Open quick search"}
               >
@@ -205,44 +189,29 @@ export function Navbar({ locale }: NavbarProps) {
                 />
               </button>
 
-              <button
-                type="button"
-                className="nav-utility-button hidden items-center gap-1.5 rounded-full border border-[#0d3358]/10 bg-white/80 pl-4 pr-3 py-2.5 text-[12px] font-semibold text-[#0b1f35] hover:border-[#0f79ff]/25 2xl:inline-flex 2xl:gap-2 2xl:pl-7 2xl:pr-4 2xl:text-sm"
-                onClick={() => setIsCommandOpen(true)}
-                aria-label={locale === "ro" ? "Deschide cautarea rapida" : "Open quick search"}
-              >
-                <Image
-                  src={searchIcon}
-                  alt=""
-                  aria-hidden="true"
-                  className="h-[18px] w-[18px] object-contain"
-                />
-                {locale === "ro" ? "Cauta" : "Search"}
-              </button>
-
-              <CTAButton href="/contact" className="px-3 py-2.5 text-[12px] 2xl:px-4 2xl:text-sm">
-                <span className="2xl:hidden">{locale === "ro" ? "Demo" : "Demo"}</span>
-                <span className="hidden 2xl:inline">{locale === "ro" ? "Solicita Demo" : "Request Demo"}</span>
+              <CTAButton href="/contact" className="h-10 px-3 py-0 text-[11px] 2xl:px-3.5 2xl:text-[12px]">
+                <span className="min-[1720px]:hidden">{locale === "ro" ? "Demo" : "Demo"}</span>
+                <span className="hidden min-[1720px]:inline">{locale === "ro" ? "Solicita Demo" : "Request Demo"}</span>
               </CTAButton>
 
               <div className="hidden 2xl:block">
                 <LanguageSwitcher locale={locale} />
               </div>
-
-              <button
-                type="button"
-                className="nav-utility-button inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-[#0d3358]/10 bg-white/80 text-[#0b1f35] xl:hidden"
-                aria-expanded={isMenuOpen}
-                aria-label="Deschide meniul"
-                onClick={() => setIsMenuOpen(true)}
-              >
-                <span className="relative h-4 w-5">
-                  <span className="absolute left-0 top-0 h-0.5 w-5 rounded-full bg-current" />
-                  <span className="absolute left-0 top-1.5 h-0.5 w-5 rounded-full bg-current" />
-                  <span className="absolute left-0 top-3 h-0.5 w-5 rounded-full bg-current" />
-                </span>
-              </button>
             </div>
+
+            <button
+              type="button"
+              className="nav-utility-button inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-[#0d3358]/10 bg-white/80 text-[#0b1f35] xl:hidden"
+              aria-expanded={isMenuOpen}
+              aria-label="Deschide meniul"
+              onClick={() => setIsMenuOpen(true)}
+            >
+              <span className="relative h-4 w-5">
+                <span className="absolute left-0 top-0 h-0.5 w-5 rounded-full bg-current" />
+                <span className="absolute left-0 top-1.5 h-0.5 w-5 rounded-full bg-current" />
+                <span className="absolute left-0 top-3 h-0.5 w-5 rounded-full bg-current" />
+              </span>
+            </button>
           </div>
         </div>
       </header>
