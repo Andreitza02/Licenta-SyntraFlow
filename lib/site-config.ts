@@ -17,9 +17,10 @@ export const navigation = [
   { label: "Solutii", href: "/solutii", homeSectionId: "home-solutions" },
   { label: "Industrii", href: "/industrii", homeSectionId: "home-industries" },
   { label: "Asistent virtual", href: "/asistent-virtual", homeSectionId: "home-assistant" },
-  { label: "Automatizari", href: "/automatizari", homeSectionId: "home-automations" },
+  { label: "Product", href: "/product" },
   { label: "Studii de caz", href: "/studii-de-caz", homeSectionId: "home-cases" },
   { label: "Arhitectura", href: "/arhitectura", homeSectionId: "home-architecture" },
+  { label: "Parteneri", href: "/parteneri" },
   { label: "Contact", href: "/contact" },
 ];
 

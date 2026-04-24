@@ -1,10 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useState } from "react";
 
 import searchIcon from "../../icons-search-30.png";
+import { NavItemIcon } from "@/components/layout/nav-item-icon";
+import { SiteLink } from "@/components/ui/site-link";
 import type { Locale } from "@/lib/i18n";
 import type { DropdownMenuItem, MegaMenuItem, NavbarMenuItem } from "@/lib/menu-data";
 import { buttonVariants, cn } from "@/lib/utils";
@@ -13,17 +14,55 @@ type MobileMenuProps = {
   items: NavbarMenuItem[];
   activeItemId: string | null;
   locale: Locale;
-  onNavigate: (href: string, homeSectionId?: string) => void;
+  onNavigate: () => void;
   onOpenSearch: () => void;
   onClose: () => void;
 };
+
+function CartIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.9"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <circle cx="9" cy="19" r="1.55" />
+      <circle cx="18" cy="19" r="1.55" />
+      <path d="M2.5 4.5h2.8l2.2 10.1a1 1 0 0 0 1 .8h9.4a1 1 0 0 0 1-.75l1.35-6.15H6.25" />
+    </svg>
+  );
+}
+
+function AccountIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.9"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <circle cx="12" cy="8.25" r="3.6" />
+      <path d="M5.5 19.25a6.5 6.5 0 0 1 13 0" />
+      <circle cx="12" cy="12" r="9.1" />
+    </svg>
+  );
+}
 
 function renderDropdownLinks(
   item: DropdownMenuItem,
   onClose: () => void,
 ) {
   return item.links.map((link) => (
-    <Link
+    <SiteLink
       key={link.label}
       href={link.href}
       className="block rounded-[1.2rem] px-3 py-3 transition hover:bg-white"
@@ -33,7 +72,7 @@ function renderDropdownLinks(
       {link.description ? (
         <span className="mt-1 block text-xs leading-6 text-muted">{link.description}</span>
       ) : null}
-    </Link>
+    </SiteLink>
   ));
 }
 
@@ -48,7 +87,7 @@ function renderMegaLinks(
       </p>
       <div className="mt-2 space-y-1">
         {group.links.map((link) => (
-          <Link
+          <SiteLink
             key={link.label}
             href={link.href}
             className="block rounded-[1rem] px-2 py-2 transition hover:bg-[#f7fbff]"
@@ -58,7 +97,7 @@ function renderMegaLinks(
             {link.description ? (
               <span className="mt-1 block text-xs leading-6 text-muted">{link.description}</span>
             ) : null}
-          </Link>
+          </SiteLink>
         ))}
       </div>
     </div>
@@ -74,6 +113,69 @@ export function MobileMenu({
   onClose,
 }: MobileMenuProps) {
   const [expandedId, setExpandedId] = useState<string | null>(activeItemId);
+  const [expandedUtilityId, setExpandedUtilityId] = useState<"cart" | "account" | null>(null);
+  const utilityPanels = locale === "ro"
+    ? [
+        {
+          id: "cart" as const,
+          label: "Cosul meu",
+          icon: <CartIcon className="h-[18px] w-[18px] shrink-0" />,
+          title: "Acces rapid la pagina de cos",
+          description: "In meniu ramane un singur buton care te duce direct la cosul de cumparaturi.",
+          links: [
+            {
+              label: "Vezi Cosul",
+              href: "/cart",
+              description: "Deschide pagina cu AI Agent Builder, servicii optionale si sumarul comenzii.",
+            },
+          ],
+        },
+        {
+          id: "account" as const,
+          label: "Cont",
+          icon: <AccountIcon className="h-[18px] w-[18px] shrink-0" />,
+          title: "Detalii cont",
+          description: "Un singur buton care te duce la pagina unde poti personaliza detaliile contului.",
+          links: [
+            {
+              label: "View Details",
+              href: "/account",
+              description: "Deschide pagina pentru editarea profilului, companiei si preferintelor.",
+            },
+          ],
+        },
+      ]
+    : [
+        {
+          id: "cart" as const,
+          label: "My Cart",
+          icon: <CartIcon className="h-[18px] w-[18px] shrink-0" />,
+          title: "Quick access to the cart page",
+          description: "In the menu this stays as one direct action that opens the shopping cart page.",
+          links: [
+            {
+              label: "View Cart",
+              href: "/cart",
+              description: "Open the page with AI Agent Builder, optional services, and the order summary.",
+            },
+          ],
+        },
+        {
+          id: "account" as const,
+          label: "Account",
+          icon: <AccountIcon className="h-[18px] w-[18px] shrink-0" />,
+          title: "Account details",
+          description: "One direct button that opens the page where you can customize your account details.",
+          links: [
+            {
+              label: "View Details",
+              href: "/account",
+              description: "Open the page for editing profile, company, and preference details.",
+            },
+          ],
+        },
+      ];
+  const getNavigationHref = (href: string, homeSectionId?: string) => (homeSectionId ? `/#${homeSectionId}` : href);
 
   return (
     <div className="space-y-3">
@@ -83,22 +185,23 @@ export function MobileMenu({
 
         if (item.type === "link") {
           return (
-            <button
+            <SiteLink
               key={item.id}
-              type="button"
+              href={getNavigationHref(item.href, item.homeSectionId)}
               className={cn(
-                "drawer-nav-item block w-full whitespace-nowrap rounded-[1.45rem] px-4 py-3 text-left text-sm font-medium",
+                "drawer-nav-item flex w-full items-center justify-between gap-3 whitespace-nowrap rounded-[1.45rem] px-4 py-3 text-left text-sm font-medium",
                 isActive
                   ? "bg-[#0f79ff] text-white shadow-[0_16px_30px_rgba(15,121,255,0.18)]"
                   : "bg-white/80 text-[#0b1f35]",
               )}
               onClick={() => {
-                onNavigate(item.href, item.homeSectionId);
+                onNavigate();
                 onClose();
               }}
             >
-              {item.label}
-            </button>
+              <NavItemIcon itemId={item.id} className="h-4 w-4 opacity-80" />
+              <span className="mr-auto">{item.label}</span>
+            </SiteLink>
           );
         }
 
@@ -123,7 +226,10 @@ export function MobileMenu({
               }}
             >
               <span>
-                <span className="block text-sm font-semibold text-[#0b1f35]">{item.label}</span>
+                <span className="flex items-center gap-2 text-sm font-semibold text-[#0b1f35]">
+                  <NavItemIcon itemId={item.id} className="h-4 w-4 text-[#0b58d0]" />
+                  <span>{item.label}</span>
+                </span>
                 <span className="mt-1 block text-xs leading-6 text-muted">
                   {item.description}
                 </span>
@@ -151,16 +257,16 @@ export function MobileMenu({
             >
               <div className="overflow-hidden">
                 <div className="space-y-2 px-1 pb-1 pt-2">
-                  <button
-                    type="button"
+                  <SiteLink
+                    href={getNavigationHref(item.href, item.homeSectionId)}
                     className="block w-full rounded-[1.2rem] border border-[#0d3358]/8 bg-[#f7fbff] px-3 py-3 text-left text-sm font-semibold text-[#0b1f35] transition hover:border-[#0f79ff]/18"
                     onClick={() => {
-                      onNavigate(item.href, item.homeSectionId);
+                      onNavigate();
                       onClose();
                     }}
                   >
                     {locale === "ro" ? "Vezi Pagina" : "Open"} {item.label}
-                  </button>
+                  </SiteLink>
 
                   {item.type === "dropdown"
                     ? renderDropdownLinks(item, onClose)
@@ -189,13 +295,90 @@ export function MobileMenu({
         <span>{locale === "ro" ? "Cauta In Platforma" : "Search Platform"}</span>
       </button>
 
-      <Link
+      <div className="grid gap-3">
+        {utilityPanels.map((panel) => {
+          const isExpanded = expandedUtilityId === panel.id;
+
+          return (
+            <div
+              key={panel.id}
+              className={cn(
+                "rounded-[1.55rem] border border-[#0d3358]/8 bg-white/88 p-2 transition",
+                isExpanded && "shadow-[0_18px_34px_rgba(11,31,53,0.08)]",
+              )}
+            >
+              <button
+                type="button"
+                className="drawer-nav-item flex w-full items-center justify-between rounded-[1.2rem] px-3 py-3 text-left"
+                aria-expanded={isExpanded}
+                aria-controls={`${panel.id}-mobile-panel`}
+                onClick={() => {
+                  setExpandedUtilityId((current) => (current === panel.id ? null : panel.id));
+                }}
+              >
+                <span className="flex items-start gap-3">
+                  <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-[1rem] border border-[#0f79ff]/10 bg-[#eef6ff] text-[#0b58d0]">
+                    {panel.icon}
+                  </span>
+                  <span>
+                    <span className="block text-sm font-semibold text-[#0b1f35]">{panel.label}</span>
+                    <span className="mt-1 block text-xs leading-6 text-muted">{panel.title}</span>
+                  </span>
+                </span>
+                <svg
+                  viewBox="0 0 20 20"
+                  className={cn("h-4 w-4 shrink-0 text-[#557089] transition duration-300", isExpanded && "rotate-180")}
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="m5 7 5 5 5-5" />
+                </svg>
+              </button>
+
+              <div
+                id={`${panel.id}-mobile-panel`}
+                className={cn(
+                  "grid transition-[grid-template-rows,opacity] duration-300",
+                  isExpanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
+                )}
+              >
+                <div className="overflow-hidden">
+                  <div className="space-y-2 px-1 pb-1 pt-2">
+                    <div className="rounded-[1.25rem] border border-[#d7e6f5] bg-[linear-gradient(180deg,rgba(248,252,255,0.98),rgba(255,255,255,0.9))] px-4 py-4">
+                      <p className="text-sm font-semibold text-[#0b1f35]">{panel.title}</p>
+                      <p className="mt-2 text-xs leading-6 text-muted">{panel.description}</p>
+                    </div>
+
+                    {panel.links.map((link) => (
+                      <SiteLink
+                        key={link.label}
+                        href={link.href}
+                        className="block rounded-[1.2rem] border border-[#d7e6f5] bg-white/90 px-4 py-3 transition hover:bg-[#f7fbff]"
+                        onClick={onClose}
+                      >
+                        <span className="block text-sm font-semibold text-[#0b1f35]">{link.label}</span>
+                        <span className="mt-1 block text-xs leading-6 text-muted">{link.description}</span>
+                      </SiteLink>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <SiteLink
         href="/contact"
         className={buttonVariants("primary", "w-full justify-center")}
         onClick={onClose}
       >
         {locale === "ro" ? "Solicita Demo" : "Request Demo"}
-      </Link>
+      </SiteLink>
     </div>
   );
 }

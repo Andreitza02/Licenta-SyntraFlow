@@ -1,6 +1,5 @@
-import Link from "next/link";
-
 import { LogoMark } from "@/components/ui/logo-mark";
+import { SiteLink } from "@/components/ui/site-link";
 import type { Locale } from "@/lib/i18n";
 import { getNavbarMenu } from "@/lib/menu-data";
 import { siteConfig } from "@/lib/site-config";
@@ -51,9 +50,9 @@ export function Footer({ locale }: FooterProps) {
               <ul className="mt-4 space-y-3 text-sm text-muted">
                 {navigation.map((item) => (
                   <li key={item.id}>
-                    <Link href={item.href} className="transition hover:text-[#0f79ff]">
+                    <SiteLink href={item.href} className="transition hover:text-[#0f79ff]">
                       {item.label}
-                    </Link>
+                    </SiteLink>
                   </li>
                 ))}
               </ul>
@@ -89,7 +88,7 @@ export function Footer({ locale }: FooterProps) {
               ? `${year} ${siteConfig.name}. Concept original pentru prezentare moderna si extensie de produs.`
               : `${year} ${siteConfig.name}. Original concept for modern presentation and product expansion.`}
           </p>
-          <p>{locale === "ro" ? "Contact demo" : "Demo contact"}: contact@syntraflow.local</p>
+          <p>{locale === "ro" ? "Contact demo" : "Demo contact"}: help@syntraflow.com</p>
         </div>
       </div>
     </footer>

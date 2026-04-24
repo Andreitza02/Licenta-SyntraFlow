@@ -303,67 +303,10 @@ const navbarMenuRo: NavbarMenuItem[] = [
     },
   },
   {
-    id: "automatizari",
-    label: "Automatizari",
-    href: "/automatizari",
-    homeSectionId: "home-automations",
-    type: "mega",
-    description: "Fluxuri operationale pentru validare, notificare si rutare automata a cererilor.",
-    groups: [
-      {
-        title: "Lead workflows",
-        links: [
-          {
-            label: "Workflow onboarding",
-            href: "/automatizari",
-            description: "Preluare ghidata a utilizatorului in primul contact.",
-          },
-          {
-            label: "Validare lead-uri",
-            href: "/automatizari",
-            description: "Date curate inainte de a ajunge in echipele comerciale.",
-          },
-        ],
-      },
-      {
-        title: "Routing & Alerts",
-        links: [
-          {
-            label: "Notificari automate",
-            href: "/automatizari",
-            description: "E-mailuri si alerte declansate in functie de context.",
-          },
-          {
-            label: "Routing cereri",
-            href: "/automatizari",
-            description: "Distribuire catre vanzari, suport sau consultanta.",
-          },
-        ],
-      },
-      {
-        title: "Retention",
-        links: [
-          {
-            label: "Follow-up email",
-            href: "/automatizari",
-            description: "Continuarea relatiei dupa prima conversatie.",
-          },
-          {
-            label: "Escaladare controlata",
-            href: "/arhitectura",
-            description: "Exceptiile ajung la echipa potrivita cu context complet.",
-          },
-        ],
-      },
-    ],
-    featured: {
-      eyebrow: "Procese mai rapide",
-      title: "Automatizare fara frictiune pentru cereri repetitive",
-      description:
-        "Fiecare interactiune poate declansa un traseu predictibil: validare, decizie, notificare si follow-up.",
-      href: "/automatizari",
-      ctaLabel: "Vezi fluxurile",
-    },
+    id: "product",
+    label: "Produse",
+    href: "/product",
+    type: "link",
   },
   {
     id: "studii-de-caz",
@@ -492,6 +435,12 @@ const navbarMenuRo: NavbarMenuItem[] = [
     },
   },
   {
+    id: "parteneri",
+    label: "Parteneri",
+    href: "/parteneri",
+    type: "link",
+  },
+  {
     id: "contact",
     label: "Contact",
     href: "/contact",
@@ -557,6 +506,22 @@ const menuTranslations: Record<string, string> = {
   "Conversatie, calificare si escaladare fara frictiune": "Conversation, qualification, and escalation without friction",
   "Modulul conversational poate raspunde instant, poate cere date relevante si poate pregati demo, oferta sau transfer catre echipa potrivita.": "The conversational module can answer instantly, request relevant data, and prepare a demo, quote, or transfer to the right team.",
   "Vezi asistentul": "View the assistant",
+  "Produsul SyntraFlow care combina AI assistant, lead capture si automatizari conectate.": "The SyntraFlow product that combines an AI assistant, lead capture, and connected automations.",
+  "Produs principal": "Core product",
+  "SyntraFlow AI Assistant": "SyntraFlow AI Assistant",
+  "Imaginea de ansamblu a produsului, modulelor si beneficiilor principale.": "An overview of the product, its modules, and core benefits.",
+  "Capabilitati": "Capabilities",
+  "Experienta conversationala care raspunde, califica si directioneaza.": "The conversational experience that answers, qualifies, and routes requests.",
+  "Formulare, intake ghidat si context mai bun pentru echipe.": "Forms, guided intake, and better context for teams.",
+  "Workflow automation": "Workflow automation",
+  "Validare, notificare, routing si follow-up din acelasi produs.": "Validation, notification, routing, and follow-up in the same product.",
+  "Lansare": "Launch",
+  "Cum se conecteaza produsul la procese, sisteme si echipe.": "How the product connects to processes, systems, and teams.",
+  "Vezi produsul in actiune si cere o configuratie potrivita.": "See the product in action and request a matching setup.",
+  "Produsul SyntraFlow": "The SyntraFlow product",
+  "AI assistant, intake inteligent si automatizari intr-un singur produs": "AI assistant, smart intake, and automation in one product",
+  "SyntraFlow reuneste conversatia, captarea de date si fluxurile operationale intr-o experienta pregatita pentru demo si extindere.": "SyntraFlow combines conversation, data capture, and operational workflows in an experience ready for demos and expansion.",
+  "Vezi produsul": "View the product",
   "Automatizari": "Automations",
   "Fluxuri operationale pentru validare, notificare si rutare automata a cererilor.": "Operational flows for validation, notification, and automatic request routing.",
   "Preluare ghidata a utilizatorului in primul contact.": "Guided capture from the very first contact.",
@@ -599,6 +564,8 @@ const menuTranslations: Record<string, string> = {
   "O structura clara pentru raspuns rapid si extindere": "A clear structure for fast response and expansion",
   "Arhitectura leaga UI-ul, logica de conversatie si fluxurile operationale intr-un traseu care ramane usor de controlat.": "The architecture connects the UI, conversation logic, and operational flows in a journey that remains easy to control.",
   "Vezi arhitectura": "View the architecture",
+  "Parteneri": "Partners",
+  "Produse": "Product",
   "Contact": "Contact",
 };
 

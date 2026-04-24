@@ -1,9 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { type ReactNode, useEffect, useMemo, useState } from "react";
 
 import { useToast } from "@/components/providers/toast-provider";
+import { SiteLink } from "@/components/ui/site-link";
 import type { Locale } from "@/lib/i18n";
 import { buttonVariants, cn } from "@/lib/utils";
 
@@ -21,6 +21,12 @@ type FormErrors = Partial<Record<Exclude<keyof FormValues, "website">, string>>;
 
 type ContactFormProps = {
   locale?: Locale;
+};
+
+type ContactApiResponse = {
+  error?: string;
+  fieldErrors?: FormErrors;
+  success?: boolean;
 };
 
 type StepCardProps = {
@@ -50,6 +56,8 @@ const initialValues: FormValues = {
   message: "",
   website: "",
 };
+
+const stepOneFields = ["name", "email", "phone", "company"] as const;
 
 function getInterestOptions(locale: Locale) {
   return locale === "ro"
@@ -159,6 +167,10 @@ function validateStep(values: FormValues, step: 1 | 2, locale: Locale) {
   }
 
   return errors;
+}
+
+function hasStepOneErrors(errors: FormErrors) {
+  return stepOneFields.some((field) => Boolean(errors[field]));
 }
 
 function StepCard({ active, completed, description, index, onClick, title }: StepCardProps) {
@@ -347,48 +359,95 @@ export function ContactForm({ locale = "ro" }: ContactFormProps) {
         title: locale === "ro" ? "Mai sunt campuri de completat" : "Some fields still need attention",
         description:
           locale === "ro"
-            ? "Adauga interesul si un mesaj clar pentru a putea simula trimiterea."
-            : "Add the interest and a clear message so the submission can be simulated.",
+            ? "Adauga interesul si un mesaj clar pentru a putea trimite solicitarea."
+            : "Add the interest and a clear message so the request can be submitted.",
       });
       return;
     }
 
     setIsSubmitting(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 1200));
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...values,
+          locale,
+        }),
+      });
+      const payload = (await response.json().catch(() => null)) as ContactApiResponse | null;
 
-    setIsSubmitting(false);
-    setStatus("success");
-    setValues(initialValues);
-    setStep(1);
-    pushToast({
-      tone: "success",
-      title: locale === "ro" ? "Solicitarea a fost simulata cu succes" : "The request was simulated successfully",
-      description:
-        locale === "ro"
-          ? "Poti continua cu un demo sau poti explora scenariile de utilizare."
-          : "You can continue with a demo or explore the use-case scenarios.",
-    });
+      if (!response.ok) {
+        const nextFieldErrors = payload?.fieldErrors ?? {};
+
+        if (Object.keys(nextFieldErrors).length > 0) {
+          setErrors((current) => ({ ...current, ...nextFieldErrors }));
+
+          if (hasStepOneErrors(nextFieldErrors)) {
+            setStep(1);
+          }
+        }
+
+        throw new Error(
+          payload?.error ||
+            (locale === "ro"
+              ? "Solicitarea nu a putut fi trimisa. Incearca din nou."
+              : "The request could not be sent. Please try again."),
+        );
+      }
+
+      setStatus("success");
+      setValues(initialValues);
+      setStep(1);
+      pushToast({
+        tone: "success",
+        title:
+          locale === "ro"
+            ? "Solicitarea a fost trimisa"
+            : "The request was sent",
+        description:
+          locale === "ro"
+            ? "Poti continua cu un demo sau poti explora scenariile de utilizare."
+            : "You can continue with a demo or explore the use-case scenarios.",
+      });
+    } catch (error) {
+      setStatus("error");
+      pushToast({
+        tone: "error",
+        title:
+          locale === "ro"
+            ? "Solicitarea nu a putut fi trimisa"
+            : "The request could not be submitted",
+        description:
+          error instanceof Error
+            ? error.message
+            : locale === "ro"
+              ? "A aparut o eroare neasteptata."
+              : "An unexpected error occurred.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
     <div className="panel-surface contact-card-hover reveal-section relative overflow-hidden rounded-[2.25rem] p-6 md:p-8">
-      <div className="contact-orb absolute -right-10 top-8 h-32 w-32 rounded-full bg-[#0f79ff]/10 blur-3xl" />
-      <div className="contact-orb contact-orb-delay absolute bottom-0 left-0 h-40 w-40 rounded-full bg-[#13b5ba]/10 blur-3xl" />
-
       <div className="relative">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.08em] text-[#0b58d0]">
-              {locale === "ro" ? "Formular multi-step" : "Multi-step form"}
+              {locale === "ro" ? "Mesaj rapid" : "Quick message"}
             </p>
             <h2 className="font-display mt-3 text-2xl font-semibold tracking-[-0.03em] text-[#0b1f35] md:text-3xl">
-              {locale === "ro" ? "Construit pentru un punct final de conversie clar" : "Built for a clear final conversion point"}
+              {locale === "ro" ? "Spune-ne ce vrei sa construim impreuna" : "Tell us what you want to build together"}
             </h2>
             <p className="mt-3 max-w-2xl text-sm leading-7 text-muted">
               {locale === "ro"
-                ? "Fluxul ghideaza utilizatorul prin pasi simpli, valideaza datele si ofera feedback vizual convingator pentru demo, pitch sau prezentare academica."
-                : "The flow guides the user through simple steps, validates the data, and provides convincing visual feedback for demos, pitches, or academic presentations."}
+                ? "Completeaza cateva detalii, iar echipa revine cu un raspuns clar pentru demo, oferta sau recomandarea potrivita."
+                : "Share a few details and the team will follow up with a clear response for a demo, quote, or the right recommendation."}
             </p>
           </div>
 
@@ -498,8 +557,8 @@ export function ContactForm({ locale = "ro" }: ContactFormProps) {
                   htmlFor="email"
                   label="Email"
                   helper={locale === "ro"
-                    ? "Adresa va fi folosita pentru simularea confirmarii."
-                    : "The address will be used to simulate the confirmation flow."}
+                    ? "Adresa va fi folosita pentru confirmare si follow-up."
+                    : "The address will be used for confirmation and follow-up."}
                   error={errors.email}
                   icon={(
                     <svg viewBox="0 0 20 20" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -700,22 +759,24 @@ export function ContactForm({ locale = "ro" }: ContactFormProps) {
               </span>
               <div>
                 <p className="text-sm font-semibold text-emerald-800">
-                  {locale === "ro" ? "Solicitarea a fost preluata in demo." : "The request was captured in the demo."}
+                  {locale === "ro"
+                    ? "Solicitarea a fost inregistrata cu succes."
+                    : "The request was saved successfully."}
                 </p>
                 <p className="mt-2 text-sm leading-7 text-emerald-700">
                   {locale === "ro"
-                    ? "Acum poti continua cu urmatoarele actiuni, utile intr-o prezentare de produs sau intr-o discutie comerciala."
-                    : "You can now continue with the next actions, useful in a product presentation or a sales discussion."}
+                    ? "Datele sunt pregatite pentru follow-up, demo sau estimare."
+                    : "The details are ready for follow-up, demo scheduling, or estimation."}
                 </p>
               </div>
             </div>
             <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-              <Link href="/contact" className={buttonVariants("secondary", "sm:flex-1 justify-center bg-white")}>
+              <SiteLink href="/contact" className={buttonVariants("secondary", "sm:flex-1 justify-center bg-white")}>
                 {locale === "ro" ? "Programeaza demo" : "Book a demo"}
-              </Link>
-              <Link href="/studii-de-caz" className={buttonVariants("ghost", "sm:flex-1 justify-center rounded-full border border-emerald-200 bg-white")}>
+              </SiteLink>
+              <SiteLink href="/studii-de-caz" className={buttonVariants("ghost", "sm:flex-1 justify-center rounded-full border border-emerald-200 bg-white")}>
                 {locale === "ro" ? "Vezi scenarii" : "View scenarios"}
-              </Link>
+              </SiteLink>
             </div>
           </div>
         ) : null}

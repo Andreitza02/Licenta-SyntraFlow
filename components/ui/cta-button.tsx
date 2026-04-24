@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
-import Link from "next/link";
 
+import { SiteLink } from "@/components/ui/site-link";
 import { buttonVariants } from "@/lib/utils";
 
 type CTAButtonProps = {
@@ -19,8 +19,8 @@ export function CTAButton({
   ariaLabel,
 }: CTAButtonProps) {
   return (
-    <Link href={href} className={buttonVariants(variant, className)} aria-label={ariaLabel}>
+    <SiteLink href={href} className={buttonVariants(variant, className)} aria-label={ariaLabel}>
       {children}
-    </Link>
+    </SiteLink>
   );
 }

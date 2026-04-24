@@ -185,7 +185,7 @@ export function ChatDemo({
                   {locale === "ro" ? "Demo conversational" : "Conversation demo"}
                 </p>
                 <h3 className="mt-1 text-lg font-semibold text-[#111827]">
-                  {locale === "ro" ? "Asistent SyntraFlow" : "SyntraFlow Assistant"}
+                  SyntraFlow AI Assistant
                 </h3>
               </div>
             </div>

@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useRef } from "react";
 
+import { SiteLink } from "@/components/ui/site-link";
 import type { Locale } from "@/lib/i18n";
 import type { DropdownMenuItem } from "@/lib/menu-data";
 import { cn } from "@/lib/utils";
@@ -111,18 +111,18 @@ export function DropdownMenu({
             {item.label}
           </p>
           <p className="mt-2 text-sm leading-6 text-muted">{item.description}</p>
-          <Link
+          <SiteLink
             href={item.href}
             className="mt-3 inline-flex text-sm font-semibold text-[#0f79ff] transition hover:text-[#0b58d0]"
             onClick={onClose}
           >
             {locale === "ro" ? "Vezi Pagina" : "View Page"}
-          </Link>
+          </SiteLink>
         </div>
 
         <div className="mt-1.5 space-y-1">
           {item.links.map((link) => (
-            <Link
+            <SiteLink
               key={link.label}
               href={link.href}
               className="group block rounded-[1.1rem] border border-transparent px-3.5 py-2.5 transition hover:border-[#0f79ff]/10 hover:bg-[#f7fbff]"
@@ -149,7 +149,7 @@ export function DropdownMenu({
                   <path d="m11 5 5 5-5 5" />
                 </svg>
               </span>
-            </Link>
+            </SiteLink>
           ))}
         </div>
       </div>

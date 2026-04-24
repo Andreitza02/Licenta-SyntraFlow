@@ -48,31 +48,6 @@ export default async function CaseStudiesPage() {
       </section>
 
       <section className="py-14">
-        <div className="section-shell grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-          {(locale === "ro"
-            ? [
-                "Reducerea intrebarilor repetitive preluate manual.",
-                "Raspuns initial rapid si standardizat.",
-                "Lead-uri mai bine structurate pentru echipele interne.",
-                "Experienta digitala mai coerenta pentru utilizatorul final.",
-              ]
-            : [
-                "Fewer repetitive questions handled manually.",
-                "A fast and standardized first response.",
-                "Better-structured leads for internal teams.",
-                "A more coherent digital experience for the end user.",
-              ]).map((item, index) => (
-            <article key={item} className="panel-surface rounded-[1.75rem] p-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.08em] text-[#0b58d0]">
-                {locale === "ro" ? "Impact" : "Impact"} 0{index + 1}
-              </p>
-              <p className="mt-4 text-sm leading-7 text-muted">{item}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="py-14">
         <div className="section-shell">
           <div className="accent-border rounded-[2rem] bg-white p-8 md:p-10">
             <h2 className="font-display text-3xl font-semibold tracking-[-0.03em] text-[#0b1f35] md:text-4xl">

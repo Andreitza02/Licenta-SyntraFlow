@@ -4,16 +4,16 @@ import { useEffect, useRef, useState } from "react";
 
 import { ChatKitPanel } from "@/components/ui/chatkit-panel";
 import { LogoMark } from "@/components/ui/logo-mark";
-import { chatKitConfig } from "@/lib/chatkit-config";
 import type { Locale } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
 type AssistantWidgetProps = {
   enabled: boolean;
   locale?: Locale;
+  workflowId?: string;
 };
 
-export function AssistantWidget({ enabled, locale = "ro" }: AssistantWidgetProps) {
+export function AssistantWidget({ enabled, locale = "ro", workflowId = "" }: AssistantWidgetProps) {
   const [isOpen, setIsOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement | null>(null);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
@@ -51,7 +51,7 @@ export function AssistantWidget({ enabled, locale = "ro" }: AssistantWidgetProps
   }, [isOpen]);
 
   return (
-    <div className="fixed bottom-4 right-4 z-[72] flex flex-col items-end gap-3">
+    <div className="pointer-events-none fixed bottom-4 right-4 z-[72] flex flex-col items-end gap-3">
       <div
         ref={panelRef}
         className={cn(
@@ -65,9 +65,9 @@ export function AssistantWidget({ enabled, locale = "ro" }: AssistantWidgetProps
           <div className="h-[min(78vh,48rem)] min-h-[39rem] bg-transparent p-3">
             <ChatKitPanel
               enabled={enabled}
-              workflowId={chatKitConfig.workflowId}
               mode="widget"
               locale={locale}
+              workflowId={workflowId}
             />
           </div>
         </div>
@@ -80,7 +80,7 @@ export function AssistantWidget({ enabled, locale = "ro" }: AssistantWidgetProps
         aria-expanded={isOpen}
         aria-label={locale === "ro" ? "Deschide widgetul asistentului" : "Open the assistant widget"}
         className={cn(
-          "assistant-launcher group flex items-center justify-center rounded-full border border-[#0d3358]/10 bg-white p-1.5 text-white shadow-[0_12px_30px_rgba(11,31,53,0.12)] transition duration-300 hover:-translate-y-0.5",
+          "assistant-launcher pointer-events-auto group flex items-center justify-center rounded-full border border-[#0d3358]/10 bg-white p-1.5 text-white shadow-[0_12px_30px_rgba(11,31,53,0.12)] transition duration-300 hover:-translate-y-0.5",
           isOpen && "drop-shadow-[0_0_14px_rgba(16,163,127,0.22)]",
         )}
       >

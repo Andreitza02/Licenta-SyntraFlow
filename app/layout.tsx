@@ -4,9 +4,10 @@ import Script from "next/script";
 import { AssistantWidget } from "@/components/layout/assistant-widget";
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
+import { CartProvider } from "@/components/providers/cart-provider";
 import { ToastProvider } from "@/components/providers/toast-provider";
 import "@/app/globals.css";
-import { chatKitConfig } from "@/lib/chatkit-config";
+import { getChatKitConfig } from "@/lib/chatkit-config";
 import { getServerLocale } from "@/lib/i18n-server";
 import { siteConfig } from "@/lib/site-config";
 
@@ -39,33 +40,38 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  const isChatKitEnabled = Boolean(process.env.OPENAI_API_KEY);
+  const chatKitConfig = getChatKitConfig();
   const locale = await getServerLocale();
 
   return (
     <html lang={locale}>
       <body className="antialiased" suppressHydrationWarning>
         <ToastProvider>
+          <CartProvider>
+            <a
+              href="#main-content"
+              className="sr-only fixed left-4 top-4 z-[90] rounded-full bg-[#0b1f35] px-4 py-2 text-sm font-semibold text-white focus:not-sr-only"
+            >
+              {locale === "ro" ? "Sari la continut" : "Skip to content"}
+            </a>
+            <Navbar locale={locale} />
+            <div id="main-content" tabIndex={-1}>
+              {children}
+            </div>
+            <Footer locale={locale} />
+            <AssistantWidget
+              enabled={chatKitConfig.enabled}
+              locale={locale}
+              workflowId={chatKitConfig.workflowId}
+            />
+          </CartProvider>
+        </ToastProvider>
+        {chatKitConfig.enabled ? (
           <Script
             src="https://cdn.platform.openai.com/deployments/chatkit/chatkit.js"
             strategy="afterInteractive"
           />
-          <a
-            href="#main-content"
-            className="sr-only fixed left-4 top-4 z-[90] rounded-full bg-[#0b1f35] px-4 py-2 text-sm font-semibold text-white focus:not-sr-only"
-          >
-            {locale === "ro" ? "Sari la continut" : "Skip to content"}
-          </a>
-          <Navbar locale={locale} />
-          <div id="main-content" tabIndex={-1}>
-            {children}
-          </div>
-          <Footer locale={locale} />
-          <AssistantWidget
-            enabled={isChatKitEnabled && Boolean(chatKitConfig.workflowId)}
-            locale={locale}
-          />
-        </ToastProvider>
+        ) : null}
       </body>
     </html>
   );

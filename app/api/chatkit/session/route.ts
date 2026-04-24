@@ -1,10 +1,11 @@
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
 
-import { chatKitConfig } from "@/lib/chatkit-config";
+import { getChatKitConfig } from "@/lib/chatkit-config";
 
 export async function POST(request: Request) {
   const apiKey = process.env.OPENAI_API_KEY;
+  const chatKitConfig = getChatKitConfig();
 
   if (!apiKey) {
     return NextResponse.json(
@@ -13,17 +14,11 @@ export async function POST(request: Request) {
     );
   }
 
-  if (!chatKitConfig.workflowId) {
-    return NextResponse.json(
-      { error: "OPENAI_CHATKIT_WORKFLOW_ID nu este configurat pe server." },
-      { status: 500 },
-    );
-  }
-
   try {
     const body = (await request.json().catch(() => ({}))) as {
       user?: unknown;
       userId?: unknown;
+      workflowId?: unknown;
     };
     const requestedUser =
       typeof body.user === "string" && body.user.trim().length > 0
@@ -31,12 +26,23 @@ export async function POST(request: Request) {
         : typeof body.userId === "string" && body.userId.trim().length > 0
           ? body.userId.trim()
         : null;
+    const requestedWorkflowId =
+      typeof body.workflowId === "string" && body.workflowId.trim().length > 0
+        ? body.workflowId.trim()
+        : chatKitConfig.workflowId;
+
+    if (!requestedWorkflowId) {
+      return NextResponse.json(
+        { error: "OPENAI_CHATKIT_WORKFLOW_ID nu este configurat pe server." },
+        { status: 500 },
+      );
+    }
 
     const client = new OpenAI({ apiKey });
     const session = await client.beta.chatkit.sessions.create({
       user: requestedUser ?? `syntraflow-${crypto.randomUUID()}`,
       workflow: {
-        id: chatKitConfig.workflowId,
+        id: requestedWorkflowId,
         tracing: { enabled: true },
       },
       chatkit_configuration: {

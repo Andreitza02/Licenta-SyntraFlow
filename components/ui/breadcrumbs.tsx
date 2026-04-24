@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { SiteLink } from "@/components/ui/site-link";
 
 type Crumb = {
   label: string;
@@ -17,9 +17,9 @@ export function Breadcrumbs({ items }: BreadcrumbsProps) {
         return (
           <span key={`${item.label}-${index}`} className="flex items-center gap-2">
             {item.href && !isLast ? (
-              <Link href={item.href} className="transition hover:text-[#0f79ff]">
+              <SiteLink href={item.href} className="transition hover:text-[#0f79ff]">
                 {item.label}
-              </Link>
+              </SiteLink>
             ) : (
               <span className={isLast ? "font-medium text-[#0b1f35]" : undefined}>{item.label}</span>
             )}

@@ -372,6 +372,18 @@ img {
   animation: contact-pop 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+.cart-item-removing {
+  opacity: 0;
+  transform: translateX(28px) scale(0.98);
+  max-height: 0;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  overflow: hidden;
+  pointer-events: none;
+}
+
 .assistant-launcher-logo {
   transform-origin: center;
   backface-visibility: visible;

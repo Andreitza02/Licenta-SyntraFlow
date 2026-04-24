@@ -1,45 +1,94 @@
 "use client";
 
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import searchIcon from "../../icons-search-30.png";
 import { MegaMenu } from "@/components/layout/mega-menu";
 import { MobileMenu } from "@/components/layout/mobile-menu";
+import { NavItemIcon } from "@/components/layout/nav-item-icon";
+import { UtilityHoverCard } from "@/components/layout/utility-hover-card";
 import { CommandPalette } from "@/components/ui/command-palette";
-import { CTAButton } from "@/components/ui/cta-button";
 import { Drawer } from "@/components/ui/drawer";
 import { LanguageSwitcher } from "@/components/ui/language-switcher";
 import { LogoMark } from "@/components/ui/logo-mark";
+import { SiteLink } from "@/components/ui/site-link";
+import { useCart } from "@/components/providers/cart-provider";
 import { useDismissableLayer } from "@/lib/hooks/use-dismissable-layer";
 import type { Locale } from "@/lib/i18n";
 import { getNavbarMenu } from "@/lib/menu-data";
 import { siteConfig } from "@/lib/site-config";
-import { useScrollSpy } from "@/lib/hooks/use-scroll-spy";
 import { cn } from "@/lib/utils";
 
 type NavbarProps = {
   locale: Locale;
 };
 
+function CartIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.9"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <circle cx="9" cy="19" r="1.55" />
+      <circle cx="18" cy="19" r="1.55" />
+      <path d="M2.5 4.5h2.8l2.2 10.1a1 1 0 0 0 1 .8h9.4a1 1 0 0 0 1-.75l1.35-6.15H6.25" />
+    </svg>
+  );
+}
+
+function HeartIcon({ className, active = false }: { className?: string; active?: boolean }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className={className}
+      fill={active ? "currentColor" : "none"}
+      stroke="currentColor"
+      strokeWidth="1.9"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M12 20.55 4.8 13.85a4.6 4.6 0 0 1 0-6.7 4.75 4.75 0 0 1 6.7 0L12 7.7l.5-.55a4.75 4.75 0 0 1 6.7 0 4.6 4.6 0 0 1 0 6.7Z" />
+    </svg>
+  );
+}
+
+function AccountIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.9"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <circle cx="12" cy="8.25" r="3.6" />
+      <path d="M5.5 19.25a6.5 6.5 0 0 1 13 0" />
+      <circle cx="12" cy="12" r="9.1" />
+    </svg>
+  );
+}
+
 export function Navbar({ locale }: NavbarProps) {
+  const { cartCount, favoriteCount } = useCart();
   const pathname = usePathname();
-  const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [openMenuId, setOpenMenuId] = useState<string | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCommandOpen, setIsCommandOpen] = useState(false);
   const headerRef = useRef<HTMLDivElement | null>(null);
   const navbarMenu = useMemo(() => getNavbarMenu(locale), [locale]);
-
-  const scrollSpyIds = useMemo(
-    () => navbarMenu
-      .map((item) => item.homeSectionId)
-      .filter((item): item is string => Boolean(item)),
-    [],
-  );
-  const activeHomeSection = useScrollSpy(pathname === "/" ? scrollSpyIds : []);
 
   useDismissableLayer({
     enabled: Boolean(openMenuId),
@@ -75,25 +124,92 @@ export function Navbar({ locale }: NavbarProps) {
   const shouldUseSolid = pathname !== "/" || isScrolled || isMenuOpen || Boolean(openMenuId);
   const desktopNavItemClass =
     "nav-pill inline-flex h-10 shrink-0 items-center whitespace-nowrap rounded-full px-2.5 text-[11px] font-medium 2xl:px-3 2xl:text-[12px]";
+  const cartLabel = locale === "ro" ? "Cosul meu" : "My Cart";
+  const favoritesLabel = locale === "ro" ? "Favorite" : "Favorites";
+  const accountLabel = locale === "ro" ? "Cont" : "Account";
+  const cartPanel = locale === "ro"
+    ? {
+        badge: "Cos rapid",
+        title: "Cosul tau de cumparaturi",
+        description: "Deschide pagina dedicata cart-ului pentru AI Agent Builder si sumarul comenzii.",
+        actions: [],
+        primaryCta: {
+          label: "Vezi Cosul",
+          href: "/cart",
+        },
+        minimal: true,
+      }
+    : {
+        badge: "Quick cart",
+        title: "Your shopping cart",
+        description: "Open the dedicated cart page for AI Agent Builder and the order summary.",
+        actions: [],
+        primaryCta: {
+          label: "View Cart",
+          href: "/cart",
+        },
+        minimal: true,
+      };
+  const accountPanel = locale === "ro"
+    ? {
+        badge: "Cont rapid",
+        title: "Detalii cont",
+        description: "Deschide pagina dedicata pentru actualizarea si personalizarea detaliilor contului.",
+        actions: [],
+        primaryCta: {
+          label: "View Details",
+          href: "/account",
+        },
+        minimal: true,
+      }
+    : {
+        badge: "Quick account",
+        title: "Account details",
+        description: "Open the dedicated page for updating and customizing account details.",
+        actions: [],
+        primaryCta: {
+          label: "View Details",
+          href: "/account",
+        },
+        minimal: true,
+      };
+  const favoritesPanel = locale === "ro"
+    ? {
+        badge: "Favorite",
+        title: "Produsele favorite",
+        description: "Deschide lista simpla cu produsele pe care le-ai marcat cu inima din catalog.",
+        actions: [],
+        primaryCta: {
+          label: "Vezi favorite",
+          href: "/favorites",
+        },
+        minimal: true,
+        iconOnly: true,
+      }
+    : {
+        badge: "Favorites",
+        title: "Saved favorites",
+        description: "Open the simple list of products you marked with the heart icon in the catalog.",
+        actions: [],
+        primaryCta: {
+          label: "View favorites",
+          href: "/favorites",
+        },
+        minimal: true,
+        iconOnly: true,
+      };
 
   function isItemActive(item: (typeof navbarMenu)[number]) {
-    if (pathname === "/") {
-      return item.homeSectionId === activeHomeSection || (!activeHomeSection && item.href === "/");
+    const currentPath = pathname.endsWith("/") && pathname !== "/" ? pathname.slice(0, -1) : pathname;
+    const itemPath = item.href.endsWith("/") && item.href !== "/" ? item.href.slice(0, -1) : item.href;
+
+    if (item.id === "product" && (currentPath === "/product" || currentPath === "/produse")) {
+      return true;
     }
 
-    return pathname === item.href;
+    return currentPath === itemPath;
   }
-
-  function navigateTo(href: string, homeSectionId?: string) {
-    setOpenMenuId(null);
-
-    if (pathname === "/" && homeSectionId) {
-      document.getElementById(homeSectionId)?.scrollIntoView({ behavior: "smooth", block: "start" });
-      return;
-    }
-
-    router.push(href);
-  }
+  const getNavigationHref = (href: string, homeSectionId?: string) => (homeSectionId ? `/#${homeSectionId}` : href);
 
   return (
     <>
@@ -108,11 +224,10 @@ export function Navbar({ locale }: NavbarProps) {
           )}
         >
           <div className="flex items-center justify-between gap-1.5 xl:gap-2 2xl:gap-3">
-            <button
-              type="button"
+            <SiteLink
+              href="/#home-top"
               className="flex min-w-0 items-center gap-3 xl:hidden"
               aria-label={`${siteConfig.name} - pagina principala`}
-              onClick={() => navigateTo("/", "home-top")}
             >
               <span className="flex h-10 w-10 shrink-0 items-center justify-center">
                 <LogoMark className="h-10 w-10" />
@@ -125,37 +240,38 @@ export function Navbar({ locale }: NavbarProps) {
                     : "Web platform for automating customer interactions"}
                 </p>
               </div>
-            </button>
+            </SiteLink>
 
             <div className="hidden min-w-0 items-center gap-1 xl:flex 2xl:gap-1.5">
               <nav className="min-w-0 items-center gap-px xl:flex 2xl:gap-px" aria-label="Navigatie principala">
-                <button
-                  type="button"
+                <SiteLink
+                  href="/#home-top"
                   className="mr-0 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#0d3358]/10 bg-white/92 shadow-[0_10px_20px_rgba(11,31,53,0.07)] transition duration-300 hover:-translate-y-0.5 hover:border-[#0f79ff]/18 hover:bg-white 2xl:mr-1 2xl:shadow-[0_12px_24px_rgba(11,31,53,0.08)]"
                   aria-label={`${siteConfig.name} - pagina principala`}
-                  onClick={() => navigateTo("/", "home-top")}
                 >
                   <LogoMark className="h-8 w-8" />
-                </button>
+                </SiteLink>
 
                 {navbarMenu.map((item) => {
                   const isActive = isItemActive(item);
 
                   if (item.type === "link") {
                     return (
-                      <button
+                      <SiteLink
                         key={item.id}
-                        type="button"
+                        href={getNavigationHref(item.href, item.homeSectionId)}
                         className={cn(
                           desktopNavItemClass,
                           isActive ? "nav-pill-active text-white" : "text-[#0b1f35]",
                         )}
-                        onClick={() => navigateTo(item.href, item.homeSectionId)}
                       >
-                        <span className={cn("relative z-[1] transition", isActive && "font-semibold")}>
-                          {item.label}
+                        <span className="relative z-[1] inline-flex items-center gap-1.5">
+                          <NavItemIcon itemId={item.id} className="h-3.5 w-3.5 opacity-80" />
+                          <span className={cn("transition", isActive && "font-semibold")}>
+                            {item.label}
+                          </span>
                         </span>
-                      </button>
+                      </SiteLink>
                     );
                   }
 
@@ -175,6 +291,45 @@ export function Navbar({ locale }: NavbarProps) {
                 })}
               </nav>
 
+              <UtilityHoverCard
+                label={cartLabel}
+                icon={<CartIcon className="h-3.5 w-3.5 opacity-80" />}
+                badge={cartPanel.badge}
+                title={cartPanel.title}
+                description={cartPanel.description}
+                actions={cartPanel.actions}
+                primaryCta={cartPanel.primaryCta}
+                minimal={cartPanel.minimal}
+                count={cartCount}
+                highlight={cartCount > 0}
+              />
+
+              <UtilityHoverCard
+                label={favoritesLabel}
+                icon={<HeartIcon className="h-[18px] w-[18px] text-[#b11226]" active={favoriteCount > 0} />}
+                badge={favoritesPanel.badge}
+                title={favoritesPanel.title}
+                description={favoritesPanel.description}
+                actions={favoritesPanel.actions}
+                primaryCta={favoritesPanel.primaryCta}
+                minimal={favoritesPanel.minimal}
+                iconOnly={favoritesPanel.iconOnly}
+                tone="rose"
+                highlight={favoriteCount > 0}
+                className="mx-0.5"
+              />
+
+              <UtilityHoverCard
+                label={accountLabel}
+                icon={<AccountIcon className="h-[18px] w-[18px]" />}
+                badge={accountPanel.badge}
+                title={accountPanel.title}
+                description={accountPanel.description}
+                actions={accountPanel.actions}
+                primaryCta={accountPanel.primaryCta}
+                minimal={accountPanel.minimal}
+              />
+
               <button
                 type="button"
                 className="nav-utility-button h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#0d3358]/10 bg-white/80 text-[#0b1f35] hover:border-[#0f79ff]/25 xl:inline-flex"
@@ -188,11 +343,6 @@ export function Navbar({ locale }: NavbarProps) {
                   className="h-[18px] w-[18px] object-contain"
                 />
               </button>
-
-              <CTAButton href="/contact" className="h-10 px-3 py-0 text-[11px] 2xl:px-3.5 2xl:text-[12px]">
-                <span className="min-[1720px]:hidden">{locale === "ro" ? "Demo" : "Demo"}</span>
-                <span className="hidden min-[1720px]:inline">{locale === "ro" ? "Solicita Demo" : "Request Demo"}</span>
-              </CTAButton>
 
               <div className="hidden 2xl:block">
                 <LanguageSwitcher locale={locale} />
@@ -229,7 +379,7 @@ export function Navbar({ locale }: NavbarProps) {
           items={navbarMenu}
           activeItemId={navbarMenu.find((item) => isItemActive(item))?.id ?? null}
           locale={locale}
-          onNavigate={navigateTo}
+          onNavigate={() => setOpenMenuId(null)}
           onOpenSearch={() => setIsCommandOpen(true)}
           onClose={() => setIsMenuOpen(false)}
         />
