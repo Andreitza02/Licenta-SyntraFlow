@@ -61,17 +61,15 @@ function renderDropdownLinks(
   item: DropdownMenuItem,
   onClose: () => void,
 ) {
-  return item.links.map((link) => (
+  return item.links.slice(0, 4).map((link) => (
     <SiteLink
       key={link.label}
       href={link.href}
-      className="block rounded-[1.2rem] px-3 py-3 transition hover:bg-white"
+      className="flex items-center justify-between gap-3 rounded-[1.05rem] border border-[#d7e6f5] bg-white/88 px-3 py-2.5 transition hover:border-[#0f79ff]/18 hover:bg-white"
       onClick={onClose}
     >
-      <span className="block text-sm font-semibold text-[#0b1f35]">{link.label}</span>
-      {link.description ? (
-        <span className="mt-1 block text-xs leading-6 text-muted">{link.description}</span>
-      ) : null}
+      <span className="truncate text-sm font-semibold text-[#0b1f35]">{link.label}</span>
+      <span className="text-[#0f79ff]">-&gt;</span>
     </SiteLink>
   ));
 }
@@ -80,28 +78,31 @@ function renderMegaLinks(
   item: MegaMenuItem,
   onClose: () => void,
 ) {
-  return item.groups.map((group) => (
-    <div key={group.title} className="rounded-[1.2rem] border border-[#0d3358]/8 bg-white px-3 py-3">
-      <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#0b58d0]">
-        {group.title}
-      </p>
-      <div className="mt-2 space-y-1">
-        {group.links.map((link) => (
-          <SiteLink
-            key={link.label}
-            href={link.href}
-            className="block rounded-[1rem] px-2 py-2 transition hover:bg-[#f7fbff]"
-            onClick={onClose}
-          >
-            <span className="block text-sm font-semibold text-[#0b1f35]">{link.label}</span>
-            {link.description ? (
-              <span className="mt-1 block text-xs leading-6 text-muted">{link.description}</span>
-            ) : null}
-          </SiteLink>
-        ))}
-      </div>
+  const quickLinks = item.groups
+    .flatMap((group) => group.links.map((link) => ({ ...link, groupTitle: group.title })))
+    .filter((link, index, links) => links.findIndex((current) => current.href === link.href) === index)
+    .slice(0, 5);
+
+  return (
+    <div className="grid gap-2">
+      {quickLinks.map((link) => (
+        <SiteLink
+          key={`${item.id}-${link.href}`}
+          href={link.href}
+          className="flex items-center justify-between gap-3 rounded-[1.05rem] border border-[#d7e6f5] bg-white/88 px-3 py-2.5 transition hover:border-[#0f79ff]/18 hover:bg-white"
+          onClick={onClose}
+        >
+          <span className="min-w-0">
+            <span className="block truncate text-sm font-semibold text-[#0b1f35]">{link.label}</span>
+            <span className="mt-0.5 block truncate text-[10px] font-semibold uppercase tracking-[0.08em] text-muted">
+              {link.groupTitle}
+            </span>
+          </span>
+          <span className="text-[#0f79ff]">-&gt;</span>
+        </SiteLink>
+      ))}
     </div>
-  ));
+  );
 }
 
 export function MobileMenu({
@@ -230,9 +231,6 @@ export function MobileMenu({
                   <NavItemIcon itemId={item.id} className="h-4 w-4 text-[#0b58d0]" />
                   <span>{item.label}</span>
                 </span>
-                <span className="mt-1 block text-xs leading-6 text-muted">
-                  {item.description}
-                </span>
               </span>
               <svg
                 viewBox="0 0 20 20"
@@ -259,7 +257,7 @@ export function MobileMenu({
                 <div className="space-y-2 px-1 pb-1 pt-2">
                   <SiteLink
                     href={getNavigationHref(item.href, item.homeSectionId)}
-                    className="block w-full rounded-[1.2rem] border border-[#0d3358]/8 bg-[#f7fbff] px-3 py-3 text-left text-sm font-semibold text-[#0b1f35] transition hover:border-[#0f79ff]/18"
+                    className="block w-full rounded-[1.1rem] border border-[#0d3358]/8 bg-[#071d33] px-3 py-3 text-left text-sm font-semibold text-white transition hover:bg-[#0b2947]"
                     onClick={() => {
                       onNavigate();
                       onClose();
