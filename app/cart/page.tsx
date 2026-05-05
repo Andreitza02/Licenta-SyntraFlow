@@ -8,8 +8,8 @@ export async function generateMetadata() {
   return buildMetadata(
     locale === "ro" ? "Cosul meu" : "My Cart",
     locale === "ro"
-      ? "Pagina de cos pentru AI Agent Builder, construita intr-un stil simplu de e-commerce cu sumar de comanda si servicii optionale."
-      : "Cart page for AI Agent Builder, built in a simple e-commerce style with order summary and optional services.",
+      ? "Pagina de cos pentru produsele SyntraFlow, construita intr-un stil simplu de e-commerce cu sumar de comanda si servicii optionale."
+      : "Cart page for SyntraFlow products, built in a simple e-commerce style with order summary and optional services.",
     "/cart",
     locale,
   );

@@ -226,10 +226,7 @@ export default async function PartnersPage() {
     <main className="page-gradient-shell pb-10">
       <section className="relative overflow-hidden pt-32">
         <div className="section-shell">
-          <div className="reveal-section relative overflow-hidden rounded-[2.8rem] border border-[#d8e4ee] bg-[radial-gradient(circle_at_top_left,rgba(19,181,186,0.16),transparent_24%),radial-gradient(circle_at_top_right,rgba(15,121,255,0.18),transparent_28%),linear-gradient(135deg,rgba(255,255,255,0.98)_0%,rgba(244,250,255,0.96)_44%,rgba(235,246,255,0.94)_100%)] p-6 shadow-[0_34px_90px_rgba(11,31,53,0.14)] md:p-8 xl:p-10">
-            <div className="pointer-events-none absolute -left-12 top-10 h-40 w-40 rounded-full bg-[#13b5ba]/12 blur-3xl" />
-            <div className="pointer-events-none absolute right-0 top-0 h-52 w-52 rounded-full bg-[#0f79ff]/12 blur-3xl" />
-
+          <div className="panel-surface accent-border reveal-section relative overflow-hidden rounded-[2.4rem] p-6 md:p-8 xl:p-10">
             <Breadcrumbs
               items={[
                 { label: isRomanian ? "Acasa" : "Home", href: "/" },

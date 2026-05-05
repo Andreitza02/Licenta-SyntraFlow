@@ -565,7 +565,7 @@ const menuTranslations: Record<string, string> = {
   "Arhitectura leaga UI-ul, logica de conversatie si fluxurile operationale intr-un traseu care ramane usor de controlat.": "The architecture connects the UI, conversation logic, and operational flows in a journey that remains easy to control.",
   "Vezi arhitectura": "View the architecture",
   "Parteneri": "Partners",
-  "Produse": "Product",
+  "Produse": "Products",
   "Contact": "Contact",
 };
 

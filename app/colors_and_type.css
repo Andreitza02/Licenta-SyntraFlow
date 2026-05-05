@@ -1,0 +1,58 @@
+:root {
+  --sf-font-body: "Segoe UI", "Aptos", "Helvetica Neue", Arial, sans-serif;
+  --sf-font-display: "Segoe UI Semibold", "Aptos Display", "Trebuchet MS", "Helvetica Neue", Arial, sans-serif;
+
+  --sf-ink-deep: #071d33;
+  --sf-ink: #0b1f35;
+  --sf-ink-2: #0d3358;
+  --sf-ink-3: #35556f;
+  --sf-muted: #557089;
+  --sf-muted-2: #3f6079;
+  --sf-line: rgba(13, 51, 88, 0.1);
+  --sf-line-strong: rgba(13, 51, 88, 0.14);
+
+  --sf-brand: #0f79ff;
+  --sf-brand-strong: #0b58d0;
+  --sf-teal: #13b5ba;
+  --sf-success: #10b981;
+  --sf-danger: #dc2626;
+
+  --sf-surface: rgba(255, 255, 255, 0.82);
+  --sf-surface-strong: rgba(255, 255, 255, 0.92);
+  --sf-surface-soft: rgba(244, 250, 255, 0.82);
+  --sf-surface-blue: rgba(241, 247, 255, 0.88);
+  --sf-dark: #071d33;
+  --sf-dark-2: #0b2947;
+
+  --sf-gradient-page: linear-gradient(135deg, #f8fdff 0%, #e8f6ff 30%, #dff5ff 56%, #e9fbff 78%, #f9fdff 100%);
+  --sf-gradient-orbs:
+    radial-gradient(circle at 12% 8%, rgba(15, 121, 255, 0.22), transparent 22%),
+    radial-gradient(circle at 88% 10%, rgba(19, 181, 186, 0.20), transparent 24%),
+    radial-gradient(circle at 50% 30%, rgba(114, 190, 255, 0.14), transparent 26%),
+    radial-gradient(circle at 18% 78%, rgba(19, 181, 186, 0.12), transparent 24%),
+    radial-gradient(circle at 84% 74%, rgba(15, 121, 255, 0.12), transparent 26%);
+  --sf-gradient-grid:
+    linear-gradient(rgba(15, 121, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(19, 181, 186, 0.045) 1px, transparent 1px);
+  --sf-gradient-brand: linear-gradient(135deg, #0f79ff, #13b5ba);
+  --sf-gradient-brand-cta: linear-gradient(135deg, #0f79ff 0%, #2d8dff 48%, #13b5ba 100%);
+  --sf-gradient-card: linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(244, 250, 255, 0.78));
+  --sf-gradient-accent-border: linear-gradient(140deg, rgba(15, 121, 255, 0.38), rgba(19, 181, 186, 0.28), transparent 62%);
+  --sf-gradient-dark: linear-gradient(135deg, #071d33 0%, #0b2947 52%, #0f79ff 100%);
+
+  --sf-shadow-card-rest:
+    0 18px 42px rgba(11, 31, 53, 0.07),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  --sf-shadow-card-hover:
+    0 26px 58px rgba(15, 121, 255, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.74);
+  --sf-shadow-hero:
+    0 34px 90px rgba(11, 31, 53, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  --sf-shadow-cta: 0 18px 45px rgba(15, 121, 255, 0.24);
+  --sf-shadow-cta-hover: 0 24px 58px rgba(15, 121, 255, 0.32);
+
+  --sf-radius-card: 1.45rem;
+  --sf-radius-panel: 2rem;
+  --sf-ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}

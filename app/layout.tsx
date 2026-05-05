@@ -50,7 +50,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
           <CartProvider>
             <a
               href="#main-content"
-              className="sr-only fixed left-4 top-4 z-[90] rounded-full bg-[#0b1f35] px-4 py-2 text-sm font-semibold text-white focus:not-sr-only"
+              className="sf-floating-layer sr-only fixed left-4 top-4 z-[90] rounded-full bg-[#0b1f35] px-4 py-2 text-sm font-semibold text-white focus:not-sr-only"
             >
               {locale === "ro" ? "Sari la continut" : "Skip to content"}
             </a>

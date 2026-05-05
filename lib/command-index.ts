@@ -74,10 +74,10 @@ const commandIndexRo: CommandItem[] = [
   },
   {
     id: "page-product",
-    title: "Product",
-    description: "Catalogul SyntraFlow pentru AI, Website Builder si Hosting, prezentat in stil comercial.",
+    title: "Produse",
+    description: "Catalogul SyntraFlow pentru Hosting, AI, automatizare interna si Website Builder, prezentat in stil comercial.",
     href: "/product",
-    keywords: ["product", "produs", "catalog", "ai", "website builder", "hosting"],
+    keywords: ["produse", "products", "catalog", "ai", "website builder", "hosting"],
   },
   {
     id: "page-automations",
@@ -110,9 +110,9 @@ const commandIndexRo: CommandItem[] = [
   {
     id: "page-cart",
     title: "Cosul meu",
-    description: "Pagina de cos pentru AI Agent Builder, cu sumarul comenzii si servicii optionale.",
+    description: "Pagina de cos pentru produsele SyntraFlow, cu sumarul comenzii si servicii optionale.",
     href: "/cart",
-    keywords: ["cos", "cart", "agent builder", "shopping", "comanda"],
+    keywords: ["cos", "cart", "produse", "shopping", "comanda"],
   },
   {
     id: "page-account",
@@ -142,8 +142,8 @@ const commandTranslations: Record<string, string> = {
   "Exemple de industrii si scenarii de utilizare.": "Industry examples and usage scenarios.",
   "Asistent virtual": "Virtual Assistant",
   "Demo chat, quick replies si scenarii conversationale.": "Demo chat, quick replies, and guided conversation flows.",
-  "Product": "Product",
-  "Pagina produsului SyntraFlow cu overview, module si trasee de demo.": "The SyntraFlow product page with overview, modules, and demo journeys.",
+  "Produse": "Products",
+  "Catalogul SyntraFlow pentru Hosting, AI, automatizare interna si Website Builder, prezentat in stil comercial.": "The SyntraFlow catalog for Hosting, AI, internal automation, and Website Builder, presented in a commercial style.",
   "Automatizari": "Automations",
   "Stepper interactiv pentru fluxurile de suport, oferta si demo.": "Interactive flow for support, offer, and demo journeys.",
   "Arhitectura": "How It Works",
@@ -153,7 +153,7 @@ const commandTranslations: Record<string, string> = {
   "Contact": "Contact",
   "Formular multi-step pentru demo sau solicitari.": "Multi-step form for demos or requests.",
   "Cosul meu": "My Cart",
-  "Pagina de cos pentru AI Agent Builder, cu sumarul comenzii si servicii optionale.": "Cart page for AI Agent Builder, with order summary and optional services.",
+  "Pagina de cos pentru produsele SyntraFlow, cu sumarul comenzii si servicii optionale.": "Cart page for SyntraFlow products, with order summary and optional services.",
   "Cont": "Account",
   "Pagina de cont pentru profil, companie si preferinte personalizabile.": "Account page for profile, company details, and customizable preferences.",
 };

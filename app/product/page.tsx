@@ -43,7 +43,7 @@ function CartIcon() {
   );
 }
 
-type ObjectiveIconName = "chat" | "hosting" | "website";
+type ObjectiveIconName = "chat" | "hosting" | "website" | "automation";
 
 function ObjectiveIcon({ name }: { name: ObjectiveIconName }) {
   const common = {
@@ -85,6 +85,16 @@ function ObjectiveIcon({ name }: { name: ObjectiveIconName }) {
           <path d="M7.4 15.5h8.8" />
         </svg>
       );
+    case "automation":
+      return (
+        <svg {...common} aria-hidden="true">
+          <path d="M5 6.5h14v11H5z" />
+          <path d="M8 10h4.5" />
+          <path d="M8 13h7" />
+          <path d="M16.5 10.5v4" />
+          <path d="M14.5 12.5h4" />
+        </svg>
+      );
   }
 }
 
@@ -93,10 +103,10 @@ export async function generateMetadata() {
   const isRomanian = locale === "ro";
 
   return buildMetadata(
-    isRomanian ? "Produse" : "Product",
+    isRomanian ? "Produse" : "Products",
     isRomanian
-      ? "Catalogul SyntraFlow pentru AI, Website Builder si Hosting, prezentate intr-un format comercial clar."
-      : "The SyntraFlow catalog for AI, Website Builder, and Hosting, presented in a clear commercial format.",
+      ? "Catalogul SyntraFlow pentru Hosting, AI, automatizare interna si Website Builder, prezentate intr-un format comercial clar."
+      : "The SyntraFlow catalog for Hosting, AI, internal automation, and Website Builder, presented in a clear commercial format.",
     "/product",
     locale,
   );
@@ -110,54 +120,70 @@ export default async function ProductPage() {
   const decisionCards = isRomanian
     ? [
         {
+          accent: "from-[#0d3358] to-[#13b5ba]",
+          icon: "hosting" as const,
+          label: "Produs 01",
+          product: "Hosting",
+          title: "Vrei stabilitate dupa lansare",
+          text: "Alege Hosting pentru disponibilitate, mentenanta simpla si un website tinut in acelasi ecosistem.",
+        },
+        {
           accent: "from-[#0f79ff] to-[#14b8c7]",
           icon: "chat" as const,
-          label: "Produs 01",
-          product: "Custom AI Assistant",
+          label: "Produs 02",
+          product: "Custom AI Assistant pentru clienti",
           title: "Vrei conversatii mai bune",
           text: "Alege asistentul AI pentru intrebari, calificare si captare rapida de intentie.",
         },
         {
+          accent: "from-[#0b58d0] to-[#13b5ba]",
+          icon: "automation" as const,
+          label: "Produs 03",
+          product: "Custom AI Automation Intern",
+          title: "Vrei procese interne mai rapide",
+          text: "Alege automatizarea interna pentru rutare, rezumate si actiuni repetitive pregatite pentru echipa.",
+        },
+        {
           accent: "from-[#10a37f] to-[#13b5ba]",
           icon: "website" as const,
-          label: "Produs 02",
+          label: "Produs 04",
           product: "Website Builder",
           title: "Vrei prezenta digitala",
           text: "Alege Website Builder pentru o pagina clara, credibila si usor de prezentat.",
         },
-        {
-          accent: "from-[#7c5cff] to-[#0f79ff]",
-          icon: "hosting" as const,
-          label: "Produs 03",
-          product: "Website Hosting",
-          title: "Vrei stabilitate dupa lansare",
-          text: "Alege Hosting pentru mentenanta simpla si un website disponibil permanent.",
-        },
       ]
     : [
         {
+          accent: "from-[#0d3358] to-[#13b5ba]",
+          icon: "hosting" as const,
+          label: "Product 01",
+          product: "Hosting",
+          title: "You need stability after launch",
+          text: "Choose Hosting for availability, simple maintenance, and a website kept in the same ecosystem.",
+        },
+        {
           accent: "from-[#0f79ff] to-[#14b8c7]",
           icon: "chat" as const,
-          label: "Product 01",
-          product: "Custom AI Assistant",
+          label: "Product 02",
+          product: "Custom AI Assistant pentru clienti",
           title: "You need better conversations",
           text: "Choose the AI assistant for questions, qualification, and fast intent capture.",
         },
         {
+          accent: "from-[#0b58d0] to-[#13b5ba]",
+          icon: "automation" as const,
+          label: "Product 03",
+          product: "Custom AI Automation Intern",
+          title: "You need faster internal processes",
+          text: "Choose internal automation for routing, summaries, and repetitive actions prepared for the team.",
+        },
+        {
           accent: "from-[#10a37f] to-[#13b5ba]",
           icon: "website" as const,
-          label: "Product 02",
+          label: "Product 04",
           product: "Website Builder",
           title: "You need a digital presence",
           text: "Choose Website Builder for a clear, credible page that is easy to present.",
-        },
-        {
-          accent: "from-[#7c5cff] to-[#0f79ff]",
-          icon: "hosting" as const,
-          label: "Product 03",
-          product: "Website Hosting",
-          title: "You need stability after launch",
-          text: "Choose Hosting for simpler maintenance and a website that stays available.",
         },
       ];
 
@@ -165,7 +191,7 @@ export default async function ProductPage() {
     ? [
         {
           title: "Selectie",
-          text: "Pornesti cu produsul potrivit pentru obiectivul actual: AI, website, hosting sau un pachet combinat.",
+          text: "Pornesti cu produsul potrivit pentru obiectivul actual: hosting, AI pentru clienti, automatizare interna, website sau un pachet combinat.",
         },
         {
           title: "Configurare",
@@ -179,7 +205,7 @@ export default async function ProductPage() {
     : [
         {
           title: "Select",
-          text: "Start with the product that fits the current goal: AI, website, hosting, or a combined package.",
+          text: "Start with the product that fits the current goal: hosting, customer AI, internal automation, website, or a combined package.",
         },
         {
           title: "Configure",
@@ -199,8 +225,8 @@ export default async function ProductPage() {
             <span className="eyebrow">{isRomanian ? "Produse SyntraFlow" : "SyntraFlow Products"}</span>
             <h1 className="font-display mt-6 max-w-4xl text-4xl font-semibold leading-[1.05] tracking-[-0.04em] text-[#0b1f35] md:text-6xl">
               {isRomanian
-                ? "Un catalog modern pentru AI, website si hosting intr-un singur ecosistem"
-                : "A modern catalog for AI, website, and hosting in one ecosystem"}
+                ? "Un catalog modern pentru hosting, AI, automatizare interna si website intr-un singur ecosistem"
+                : "A modern catalog for hosting, AI, internal automation, and websites in one ecosystem"}
             </h1>
             <p className="mt-6 max-w-3xl text-base leading-8 text-muted md:text-lg">
               {isRomanian
@@ -209,7 +235,7 @@ export default async function ProductPage() {
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <CTAButton href="#ai">{isRomanian ? "Vezi produsele" : "View products"}</CTAButton>
+              <CTAButton href="#hosting">{isRomanian ? "Vezi produsele" : "View products"}</CTAButton>
               <CTAButton href="/contact" variant="secondary">
                 {isRomanian ? "Cere recomandare" : "Request a recommendation"}
               </CTAButton>
@@ -232,8 +258,8 @@ export default async function ProductPage() {
                 </h2>
                 <p className="mt-4 max-w-2xl text-sm leading-7 text-muted md:text-base">
                   {isRomanian
-                    ? "Porneste de la obiectivul real al clientului si ajungi rapid la produsul potrivit: conversatii, prezenta digitala sau stabilitate dupa lansare."
-                    : "Start from the real client objective and quickly reach the right product: conversations, digital presence, or post-launch stability."}
+                    ? "Porneste de la obiectivul real al clientului si ajungi rapid la produsul potrivit: stabilitate, conversatii, automatizare interna sau prezenta digitala."
+                    : "Start from the real client objective and quickly reach the right product: stability, conversations, internal automation, or digital presence."}
                 </p>
               </div>
 
@@ -258,7 +284,7 @@ export default async function ProductPage() {
               </div>
             </div>
 
-            <div className="grid gap-4 p-4 md:p-6 lg:grid-cols-3">
+            <div className="grid gap-4 p-4 md:p-6 lg:grid-cols-2 xl:grid-cols-4">
               {decisionCards.map((card) => (
                 <article
                   key={card.title}
@@ -280,7 +306,19 @@ export default async function ProductPage() {
                   <p className="mt-3 text-sm leading-7 text-muted">{card.text}</p>
                   <div className="mt-5 flex items-center gap-2 text-sm font-semibold text-[#0b58d0]">
                     <span>{isRomanian ? "Vezi modulul" : "View module"}</span>
-                    <span className="transition duration-300 group-hover:translate-x-1">-&gt;</span>
+                    <svg
+                      viewBox="0 0 20 20"
+                      className="h-4 w-4 transition duration-300 group-hover:translate-x-1"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M5 10h10" />
+                      <path d="m11 5 5 5-5 5" />
+                    </svg>
                   </div>
                 </article>
               ))}

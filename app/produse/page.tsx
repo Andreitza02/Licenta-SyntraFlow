@@ -7,10 +7,10 @@ export async function generateMetadata() {
   const isRomanian = locale === "ro";
 
   return buildMetadata(
-    isRomanian ? "Produse" : "Product",
+    isRomanian ? "Produse" : "Products",
     isRomanian
-      ? "Catalogul SyntraFlow pentru AI, Website Builder si Hosting, prezentate intr-un format comercial clar."
-      : "The SyntraFlow catalog for AI, Website Builder, and Hosting, presented in a clear commercial format.",
+      ? "Catalogul SyntraFlow pentru Hosting, AI, automatizare interna si Website Builder, prezentate intr-un format comercial clar."
+      : "The SyntraFlow catalog for Hosting, AI, internal automation, and Website Builder, presented in a clear commercial format.",
     "/produse",
     locale,
   );
