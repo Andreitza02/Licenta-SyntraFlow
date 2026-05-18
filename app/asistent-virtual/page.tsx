@@ -11,8 +11,8 @@ export async function generateMetadata() {
   return buildMetadata(
     locale === "ro" ? "Asistent virtual" : "Assistant",
     locale === "ro"
-      ? "Pagina dedicata asistentului virtual SyntraFlow: exemple conversationale, FAQ automat, lead qualification si extindere omnichannel."
-      : "The SyntraFlow virtual assistant page: conversation examples, automated FAQ, lead qualification, and omnichannel expansion.",
+      ? "Asistentul virtual SyntraFlow raspunde instant, califica intentia si transforma intrebarile repetitive in oportunitati comerciale."
+      : "The SyntraFlow virtual assistant replies instantly, qualifies intent, and turns repetitive questions into commercial opportunities.",
     "/asistent-virtual",
     locale,
   );
@@ -29,11 +29,11 @@ export default async function AssistantPage() {
         eyebrow={locale === "ro" ? "Asistent virtual" : "Assistant"}
         currentLabel={locale === "ro" ? "Asistent virtual" : "Assistant"}
         title={locale === "ro"
-          ? "Un asistent care raspunde, filtreaza intentia si pregateste urmatorul pas"
-          : "An assistant that answers, filters intent, and prepares the next step"}
+          ? "Un asistent AI care raspunde rapid si muta conversatia spre vanzare"
+          : "An AI assistant that replies fast and moves the conversation toward sales"}
         description={locale === "ro"
-          ? "Componenta conversationala este nucleul experientei SyntraFlow. Ea poate livra raspunsuri FAQ, poate califica lead-uri si poate pregati o programare de demo sau o cerere de oferta."
-          : "The conversational component is the core of the SyntraFlow experience. It can deliver FAQ answers, qualify leads, and prepare a demo booking or quote request."}
+          ? "Raspunde la intrebarile importante, reduce frictiunea, colecteaza context si pregateste demo-uri sau cereri de oferta cu intentie clara."
+          : "It answers important questions, reduces friction, captures context, and prepares demos or quote requests with clear intent."}
         highlights={locale === "ro"
           ? ["FAQ automat", "Lead qualification", "Multichannel ready", "Context controlat"]
           : ["Automated FAQ", "Lead qualification", "Multichannel ready", "Controlled context"]}
@@ -44,30 +44,30 @@ export default async function AssistantPage() {
           {[
             locale === "ro"
               ? {
-                  title: "Ce face asistentul",
-                  text: "Intelege intentia vizitatorului si alege intre informare, colectare de date sau escaladare.",
+                  title: "Ce castigi",
+                  text: "Pastreaza interesul viu si transforma intrebarile in actiuni comerciale masurabile.",
                 }
               : {
-                  title: "What the assistant does",
-                  text: "It understands visitor intent and chooses between information, data capture, or escalation.",
+                  title: "What you gain",
+                  text: "It keeps interest alive and turns questions into measurable commercial actions.",
                 },
             locale === "ro"
               ? {
-                  title: "Cum poate memora contextul",
-                  text: "Pastreaza firul discutiei in sesiune si foloseste datele deja oferite pentru a evita repetitia inutila.",
+                  title: "Cum creste calitatea lead-ului",
+                  text: "Pastreaza contextul, evita repetitia si cere doar detaliile care fac urmatorul pas mai relevant.",
                 }
               : {
-                  title: "How it keeps context",
-                  text: "It keeps the thread of the discussion during the session and reuses known data to avoid unnecessary repetition.",
+                  title: "How it improves lead quality",
+                  text: "It keeps context, avoids repetition, and asks only for details that make the next step more relevant.",
                 },
             locale === "ro"
               ? {
-                  title: "Unde poate fi extins",
-                  text: "Structura este pregatita pentru website, widget integrat si viitoare conectari cu WhatsApp sau Facebook.",
+                  title: "Unde poate vinde mai mult",
+                  text: "Acelasi motor conversational poate lucra pe website, landing page, widget si canale sociale.",
                 }
               : {
-                  title: "Where it can expand",
-                  text: "The structure is ready for the website, embedded widgets, and future connections with WhatsApp or Facebook.",
+                  title: "Where it can sell more",
+                  text: "The same conversational engine can work on websites, landing pages, widgets, and social channels.",
                 },
           ].map((item) => (
             <article key={item.title} className="panel-surface rounded-[1.75rem] p-6">
@@ -127,8 +127,8 @@ export default async function AssistantPage() {
             </div>
             <div className="mt-6 rounded-[1.5rem] bg-[#0b1f35] p-5 text-sm leading-7 text-white/80">
               {locale === "ro"
-                ? "Asistentul poate fi extins in mai multe puncte digitale si poate sustine aceeasi experienta clara pentru informare, calificare si directionare."
-                : "The assistant can be extended across multiple digital touchpoints and can support the same clear experience for information, qualification, and routing."}
+                ? "Asistentul poate pastra aceeasi promisiune comerciala pe mai multe canale: raspuns rapid, calificare buna si urmator pas clar."
+                : "The assistant can keep the same commercial promise across multiple channels: fast reply, strong qualification, and a clear next step."}
             </div>
           </div>
         </div>

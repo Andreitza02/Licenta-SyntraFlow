@@ -11,8 +11,8 @@ export async function generateMetadata() {
   return buildMetadata(
     locale === "ro" ? "Arhitectura" : "Architecture",
     locale === "ro"
-      ? "Prezentarea modului in care SyntraFlow sustine raspunsuri rapide, procese clare si interactiuni sigure cu clientii."
-      : "A presentation of how SyntraFlow supports fast responses, clear processes, and secure customer interactions.",
+      ? "Arhitectura SyntraFlow conecteaza website-ul, asistentul AI, datele si automatizarile intr-un sistem comercial rapid si sigur."
+      : "The SyntraFlow architecture connects the website, AI assistant, data, and automations into a fast and secure commercial system.",
     "/arhitectura",
     locale,
   );
@@ -29,11 +29,11 @@ export default async function ArchitecturePage() {
         eyebrow={locale === "ro" ? "Cum functioneaza" : "How it works"}
         currentLabel={locale === "ro" ? "Arhitectura" : "Architecture"}
         title={locale === "ro"
-          ? "Un sistem clar, sigur si pregatit sa sustina interactiuni mai bune cu clientii"
-          : "A clear, secure system built to support better customer interactions"}
+          ? "Un sistem pregatit sa raspunda rapid, sa califice intentia si sa trimita cererea unde trebuie"
+          : "A system built to reply fast, qualify intent, and route every request where it belongs"}
         description={locale === "ro"
-          ? "Fiecare etapa este gandita pentru raspunsuri rapide, colectare corecta a datelor si directionare eficienta catre urmatorul pas."
-          : "Each stage is designed for fast answers, correct data collection, and efficient routing into the next step."}
+          ? "Fiecare strat sustine o promisiune comerciala simpla: mai putine blocaje, lead-uri mai curate si follow-up mai usor de controlat."
+          : "Every layer supports a simple commercial promise: fewer blockers, cleaner leads, and follow-up that is easier to control."}
         highlights={locale === "ro"
           ? ["Raspuns rapid", "Flux clar", "Automatizare", "Securitate"]
           : ["Fast response", "Clear flow", "Automation", "Security"]}
@@ -47,8 +47,8 @@ export default async function ArchitecturePage() {
             </p>
             <p className="mt-2 text-sm text-muted">
               {locale === "ro"
-                ? "Exploreaza fiecare zona pentru a vedea cum contribuie la o experienta mai rapida si mai clara pentru clienti."
-                : "Explore each area to see how it contributes to a faster and clearer experience for customers."}
+                ? "Fiecare zona sustine viteza, increderea si conversia din primul contact pana la handoff."
+                : "Each area supports speed, trust, and conversion from first contact to handoff."}
             </p>
           </div>
           <button
@@ -75,16 +75,16 @@ export default async function ArchitecturePage() {
             <div className="mt-6 space-y-4">
               {(locale === "ro"
                 ? [
-                    "Vizitatorul primeste un traseu clar si usor de urmat chiar din primul contact.",
-                    "Solicitarile sunt organizate si pregatite pentru a ajunge rapid unde trebuie.",
-                    "Asistentul raspunde coerent si mentine conversatia utila pentru client.",
-                    "Informatiile importante pot continua catre echipa potrivita fara pasi inutili.",
+                    "Primul contact capteaza atentia si impinge intentia spre actiune.",
+                    "Solicitarile sunt organizate si pregatite pentru echipa potrivita.",
+                    "Asistentul mentine conversatia vie si reduce frictiunea.",
+                    "Contextul important ajunge mai departe fara pasi inutili.",
                   ]
                 : [
-                    "The visitor gets a clear and easy-to-follow path from the very first contact.",
-                    "Requests are organized and prepared to reach the right destination quickly.",
-                    "The assistant responds consistently and keeps the conversation useful for the customer.",
-                    "Important information can move to the right team without unnecessary steps.",
+                    "First contact captures attention and pushes intent toward action.",
+                    "Requests are organized and prepared for the right team.",
+                    "The assistant keeps the conversation alive and reduces friction.",
+                    "Important context moves forward without unnecessary steps.",
                   ]).map((item, index) => (
                 <div key={item} className="flex items-center gap-4 rounded-[1.5rem] bg-[#f4fbff] px-4 py-4">
                   <span className="font-display flex h-10 w-10 items-center justify-center rounded-2xl bg-[#0f79ff] text-sm font-semibold text-white">

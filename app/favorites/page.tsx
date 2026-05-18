@@ -8,8 +8,8 @@ export async function generateMetadata() {
   return buildMetadata(
     locale === "ro" ? "Favorite" : "Favorites",
     locale === "ro"
-      ? "Pagina simpla cu produsele marcate cu inima, pregatita pentru selectie rapida si mutare in cos."
-      : "Simple page for products marked with the heart icon, ready for quick selection and cart flow.",
+      ? "Produsele SyntraFlow salvate pentru o selectie rapida si un pachet final mai usor de construit."
+      : "Saved SyntraFlow products for faster selection and an easier final package build.",
     "/favorites",
     locale,
   );

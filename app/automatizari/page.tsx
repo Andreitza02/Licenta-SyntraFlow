@@ -10,8 +10,8 @@ export async function generateMetadata() {
   return buildMetadata(
     locale === "ro" ? "Automatizari" : "Automation",
     locale === "ro"
-      ? "Fluxuri cap-coada pentru raspuns automat, colectare de date, validare, rutare si follow-up in SyntraFlow."
-      : "End-to-end flows for automated replies, data collection, validation, routing, and follow-up in SyntraFlow.",
+      ? "Automatizari SyntraFlow pentru raspuns instant, lead capture, rutare comerciala si follow-up care pastreaza oportunitatile active."
+      : "SyntraFlow automations for instant replies, lead capture, commercial routing, and follow-up that keeps opportunities active.",
     "/automatizari",
     locale,
   );
@@ -27,11 +27,11 @@ export default async function AutomationsPage() {
         eyebrow={locale === "ro" ? "Automatizari" : "Automation"}
         currentLabel={locale === "ro" ? "Automatizari" : "Automation"}
         title={locale === "ro"
-          ? "Fluxuri cap-coada care leaga asistenta conversationala de actiunile interne"
-          : "End-to-end workflows that connect conversational support to internal actions"}
+          ? "Fluxuri care muta conversatia din chat in vanzari, CRM si follow-up"
+          : "Workflows that move the conversation from chat into sales, CRM, and follow-up"}
         description={locale === "ro"
-          ? "Pagina prezinta traseul complet al unei solicitari: de la intrebarea initiala, pana la validare, trimitere catre echipa si notificare ulterioara."
-          : "This page presents the complete lifecycle of a request: from the initial question to validation, routing to the team, and follow-up notification."}
+          ? "Fiecare cerere poate fi preluata, validata, calificata si trimisa mai departe cu contextul potrivit pentru un raspuns comercial rapid."
+          : "Every request can be captured, validated, qualified, and routed forward with the right context for a fast commercial reply."}
         highlights={locale === "ro"
           ? ["Raspuns", "Validare", "Rutare", "Follow-up"]
           : ["Response", "Validation", "Routing", "Follow-up"]}
@@ -49,29 +49,29 @@ export default async function AutomationsPage() {
             locale === "ro"
               ? {
                   title: "Flux FAQ si suport",
-                  text: "Utilizatorul intreaba, asistentul raspunde din knowledge base, iar exceptiile sunt escaladate impreuna cu un rezumat.",
+                  text: "Intrebarile repetitive primesc raspuns instant, iar cazurile importante ajung la echipa cu rezumat util.",
                 }
               : {
                   title: "FAQ and support flow",
-                  text: "The user asks a question, the assistant replies from the knowledge base, and exceptions are escalated together with a summary.",
+                  text: "Repetitive questions get instant replies, while important cases reach the team with a useful summary.",
                 },
             locale === "ro"
               ? {
                   title: "Flux de cerere oferta",
-                  text: "Sunt colectate datele de contact si contextul comercial, apoi formularul este validat si transmis catre sales.",
+                  text: "Datele de contact si contextul comercial sunt colectate strategic, validate si trimise catre sales.",
                 }
               : {
                   title: "Quote request flow",
-                  text: "Contact data and commercial context are collected, then the form is validated and sent to sales.",
+                  text: "Contact details and commercial context are collected strategically, validated, and sent to sales.",
                 },
             locale === "ro"
               ? {
                   title: "Flux pentru demo si consultanta",
-                  text: "Vizitatorul selecteaza intentia de demo, iar platforma pregateste o solicitare clara pentru urmatorul contact.",
+                  text: "Intentia de demo este transformata intr-o cerere pregatita, cu obiectiv clar si context pentru discutie.",
                 }
               : {
                   title: "Demo and consulting flow",
-                  text: "The visitor selects demo intent, and the platform prepares a clear request for the next touchpoint.",
+                  text: "Demo intent becomes a prepared request, with a clear objective and context for the conversation.",
                 },
           ].map((item) => (
             <article key={item.title} className="panel-surface reveal-section rounded-[1.75rem] p-6">
@@ -118,8 +118,8 @@ export default async function AutomationsPage() {
             </h2>
             <p className="mt-5 text-sm leading-7 text-white/80">
               {locale === "ro"
-                ? "Automatizarile nu elimina echipa umana, ci ii pregatesc contextul. Asta inseamna solicitari mai curate, raspuns mai rapid si o experienta mai previzibila pentru utilizator."
-                : "Automation does not replace the human team, it prepares the context for them. That means cleaner requests, faster replies, and a more predictable experience for the user."}
+                ? "Automatizarile nu inlocuiesc echipa, ci ii dau un start mai bun: solicitari curate, raspuns mai rapid si sanse mai mari de conversie."
+                : "Automation does not replace the team, it gives them a better start: cleaner requests, faster replies, and higher conversion chances."}
             </p>
             <div className="mt-6">
               <CTAButton href="/contact" variant="secondary" className="bg-white text-[#0b1f35]">

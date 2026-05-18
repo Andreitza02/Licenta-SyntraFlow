@@ -195,8 +195,8 @@ export default async function ContactPage() {
 
               <p className="mt-6 max-w-2xl text-lg leading-9 text-muted">
                 {isRomanian
-                  ? "Spune-ne ce vrei sa automatizezi, ce pagina ai nevoie sau ce flux de client trebuie simplificat. Revenim cu pasul potrivit pentru produs, demo sau oferta."
-                  : "Tell us what you want to automate, what page you need, or which customer flow needs to be simplified. We follow up with the right next step for product, demo, or quote."}
+                  ? "Spune-ne ce vrei sa automatizezi, ce experienta digitala vrei sa lansezi sau ce flux comercial trebuie simplificat. Revenim cu pasul potrivit pentru produs, demo sau oferta."
+                  : "Tell us what you want to automate, what digital experience you want to launch, or which commercial flow needs to be simplified. We follow up with the right next step for product, demo, or quote."}
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">

@@ -1,11 +1,10 @@
 import type { Locale } from "@/lib/i18n";
 
 export type ProductCatalogItem = {
-  id: "hosting" | "ai" | "ai-automation-intern" | "website-builder";
+  id: "ai" | "website-builder" | "hosting";
   tag: string;
   title: string;
   price: number;
-  priceDisplay?: string;
   priceNote: string;
   kicker: string;
   description: string;
@@ -18,31 +17,14 @@ export function getProductCatalog(locale: Locale): ProductCatalogItem[] {
   return isRomanian
     ? [
         {
-          id: "hosting",
-          tag: "Produs 01",
-          title: "Hosting",
-          price: 150,
-          priceDisplay: "150 lei / luna",
-          priceNote: "abonament lunar pentru mentenanta si disponibilitate",
-          kicker: "Hosting stabil pentru website-uri SyntraFlow, cu baza tehnica pregatita pentru lansare si mentenanta.",
-          description:
-            "Pastrezi website-ul online, rapid si usor de administrat dupa lansare, fara sa separi partea tehnica de ecosistemul digital.",
-          bullets: [
-            "Potrivit pentru website-uri de prezentare, landing pages si proiecte digitale mici",
-            "Include baza operationala pentru disponibilitate si continuitate dupa lansare",
-            "Completeaza pachetele de website si automatizare intr-un mod clar",
-          ],
-        },
-        {
           id: "ai",
-          tag: "Produs 02",
-          title: "Custom AI Assistant pentru clienti",
-          price: 2000,
-          priceDisplay: "2.000 RON",
-          priceNote: "setup pentru asistent AI orientat catre clienti",
-          kicker: "Asistentul care raspunde instant, califica lead-uri si sustine un contact initial profesionist.",
+          tag: "Produs 01",
+          title: "Custom AI Assistant",
+          price: 1000,
+          priceNote: "setup initial pentru un asistent personalizat",
+          kicker: "Asistentul care raspunde instant, califica lead-uri si lasa impresia unui business bine organizat.",
           description:
-            "Construiesti un punct de contact premium pentru clienti: raspunsuri clare, ton profesionist si traseu rapid spre demo, oferta sau suport.",
+            "Construiesti un punct de contact premium pentru clienti: raspunsuri clare, ton profesionist si un traseu rapid spre demo, oferta sau suport.",
           bullets: [
             "Capteaza cereri si intrebari intr-un flux care pare deja pregatit pentru vanzare",
             "Reduce timpul pierdut cu raspunsuri repetitive si triere manuala",
@@ -50,28 +32,11 @@ export function getProductCatalog(locale: Locale): ProductCatalogItem[] {
           ],
         },
         {
-          id: "ai-automation-intern",
-          tag: "Produs 03",
-          title: "Custom AI Automation Intern",
-          price: 5000,
-          priceDisplay: "5.000 RON",
-          priceNote: "automatizare AI pentru procese interne",
-          kicker: "Un intern digital care preia fluxuri repetitive, structureaza informatii si pregateste actiuni interne.",
-          description:
-            "Automatizarea interna conecteaza cereri, documente, notificari si pasi operationali intr-un flux mai clar pentru echipa.",
-          bullets: [
-            "Reduce blocajele din procese repetitive si cereri interne recurente",
-            "Poate pregati rezumate, rutare, validari si notificari pentru echipe",
-            "Este potrivit pentru organizatii care vor un AI layer operational, nu doar conversational",
-          ],
-        },
-        {
           id: "website-builder",
-          tag: "Produs 04",
+          tag: "Produs 02",
           title: "Website Builder",
-          price: 1500,
-          priceDisplay: "1.500 RON",
-          priceNote: "website de prezentare construit pentru lansare",
+          price: 500,
+          priceNote: "pret orientativ pentru website de prezentare",
           kicker: "Website de prezentare construit sa inspire incredere, sa explice clar si sa transforme interesul in cereri reale.",
           description:
             "Ai o baza vizuala moderna pentru produsul tau: pagini curate, mesaj comercial mai clar si o imagine care arata ca un business serios.",
@@ -81,32 +46,30 @@ export function getProductCatalog(locale: Locale): ProductCatalogItem[] {
             "Iti ofera un site simplu de aratat, promovat si extins ulterior",
           ],
         },
+        {
+          id: "hosting",
+          tag: "Produs 03",
+          title: "Website Hosting",
+          price: 50,
+          priceNote: "pret lunar pentru hostingul website-ului",
+          kicker: "Hostingul care iti tine website-ul live, rapid si usor de administrat dupa lansare.",
+          description:
+            "Este baza tehnica simpla de care ai nevoie ca proiectul sa stea online fara batai de cap si fara senzatia de improvizatie.",
+          bullets: [
+            "Ideal pentru website-uri de prezentare, landing pages si proiecte digitale mici",
+            "Pastreaza experienta fluida pentru utilizatori si echipa ta",
+            "Completeaza elegant pachetul dintre website si automatizare",
+          ],
+        },
       ]
     : [
         {
-          id: "hosting",
-          tag: "Product 01",
-          title: "Hosting",
-          price: 150,
-          priceDisplay: "150 RON / month",
-          priceNote: "monthly plan for maintenance and availability",
-          kicker: "Stable hosting for SyntraFlow websites, with a technical base prepared for launch and maintenance.",
-          description:
-            "Keep the website online, fast, and easy to manage after launch without separating the technical layer from the digital ecosystem.",
-          bullets: [
-            "Fits presentation websites, landing pages, and smaller digital projects",
-            "Includes the operational base for availability and post-launch continuity",
-            "Completes website and automation packages in a clean way",
-          ],
-        },
-        {
           id: "ai",
-          tag: "Product 02",
-          title: "Custom AI Assistant pentru clienti",
-          price: 2000,
-          priceDisplay: "2,000 RON",
-          priceNote: "setup for a customer-facing AI assistant",
-          kicker: "An assistant that replies instantly, qualifies leads, and supports a professional first contact.",
+          tag: "Product 01",
+          title: "Custom AI Assistant",
+          price: 1000,
+          priceNote: "initial setup for a tailored assistant",
+          kicker: "An assistant that replies instantly, qualifies leads, and gives your brand a more premium front line.",
           description:
             "You get a polished contact layer for your business: clear answers, better lead capture, and a smoother path to demo, quote, or support.",
           bullets: [
@@ -116,28 +79,11 @@ export function getProductCatalog(locale: Locale): ProductCatalogItem[] {
           ],
         },
         {
-          id: "ai-automation-intern",
-          tag: "Product 03",
-          title: "Custom AI Automation Intern",
-          price: 5000,
-          priceDisplay: "5,000 RON",
-          priceNote: "AI automation for internal processes",
-          kicker: "A digital intern that handles repetitive flows, structures information, and prepares internal actions.",
-          description:
-            "The internal automation layer connects requests, documents, notifications, and operational steps into a clearer workflow for the team.",
-          bullets: [
-            "Reduces bottlenecks in repetitive processes and recurring internal requests",
-            "Can prepare summaries, routing, validations, and notifications for teams",
-            "Fits organizations that need an operational AI layer, not only a chat layer",
-          ],
-        },
-        {
           id: "website-builder",
-          tag: "Product 04",
+          tag: "Product 02",
           title: "Website Builder",
-          price: 1500,
-          priceDisplay: "1,500 RON",
-          priceNote: "presentation website built for launch",
+          price: 500,
+          priceNote: "guide price for a presentation website",
           kicker: "A presentation website built to create trust fast, explain the offer clearly, and convert interest into action.",
           description:
             "This is the visual layer that makes your product look ready for clients, demos, partnerships, and campaigns from day one.",
@@ -145,6 +91,21 @@ export function getProductCatalog(locale: Locale): ProductCatalogItem[] {
             "Great for a product site, service showcase, or polished portfolio",
             "Feels premium on both desktop and mobile without being overcomplicated",
             "Gives you a site that is easy to show, promote, and expand later",
+          ],
+        },
+        {
+          id: "hosting",
+          tag: "Product 03",
+          title: "Website Hosting",
+          price: 50,
+          priceNote: "monthly price for website hosting",
+          kicker: "Hosting that keeps your website live, fast, and easy to manage after launch.",
+          description:
+            "It is the simple technical base that keeps the project online without unnecessary friction or the feeling of a fragile setup.",
+          bullets: [
+            "Ideal for presentation websites, landing pages, and smaller digital products",
+            "Keeps the user experience smooth for both visitors and your team",
+            "Completes the website and automation package in a clean way",
           ],
         },
       ];
@@ -156,10 +117,10 @@ export function getProductCatalogMap(locale: Locale) {
   ) as Record<ProductCatalogItem["id"], ProductCatalogItem>;
 }
 
-export function formatRonPrice(value: number, locale: Locale) {
-  const formatted = new Intl.NumberFormat(locale === "ro" ? "ro-RO" : "en-US", {
+export function formatEuroPrice(value: number, locale: Locale) {
+  return new Intl.NumberFormat(locale === "ro" ? "ro-RO" : "en-US", {
+    style: "currency",
+    currency: "EUR",
     maximumFractionDigits: 0,
   }).format(value);
-
-  return `${formatted} RON`;
 }

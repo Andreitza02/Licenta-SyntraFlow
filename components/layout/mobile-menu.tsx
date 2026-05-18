@@ -121,13 +121,13 @@ export function MobileMenu({
           id: "cart" as const,
           label: "Cosul meu",
           icon: <CartIcon className="h-[18px] w-[18px] shrink-0" />,
-          title: "Acces rapid la pagina de cos",
-          description: "In meniu ramane un singur buton care te duce direct la cosul de cumparaturi.",
+          title: "Acces rapid la pachetul ales",
+          description: "Revino direct la produsele care pot transforma interesul in urmatorul pas comercial.",
           links: [
             {
               label: "Vezi Cosul",
               href: "/cart",
-              description: "Deschide pagina cu AI Agent Builder, servicii optionale si sumarul comenzii.",
+              description: "Vezi AI Agent Builder, serviciile optionale si valoarea pachetului.",
             },
           ],
         },
@@ -136,12 +136,12 @@ export function MobileMenu({
           label: "Cont",
           icon: <AccountIcon className="h-[18px] w-[18px] shrink-0" />,
           title: "Detalii cont",
-          description: "Un singur buton care te duce la pagina unde poti personaliza detaliile contului.",
+          description: "Un acces direct catre profilul care personalizeaza experienta SyntraFlow.",
           links: [
             {
               label: "View Details",
               href: "/account",
-              description: "Deschide pagina pentru editarea profilului, companiei si preferintelor.",
+              description: "Optimizeaza profilul, compania si preferintele.",
             },
           ],
         },
@@ -151,13 +151,13 @@ export function MobileMenu({
           id: "cart" as const,
           label: "My Cart",
           icon: <CartIcon className="h-[18px] w-[18px] shrink-0" />,
-          title: "Quick access to the cart page",
-          description: "In the menu this stays as one direct action that opens the shopping cart page.",
+          title: "Quick access to your selected package",
+          description: "Return directly to the products that can turn interest into the next commercial step.",
           links: [
             {
               label: "View Cart",
               href: "/cart",
-              description: "Open the page with AI Agent Builder, optional services, and the order summary.",
+              description: "View AI Agent Builder, optional services, and the package value.",
             },
           ],
         },
@@ -166,12 +166,12 @@ export function MobileMenu({
           label: "Account",
           icon: <AccountIcon className="h-[18px] w-[18px] shrink-0" />,
           title: "Account details",
-          description: "One direct button that opens the page where you can customize your account details.",
+          description: "Direct access to the profile that personalizes the SyntraFlow experience.",
           links: [
             {
               label: "View Details",
               href: "/account",
-              description: "Open the page for editing profile, company, and preference details.",
+              description: "Optimize profile, company, and preferences.",
             },
           ],
         },
@@ -263,7 +263,7 @@ export function MobileMenu({
                       onClose();
                     }}
                   >
-                    {locale === "ro" ? "Vezi Pagina" : "Open"} {item.label}
+                {locale === "ro" ? "Exploreaza" : "Open"} {item.label}
                   </SiteLink>
 
                   {item.type === "dropdown"

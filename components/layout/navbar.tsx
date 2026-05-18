@@ -131,7 +131,7 @@ export function Navbar({ locale }: NavbarProps) {
     ? {
         badge: "Cos rapid",
         title: "Cosul tau de cumparaturi",
-        description: "Deschide pagina dedicata cart-ului pentru AI Agent Builder si sumarul comenzii.",
+        description: "Revino la pachetul ales pentru AI Agent Builder si valoarea comenzii.",
         actions: [],
         primaryCta: {
           label: "Vezi Cosul",
@@ -142,7 +142,7 @@ export function Navbar({ locale }: NavbarProps) {
     : {
         badge: "Quick cart",
         title: "Your shopping cart",
-        description: "Open the dedicated cart page for AI Agent Builder and the order summary.",
+        description: "Return to your selected AI Agent Builder package and order value.",
         actions: [],
         primaryCta: {
           label: "View Cart",
@@ -154,7 +154,7 @@ export function Navbar({ locale }: NavbarProps) {
     ? {
         badge: "Cont rapid",
         title: "Detalii cont",
-        description: "Deschide pagina dedicata pentru actualizarea si personalizarea detaliilor contului.",
+        description: "Optimizeaza profilul care personalizeaza experienta SyntraFlow.",
         actions: [],
         primaryCta: {
           label: "View Details",
@@ -165,7 +165,7 @@ export function Navbar({ locale }: NavbarProps) {
     : {
         badge: "Quick account",
         title: "Account details",
-        description: "Open the dedicated page for updating and customizing account details.",
+        description: "Optimize the profile that personalizes the SyntraFlow experience.",
         actions: [],
         primaryCta: {
           label: "View Details",
@@ -227,7 +227,7 @@ export function Navbar({ locale }: NavbarProps) {
             <SiteLink
               href="/#home-top"
               className="flex min-w-0 items-center gap-3 xl:hidden"
-              aria-label={`${siteConfig.name} - pagina principala`}
+          aria-label={`${siteConfig.name} - acasa`}
             >
               <span className="flex h-10 w-10 shrink-0 items-center justify-center">
                 <LogoMark className="h-10 w-10" />
@@ -247,7 +247,7 @@ export function Navbar({ locale }: NavbarProps) {
                 <SiteLink
                   href="/#home-top"
                   className="mr-0 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#0d3358]/10 bg-white/92 shadow-[0_10px_20px_rgba(11,31,53,0.07)] transition duration-300 hover:-translate-y-0.5 hover:border-[#0f79ff]/18 hover:bg-white 2xl:mr-1 2xl:shadow-[0_12px_24px_rgba(11,31,53,0.08)]"
-                  aria-label={`${siteConfig.name} - pagina principala`}
+              aria-label={`${siteConfig.name} - acasa`}
                 >
                   <LogoMark className="h-8 w-8" />
                 </SiteLink>

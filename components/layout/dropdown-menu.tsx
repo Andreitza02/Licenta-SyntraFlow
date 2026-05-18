@@ -116,7 +116,7 @@ export function DropdownMenu({
             className="mt-3 inline-flex text-sm font-semibold text-[#0f79ff] transition hover:text-[#0b58d0]"
             onClick={onClose}
           >
-            {locale === "ro" ? "Vezi Pagina" : "View Page"}
+            {locale === "ro" ? "Exploreaza" : "Explore"}
           </SiteLink>
         </div>
 

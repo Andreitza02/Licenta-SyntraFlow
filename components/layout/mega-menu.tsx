@@ -64,7 +64,7 @@ export function MegaMenu({
         eyebrow: item.label,
         title: item.description,
         href: item.href,
-        ctaLabel: locale === "ro" ? "Vezi Pagina" : "View Page",
+        ctaLabel: locale === "ro" ? "Exploreaza" : "Explore",
       };
   const quickLinks = groups
     .flatMap((group) => group.links.map((link) => ({ ...link, groupTitle: group.title })))

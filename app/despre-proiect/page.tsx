@@ -10,8 +10,8 @@ export async function generateMetadata() {
   return buildMetadata(
     locale === "ro" ? "Despre proiect" : "About",
     locale === "ro"
-      ? "Contextul academic, obiectivele si relevanta practica ale platformei SyntraFlow pentru automatizarea si optimizarea proceselor de interactiune cu clientii."
-      : "The academic context, objectives, and practical business relevance of the SyntraFlow platform for automating and optimizing customer interaction processes.",
+      ? "SyntraFlow este construit ca un sistem comercial modern: raspuns instant, lead-uri mai curate si interactiuni digitale care duc mai repede spre vanzare."
+      : "SyntraFlow is built as a modern commercial system: instant replies, cleaner leads, and digital interactions that move faster toward revenue.",
     "/despre-proiect",
     locale,
   );
@@ -22,28 +22,28 @@ const pageCopy = {
     intro: {
       eyebrow: "Despre proiect",
       currentLabel: "Despre proiect",
-      title: "O platforma web inteligenta construita pentru servicii mai rapide si interactiuni mai clare",
-      description: "SyntraFlow este o platforma web inteligenta cu asistent virtual bazat pe inteligenta artificiala, gandita pentru automatizarea si optimizarea interactiunii cu clientii.",
-      highlights: ["Experienta premium", "Flux clar", "Servicii automatizate", "Scenarii reale"],
+      title: "Un sistem digital premium care transforma interactiunile in oportunitati comerciale",
+      description: "SyntraFlow combina website, asistent AI si automatizari pentru branduri care vor raspuns rapid, lead-uri calificate si un traseu de vanzare mai controlat.",
+      highlights: ["Experienta premium", "Lead-uri calificate", "Flux comercial", "Scenarii reale"],
     },
     objectives: [
       {
-        title: "Solutie digitala credibila",
-        text: "Platforma combina o experienta clara, automatizare si un traseu logic usor de prezentat clientilor.",
+        title: "Prezenta digitala care inspira incredere",
+        text: "Experienta arata premium, raspunde rapid si creeaza un prim contact care sustine decizia de cumparare.",
       },
       {
-        title: "Servicii reflectate clar in produs",
-        text: "Interfata evidentiaza rolul asistentului virtual AI in automatizarea, trierea si optimizarea interactiunilor cu clientii.",
+        title: "AI pozitionat ca motor de conversie",
+        text: "Asistentul nu este decorativ: califica intentia, colecteaza context si muta cererea spre pasul comercial potrivit.",
       },
       {
-        title: "Fundatie pentru extindere",
-        text: "Structura modulara permite adaugarea de servicii noi, fluxuri noi si extinderea usoara catre scenarii reale de business.",
+        title: "Baza scalabila pentru crestere",
+        text: "Structura modulara permite extinderea spre noi produse, fluxuri si canale fara sa schimbi promisiunea comerciala.",
       },
     ],
     userProblems: [
       "Raspuns lent la solicitari repetitive si intrebari frecvente.",
       "Lead-uri incomplete, fara date suficiente pentru evaluare comerciala.",
-      "Timp pierdut in trierea manuala a cererilor venite din website.",
+      "Timp pierdut in trierea manuala a cererilor venite din trafic digital.",
       "Lipsa unui flux clar intre contact initial, validare si follow-up.",
     ],
   },
@@ -51,28 +51,28 @@ const pageCopy = {
     intro: {
       eyebrow: "About",
       currentLabel: "About",
-      title: "A smart web platform built for faster service and clearer customer interactions",
-      description: "SyntraFlow is a smart web platform with an AI virtual assistant designed to automate and optimize customer interaction flows.",
-      highlights: ["Premium experience", "Clear flow", "Automated services", "Real scenarios"],
+      title: "A premium digital system that turns interactions into commercial opportunities",
+      description: "SyntraFlow combines website, AI assistant, and automations for brands that want fast replies, qualified leads, and a more controlled sales journey.",
+      highlights: ["Premium experience", "Qualified leads", "Commercial flow", "Real scenarios"],
     },
     objectives: [
       {
-        title: "Credible digital solution",
-        text: "The platform combines a clear experience, automation, and a logical flow that is easy to present to clients.",
+        title: "Digital presence that builds trust",
+        text: "The experience feels premium, replies quickly, and creates a first contact that supports buying decisions.",
       },
       {
-        title: "Services clearly reflected in the product",
-        text: "The interface highlights how the AI virtual assistant supports automation, triage, and optimization across customer interactions.",
+        title: "AI positioned as a conversion engine",
+        text: "The assistant is not decorative: it qualifies intent, captures context, and moves requests toward the right commercial step.",
       },
       {
-        title: "A strong base for expansion",
-        text: "The modular structure supports new services, new flows, and easy extension into real business scenarios.",
+        title: "A scalable base for growth",
+        text: "The modular structure supports new products, flows, and channels without changing the commercial promise.",
       },
     ],
     userProblems: [
       "Slow replies to repetitive requests and frequent questions.",
       "Incomplete leads with too little information for commercial evaluation.",
-      "Time lost in manually sorting requests coming from the website.",
+      "Time lost in manually sorting requests coming from digital traffic.",
       "No clear flow between first contact, validation, and follow-up.",
     ],
   },
@@ -98,20 +98,20 @@ export default async function AboutProjectPage() {
           <div className="panel-surface rounded-[2rem] p-6 md:p-8">
             <SectionHeading
               eyebrow={locale === "ro" ? "Context" : "Context"}
-              title={locale === "ro" ? "De ce a fost construita aceasta platforma" : "Why this platform was built"}
+              title={locale === "ro" ? "De ce merita SyntraFlow in funnelul tau" : "Why SyntraFlow belongs in your funnel"}
               description={locale === "ro"
-                ? "Multe organizatii au nevoie de un punct digital de contact care sa raspunda rapid, sa colecteze corect datele esentiale si sa pregateasca urmatorul pas operational."
-                : "Many organizations need a digital contact point that responds quickly, captures essential data correctly, and prepares the next operational step."}
+                ? "Businessurile pierd oportunitati cand raspund greu, cer prea multe clarificari si nu transforma interesul in actiune imediata."
+                : "Businesses lose opportunities when replies are slow, clarification takes too long, and interest does not turn into immediate action."}
             />
             <p className="mt-6 text-base leading-8 text-muted">
               {locale === "ro"
-                ? "In locul unui simplu website de prezentare, SyntraFlow propune un sistem care comunica, filtreaza, directioneaza si optimizeaza fluxuri reale de interactiune cu clientii printr-un asistent virtual AI si automatizari conectate la procesele de business."
-                : "Instead of a simple presentation website, SyntraFlow proposes a system that communicates, filters, routes, and optimizes real customer interaction flows through an AI virtual assistant and business-ready automations."}
+                ? "SyntraFlow transforma prezenta digitala intr-un motor comercial care comunica, filtreaza, directioneaza si pregateste fiecare cerere pentru urmatorul pas."
+                : "SyntraFlow turns digital presence into a commercial engine that communicates, filters, routes, and prepares every request for the next step."}
             </p>
             <p className="mt-5 text-base leading-8 text-muted">
               {locale === "ro"
-                ? "Platforma este relevanta pentru organizatii care au nevoie de viteza de raspuns, coerenta si standardizarea contactului initial, fara a incarca inutil echipele umane cu sarcini repetitive."
-                : "The platform is relevant for organizations that need response speed, consistency, and a standardized first contact, without overloading human teams with repetitive tasks."}
+                ? "Rezultatul este un prim contact mai rapid, un mesaj mai coerent si mai putina munca manuala pentru echipele care trebuie sa vanda, nu sa sorteze mesaje."
+                : "The result is faster first contact, a more consistent message, and less manual work for teams that need to sell, not sort messages."}
             </p>
           </div>
 
@@ -137,18 +137,18 @@ export default async function AboutProjectPage() {
             </p>
             <h2 className="font-display mt-4 text-3xl font-semibold tracking-[-0.03em] text-[#0b1f35]">
               {locale === "ro"
-                ? "O experienta completa, clara si usor de prezentat"
-                : "A complete, clear, and easy-to-present experience"}
+                ? "O experienta care arata premium si lucreaza comercial"
+                : "An experience that looks premium and works commercially"}
             </h2>
             <p className="mt-5 text-base leading-8 text-muted">
               {locale === "ro"
-                ? "Platforma arata cum pot fi simplificate interactiunile cu clientii prin raspunsuri rapide, colectare corecta a datelor si automatizarea etapelor repetitive."
-                : "The platform shows how customer interactions can be simplified through fast answers, correct data collection, and automation of repetitive stages."}
+                ? "SyntraFlow reduce timpul pana la raspuns, capteaza datele potrivite si transforma interactiunile repetitive in oportunitati mai bine calificate."
+                : "SyntraFlow reduces time to reply, captures the right data, and turns repetitive interactions into better-qualified opportunities."}
             </p>
             <p className="mt-5 text-base leading-8 text-muted">
               {locale === "ro"
-                ? "In acelasi timp, poate fi prezentata ca o solutie convingatoare in discutii comerciale, de prezentare sau de validare a unei directii digitale moderne."
-                : "At the same time, it can be presented as a convincing solution in sales conversations, product presentations, or the validation of a modern digital direction."}
+                ? "Este construit pentru discutii comerciale mai puternice: promisiune clara, demo usor de inteles si un traseu care arata rapid valoarea."
+                : "It is built for stronger sales conversations: a clear promise, an easy-to-understand demo, and a journey that quickly shows value."}
             </p>
           </div>
 
@@ -166,8 +166,8 @@ export default async function AboutProjectPage() {
             </ul>
             <div className="mt-6 rounded-[1.5rem] bg-[#0b1f35] p-5 text-sm leading-7 text-white/80">
               {locale === "ro"
-                ? "Directia de transformare digitala este clara: un contact initial mai bun, date mai curate si un traseu operational mai usor de controlat."
-                : "The digital transformation direction is clear: a better first contact, cleaner data, and an operational flow that is easier to control."}
+                ? "Directia este simpla: contact initial mai bun, lead-uri mai curate si un traseu comercial mai usor de controlat."
+                : "The direction is simple: better first contact, cleaner leads, and a commercial journey that is easier to control."}
             </div>
           </div>
         </div>
@@ -183,13 +183,13 @@ export default async function AboutProjectPage() {
                 </p>
                 <h2 className="font-display mt-4 text-3xl font-semibold tracking-[-0.03em] text-[#0b1f35] md:text-4xl">
                   {locale === "ro"
-                    ? "Platforma este gandita sa transforme o simpla vizita pe website intr-un flux util pentru organizatie."
-                    : "The platform is designed to turn a simple website visit into a useful workflow for the organization."}
+                    ? "SyntraFlow transforma traficul digital intr-un flux comercial care poate produce cereri reale."
+                    : "SyntraFlow turns digital traffic into a commercial flow that can create real requests."}
                 </h2>
                 <p className="mt-5 max-w-3xl text-base leading-8 text-muted">
                   {locale === "ro"
-                    ? "De la raspuns informativ la lead capture, la programare de demo si trimitere de date catre un sistem intern, SyntraFlow ilustreaza concret cum pot fi automatizate si optimizate procesele de interactiune cu clientii."
-                    : "From informative replies to lead capture, demo scheduling, and routing data into an internal system, SyntraFlow shows in concrete terms how customer interaction processes can be automated and optimized."}
+                    ? "De la raspuns instant la lead capture, programare de demo si handoff catre echipa, fiecare etapa sustine o conversie mai rapida si mai bine pregatita."
+                    : "From instant reply to lead capture, demo scheduling, and team handoff, every stage supports a faster and better-prepared conversion."}
                 </p>
               </div>
               <CTAButton href="/solutii">

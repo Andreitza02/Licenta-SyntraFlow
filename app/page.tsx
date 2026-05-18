@@ -8,8 +8,8 @@ export async function generateMetadata() {
   return buildMetadata(
     locale === "ro" ? "Acasa" : "Home",
     locale === "ro"
-      ? "SyntraFlow prezinta o platforma web inteligenta cu asistent virtual bazat pe inteligenta artificiala pentru automatizarea si optimizarea proceselor de interactiune cu clientii."
-      : "SyntraFlow presents a smart web platform with an AI virtual assistant built to automate and optimize customer interaction processes.",
+      ? "SyntraFlow transforma website-ul, AI-ul si automatizarile intr-un sistem comercial care capteaza lead-uri, raspunde rapid si accelereaza conversia."
+      : "SyntraFlow turns websites, AI, and automations into a commercial system that captures leads, replies fast, and accelerates conversion.",
     "/",
     locale,
   );

@@ -11,9 +11,10 @@ type FAQAccordionProps = {
   items: FaqItem[];
   searchable?: boolean;
   locale?: Locale;
+  accordionVariant?: "default" | "embedded";
 };
 
-export function FAQAccordion({ items, searchable = false, locale = "ro" }: FAQAccordionProps) {
+export function FAQAccordion({ items, searchable = false, locale = "ro", accordionVariant = "default" }: FAQAccordionProps) {
   const [query, setQuery] = useState("");
   const trimmedQuery = query.trim();
   const quickTags = locale === "ro" ? ["program", "oferta", "demo", "suport"] : ["schedule", "quote", "demo", "support"];
@@ -121,7 +122,7 @@ export function FAQAccordion({ items, searchable = false, locale = "ro" }: FAQAc
       ) : null}
 
       {accordionItems.length ? (
-        <Accordion items={accordionItems} />
+        <Accordion items={accordionItems} variant={accordionVariant} />
       ) : (
         <div className="rounded-[1.7rem] border border-[#d7e6f4] bg-[linear-gradient(180deg,rgba(255,255,255,0.95),rgba(244,249,255,0.88))] px-6 py-5 text-sm text-muted shadow-[0_16px_34px_rgba(11,31,53,0.06)]">
           {locale === "ro"

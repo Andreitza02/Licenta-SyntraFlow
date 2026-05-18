@@ -4,6 +4,7 @@ import Script from "next/script";
 import { AssistantWidget } from "@/components/layout/assistant-widget";
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
+import { AuthProvider } from "@/components/providers/auth-provider";
 import { CartProvider } from "@/components/providers/cart-provider";
 import { ToastProvider } from "@/components/providers/toast-provider";
 import "@/app/globals.css";
@@ -47,24 +48,26 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
     <html lang={locale}>
       <body className="antialiased" suppressHydrationWarning>
         <ToastProvider>
-          <CartProvider>
-            <a
-              href="#main-content"
-              className="sf-floating-layer sr-only fixed left-4 top-4 z-[90] rounded-full bg-[#0b1f35] px-4 py-2 text-sm font-semibold text-white focus:not-sr-only"
-            >
-              {locale === "ro" ? "Sari la continut" : "Skip to content"}
-            </a>
-            <Navbar locale={locale} />
-            <div id="main-content" tabIndex={-1}>
-              {children}
-            </div>
-            <Footer locale={locale} />
-            <AssistantWidget
-              enabled={chatKitConfig.enabled}
-              locale={locale}
-              workflowId={chatKitConfig.workflowId}
-            />
-          </CartProvider>
+          <AuthProvider>
+            <CartProvider>
+              <a
+                href="#main-content"
+                className="sr-only fixed left-4 top-4 z-[90] rounded-full bg-[#0b1f35] px-4 py-2 text-sm font-semibold text-white focus:not-sr-only"
+              >
+                {locale === "ro" ? "Sari la continut" : "Skip to content"}
+              </a>
+              <Navbar locale={locale} />
+              <div id="main-content" tabIndex={-1}>
+                {children}
+              </div>
+              <Footer locale={locale} />
+              <AssistantWidget
+                enabled={chatKitConfig.enabled}
+                locale={locale}
+                workflowId={chatKitConfig.workflowId}
+              />
+            </CartProvider>
+          </AuthProvider>
         </ToastProvider>
         {chatKitConfig.enabled ? (
           <Script

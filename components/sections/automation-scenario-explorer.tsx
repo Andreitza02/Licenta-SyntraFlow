@@ -262,11 +262,11 @@ export function AutomationScenarioExplorer({
     await navigator.clipboard.writeText(JSON.stringify(activeScenario.payload, null, 2));
     pushToast({
       tone: "success",
-      title: locale === "ro" ? "Payload copiat" : "Payload copied",
+      title: locale === "ro" ? "Flux copiat" : "Flow copied",
       description:
         locale === "ro"
-          ? "JSON-ul demonstrativ a fost copiat in clipboard."
-          : "The demo JSON payload was copied to the clipboard.",
+          ? "Structura scenariului este pregatita pentru discutie sau implementare."
+          : "The scenario structure is ready for discussion or implementation.",
     });
   }
 

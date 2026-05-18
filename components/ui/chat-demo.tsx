@@ -167,8 +167,8 @@ export function ChatDemo({
           </p>
           <p className="mt-3 text-sm leading-6 text-[#285245]">
             {locale === "ro"
-              ? "FAQ -> calificare lead -> confirmare. Demo-ul ramane local in browser, dar interfata urmareste structura unei experiente ChatKit reale."
-              : "FAQ -> lead qualification -> confirmation. The demo stays local in the browser, but the interface follows the structure of a real ChatKit experience."}
+              ? "FAQ -> calificare lead -> confirmare. Conversatia arata cum un vizitator poate primi raspuns rapid si poate ajunge natural la pasul urmator."
+              : "FAQ -> lead qualification -> confirmation. The conversation shows how a visitor can get a fast reply and move naturally to the next step."}
           </p>
         </div>
       </aside>
@@ -326,7 +326,7 @@ export function ChatDemo({
 
             <div className="mt-3 rounded-[1.2rem] border border-black/8 bg-white px-3.5 py-3.5">
               <p className="text-xs font-semibold uppercase tracking-[0.08em] text-[#10a37f]">
-                {locale === "ro" ? "Structura demo" : "Demo structure"}
+                {locale === "ro" ? "Structura conversiei" : "Conversion structure"}
               </p>
               <ul className="mt-3 space-y-2.5 text-sm text-[#374151]">
                 {(locale === "ro"
@@ -352,8 +352,8 @@ export function ChatDemo({
 
             <p className="mt-3 text-xs leading-5 text-[#6b7280]">
               {locale === "ro"
-                ? "Nota privacy: datele din demo raman locale in browser si nu sunt trimise mai departe."
-                : "Privacy note: demo data stays local in the browser and is not sent anywhere else."}
+                ? "Nota privacy: colecteaza doar contextul necesar pentru raspuns, demo sau oferta."
+                : "Privacy note: collect only the context needed for a reply, demo, or quote."}
             </p>
           </aside>
         </div>

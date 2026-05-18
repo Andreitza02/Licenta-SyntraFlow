@@ -14,20 +14,20 @@ type ArchitectureCardProps = {
 
 const layerTooltips: Record<Locale, Record<string, string>> = {
   ro: {
-    browser: "Aici clientul vede platforma, cauta informatii si trimite cereri.",
-    server: "Aici cererile sunt verificate si trimise catre pasul potrivit.",
-    bot: "Aici asistentul raspunde si cere clarificarile necesare.",
-    database: "Aici sunt pastrate informatiile folosite in raspunsuri.",
-    integration: "Aici datele merg spre email, CRM sau alte sisteme.",
-    shield: "Aici sunt urmarite performanta si protectia datelor.",
+    browser: "Primul contact trebuie sa castige incredere si sa impinga intentia spre actiune.",
+    server: "Cererile sunt verificate si pregatite pentru echipa potrivita.",
+    bot: "Asistentul raspunde rapid, califica intentia si reduce frictiunea.",
+    database: "Mesajele si regulile tin raspunsurile coerente si usor de controlat.",
+    integration: "Datele comerciale merg spre email, CRM sau sistemele care sustin follow-up-ul.",
+    shield: "Performanta si protectia datelor sustin increderea in fiecare interactiune.",
   },
   en: {
-    browser: "This is where the customer sees the platform, finds information, and sends requests.",
-    server: "This is where requests are checked and sent to the right next step.",
-    bot: "This is where the assistant replies and asks the necessary follow-up questions.",
-    database: "This is where the information used in replies is stored.",
-    integration: "This is where data moves to email, CRM, or other systems.",
-    shield: "This is where performance and data protection are monitored.",
+    browser: "First contact must build trust and push intent toward action.",
+    server: "Requests are checked and prepared for the right team.",
+    bot: "The assistant replies fast, qualifies intent, and reduces friction.",
+    database: "Messages and rules keep replies consistent and easy to control.",
+    integration: "Commercial data moves to email, CRM, or systems that support follow-up.",
+    shield: "Performance and data protection support trust in every interaction.",
   },
 };
 
@@ -62,8 +62,8 @@ export function ArchitectureCard({ item, locale = "ro" }: ArchitectureCardProps)
           >
             {layerTooltips[locale][item.icon]
               ?? (locale === "ro"
-                ? "Zona esentiala explicata concis pentru o prezentare clara."
-                : "A key layer explained clearly for a concise presentation.")}
+                ? "Zona esentiala pozitionata pentru viteza, incredere si conversie."
+                : "A key layer positioned for speed, trust, and conversion.")}
           </div>
         </div>
         <span className="rounded-full border border-[#0d3358]/8 bg-white/72 px-3 py-1 text-xs font-semibold uppercase tracking-[0.08em] text-[#0d3358] transition duration-300 group-hover:border-[#0f79ff]/16 group-hover:bg-[#eef6ff] group-hover:text-[#0b58d0] group-hover:shadow-[0_12px_24px_rgba(15,121,255,0.08)]">

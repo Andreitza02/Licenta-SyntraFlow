@@ -100,7 +100,7 @@ export function Modal({
         aria-modal="true"
         aria-labelledby={titleId}
         className={cn(
-          "panel-surface relative z-[1] w-full max-w-3xl rounded-[2rem] p-6 shadow-[0_28px_80px_rgba(11,31,53,0.18)] md:p-8",
+          "panel-surface relative z-[1] max-h-[calc(100vh-6rem)] w-full max-w-3xl overflow-y-auto rounded-[2rem] p-6 shadow-[0_28px_80px_rgba(11,31,53,0.18)] md:p-8",
           className,
         )}
       >

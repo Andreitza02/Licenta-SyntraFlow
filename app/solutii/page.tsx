@@ -13,8 +13,8 @@ export async function generateMetadata() {
   return buildMetadata(
     locale === "ro" ? "Solutii" : "Solutions",
     locale === "ro"
-      ? "Modulele functionale SyntraFlow: asistent virtual, lead capture, FAQ inteligent, programari si integrari operationale."
-      : "SyntraFlow functional modules: virtual assistant, lead capture, smart FAQ, bookings, and operational integrations.",
+      ? "Solutii SyntraFlow pentru conversatii mai rapide, lead-uri mai curate, demo-uri mai bine pregatite si automatizari care sustin vanzarea."
+      : "SyntraFlow solutions for faster conversations, cleaner leads, better-prepared demos, and automations that support sales.",
     "/solutii",
     locale,
   );
@@ -31,11 +31,11 @@ export default async function SolutionsPage() {
         eyebrow={locale === "ro" ? "Solutii" : "Solutions"}
         currentLabel={locale === "ro" ? "Solutii" : "Solutions"}
         title={locale === "ro"
-          ? "Module functionale construite pentru conversatie, captare de date si executie"
-          : "Functional modules built for conversation, data capture, and execution"}
+          ? "Module care transforma interesul in conversatii, lead-uri si actiuni comerciale"
+          : "Modules that turn interest into conversations, leads, and commercial actions"}
         description={locale === "ro"
-          ? "Fiecare solutie este prezentata ca un bloc reutilizabil, cu beneficii clare, use case relevant si rol bine definit in arhitectura platformei."
-          : "Each solution is presented as a reusable block, with clear benefits, a relevant use case, and a well-defined role in the platform architecture."}
+          ? "Alege exact piesele care cresc conversia: raspuns instant, lead capture, FAQ inteligent, programari si integrari pregatite pentru echipa ta."
+          : "Choose the exact pieces that improve conversion: instant replies, lead capture, smart FAQ, bookings, and integrations ready for your team."}
         highlights={locale === "ro"
           ? ["7 module", "Date validate", "CTA-uri clare", "Ready pentru integrari"]
           : ["7 modules", "Validated data", "Clear CTAs", "Integration-ready"]}
@@ -46,11 +46,11 @@ export default async function SolutionsPage() {
           <SectionHeading
             eyebrow={locale === "ro" ? "Structura modulara" : "Modular structure"}
             title={locale === "ro"
-              ? "Solutiile pot fi combinate in functie de tipul companiei si de maturitatea digitala"
-              : "The solutions can be combined based on company type and digital maturity"}
+              ? "Construiesti pachetul potrivit pentru obiectivul tau comercial"
+              : "Build the right package for your commercial goal"}
             description={locale === "ro"
-              ? "Acestea nu functioneaza izolat. Conversatia, formularele si automatizarile sunt gandite ca parti ale aceluiasi traseu digital."
-              : "They do not work in isolation. Conversation, forms, and automation are designed as parts of the same digital journey."}
+              ? "Conversatia, formularele si automatizarile lucreaza impreuna ca sa transforme traficul in solicitari mai bine calificate."
+              : "Conversation, forms, and automation work together to turn traffic into better-qualified requests."}
           />
           <SolutionTabs tabs={solutionTabs} locale={locale} />
         </div>
@@ -72,29 +72,29 @@ export default async function SolutionsPage() {
             locale === "ro"
               ? {
                   title: "Beneficii directe",
-                  text: "Scade timpul de raspuns initial si creste consistenta in comunicarea de pre-vanzare sau suport.",
+                  text: "Scazi timpul pana la primul raspuns si cresti sansele ca intentia sa devina demo, oferta sau vanzare.",
                 }
               : {
                   title: "Direct benefits",
-                  text: "It reduces initial response time and increases consistency in pre-sales or support communication.",
+                  text: "Reduce time to first reply and increase the chances that intent becomes a demo, quote, or sale.",
                 },
             locale === "ro"
               ? {
-                  title: "Use case operational",
-                  text: "Ideal pentru website-uri care primesc cereri repetitive si au nevoie de o triere rapida a intentiei.",
+                  title: "Use case comercial",
+                  text: "Ideal pentru businessuri care primesc cereri repetitive si vor sa le transforme in lead-uri mai clare.",
                 }
               : {
-                  title: "Operational use case",
-                  text: "Ideal for websites that receive repetitive requests and need quick intent triage.",
+                  title: "Commercial use case",
+                  text: "Ideal for businesses that receive repetitive requests and want to turn them into clearer leads.",
                 },
             locale === "ro"
               ? {
                   title: "CTA si next step",
-                  text: "Fiecare modul propune un pas clar: demo, solicitare de oferta, contact sau escaladare catre operator.",
+                  text: "Fiecare modul impinge conversatia spre un pas masurabil: demo, oferta, contact sau escaladare.",
                 }
               : {
                   title: "CTA and next step",
-                  text: "Each module proposes a clear next action: demo, quote request, contact, or escalation to an operator.",
+                  text: "Each module pushes the conversation toward a measurable step: demo, quote, contact, or escalation.",
                 },
           ].map((item) => (
             <article key={item.title} className="panel-surface rounded-[1.75rem] p-6">

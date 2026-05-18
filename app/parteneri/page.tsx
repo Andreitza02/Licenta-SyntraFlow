@@ -1,11 +1,93 @@
 import Image from "next/image";
 
 import dmtLogo from "../../DMT LOGO.jpg";
+import { PartnersDeviceShowcase } from "@/components/sections/partners-device-showcase";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { CTAButton } from "@/components/ui/cta-button";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { getServerLocale } from "@/lib/i18n-server";
 import { buildMetadata } from "@/lib/site-config";
+
+type PartnerIconName = "brain" | "check" | "file" | "grid" | "route" | "shield" | "spark" | "workflow";
+
+function PartnerIcon({ name, className = "h-5 w-5" }: { name: PartnerIconName; className?: string }) {
+  const common = {
+    className,
+    fill: "none",
+    stroke: "currentColor",
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+    strokeWidth: 2,
+    viewBox: "0 0 24 24",
+    "aria-hidden": true,
+  };
+
+  switch (name) {
+    case "brain":
+      return (
+        <svg {...common}>
+          <path d="M8.5 7.5A3 3 0 0 1 12 4.6a3 3 0 0 1 3.5 2.9" />
+          <path d="M7.5 10.5A3 3 0 0 0 6 16a3.3 3.3 0 0 0 3.5 3" />
+          <path d="M16.5 10.5A3 3 0 0 1 18 16a3.3 3.3 0 0 1-3.5 3" />
+          <path d="M12 5v14" />
+          <path d="M9 12h6" />
+        </svg>
+      );
+    case "check":
+      return (
+        <svg {...common}>
+          <path d="m5 12 4 4L19 6" />
+        </svg>
+      );
+    case "file":
+      return (
+        <svg {...common}>
+          <path d="M7 3.5h6l4 4V20a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1Z" />
+          <path d="M13 3.5V8h4" />
+          <path d="M9 13h6" />
+          <path d="M9 16h4" />
+        </svg>
+      );
+    case "grid":
+      return (
+        <svg {...common}>
+          <rect x="4" y="4" width="6" height="6" rx="2" />
+          <rect x="14" y="4" width="6" height="6" rx="2" />
+          <rect x="4" y="14" width="6" height="6" rx="2" />
+          <rect x="14" y="14" width="6" height="6" rx="2" />
+        </svg>
+      );
+    case "route":
+      return (
+        <svg {...common}>
+          <path d="M5 5h4a3 3 0 0 1 0 6H7a3 3 0 0 0 0 6h12" />
+          <path d="m15 13 4 4-4 4" />
+        </svg>
+      );
+    case "shield":
+      return (
+        <svg {...common}>
+          <path d="M12 3 5 6v5c0 4.5 2.8 7.6 7 10 4.2-2.4 7-5.5 7-10V6l-7-3Z" />
+          <path d="m9 12 2 2 4-5" />
+        </svg>
+      );
+    case "spark":
+      return (
+        <svg {...common}>
+          <path d="M12 3 9.8 9.2 4 12l5.8 2.8L12 21l2.2-6.2L20 12l-5.8-2.8L12 3Z" />
+        </svg>
+      );
+    case "workflow":
+      return (
+        <svg {...common}>
+          <rect x="4" y="4" width="6" height="6" rx="2" />
+          <rect x="14" y="14" width="6" height="6" rx="2" />
+          <path d="M10 7h2.5A3.5 3.5 0 0 1 16 10.5V14" />
+          <path d="m13.5 12 2.5 2 2.5-2" />
+        </svg>
+      );
+  }
+}
 
 export async function generateMetadata() {
   const locale = await getServerLocale();
@@ -13,8 +95,8 @@ export async function generateMetadata() {
   return buildMetadata(
     locale === "ro" ? "Parteneri" : "Partners",
     locale === "ro"
-      ? "Pentru DMT Marine Equipment prezentam un AI operational assistant cu rutare inteligenta, module specializate si raspunsuri bazate strict pe fisiere, fara expunere de date personale pe website."
-      : "For DMT Marine Equipment we present an operational AI assistant with intelligent routing, specialized modules, and file-grounded answers, without exposing personal data on the website.",
+      ? "Pentru DMT Marine Equipment am livrat un AI operational assistant care accelereaza raspunsurile, reduce cautarea manuala si sustine decizii mai rapide."
+      : "For DMT Marine Equipment we delivered an operational AI assistant that accelerates replies, reduces manual search, and supports faster decisions.",
     "/parteneri",
     locale,
   );
@@ -27,18 +109,6 @@ export default async function PartnersPage() {
   const heroTags = isRomanian
     ? ["DMT x SyntraFlow", "Operational AI", "Smart Routing", "Secure by design"]
     : ["DMT x SyntraFlow", "Operational AI", "Smart Routing", "Secure by design"];
-
-  const heroSignals = isRomanian
-    ? [
-        { label: "Focus", value: "Electrical Department AI" },
-        { label: "Format", value: "Operational assistant with specialized flows" },
-        { label: "Public message", value: "Capabilities only, no personal data exposed" },
-      ]
-    : [
-        { label: "Focus", value: "Electrical Department AI" },
-        { label: "Format", value: "Operational assistant with specialized flows" },
-        { label: "Public message", value: "Capabilities only, no personal data exposed" },
-      ];
 
   const pillars = isRomanian
     ? [
@@ -54,8 +124,8 @@ export default async function PartnersPage() {
         },
         {
           id: "03",
-          title: "Prezentare publica sigura pentru website",
-          text: "Pagina de parteneriat comunica valoarea livrata pentru DMT la nivel de capabilitate, fara nume, coduri, exemple sensibile sau alte informatii interne care nu trebuie expuse public.",
+          title: "Valoare comunicata responsabil",
+          text: "Colaborarea arata impactul operational livrat pentru DMT fara sa expuna date interne, exemple sensibile sau continut care trebuie pastrat privat.",
         },
       ]
     : [
@@ -71,8 +141,8 @@ export default async function PartnersPage() {
         },
         {
           id: "03",
-          title: "A safe public website narrative",
-          text: "The partnership page communicates the value delivered for DMT at capability level only, without names, codes, sensitive examples, or internal information that should not be exposed publicly.",
+          title: "Value communicated responsibly",
+          text: "The collaboration shows the operational impact delivered for DMT without exposing internal data, sensitive examples, or content that must remain private.",
         },
       ];
 
@@ -208,25 +278,42 @@ export default async function PartnersPage() {
         },
       ];
 
-  const outcomes = isRomanian
+  const impactStats = isRomanian
     ? [
-        "Un singur AI layer care poate prelua intrebari din mai multe zone operationale si le poate directiona corect.",
-        "Un mod de lucru construit pe fisiere si reguli, nu pe presupuneri sau raspunsuri generice.",
-        "O prezentare publica de parteneriat care arata clar ce am construit pentru DMT fara sa publice date personale sau exemple sensibile.",
-        "O baza scalabila pentru extindere in alte module, alte documente si alte fluxuri interne, atunci cand businessul o cere.",
+        { value: "1", label: "entry point operational", text: "Un singur loc pentru intrebari tehnice, documente si routing intern." },
+        { value: "7", label: "module livrate", text: "Planning, workload, PLC, documente, cable sizing, MES si PDF intelligence." },
+        { value: "0", label: "improvizatie", text: "Raspunsuri ancorate in fisiere, reguli si procese configurate." },
       ]
     : [
-        "One AI layer that can take questions from multiple operational areas and route them correctly.",
-        "A working model built on files and rules, not on assumptions or generic answers.",
-        "A public partnership page that clearly shows what we built for DMT without publishing personal data or sensitive examples.",
-        "A scalable base for expansion into more modules, more documents, and more internal workflows when the business needs it.",
+        { value: "1", label: "operational entry point", text: "One place for technical requests, documents, and internal routing." },
+        { value: "7", label: "delivered modules", text: "Planning, workload, PLC, documents, cable sizing, MES, and PDF intelligence." },
+        { value: "0", label: "improvisation", text: "Answers grounded in configured files, rules, and processes." },
       ];
+
+  const pillarMeta: Array<{ icon: PartnerIconName; accent: string; glow: string }> = [
+    { icon: "route", accent: "from-[#0f79ff] to-[#13b5ba]", glow: "bg-[#0f79ff]/12" },
+    { icon: "file", accent: "from-[#13b5ba] to-[#10b981]", glow: "bg-[#13b5ba]/12" },
+    { icon: "shield", accent: "from-[#7c3aed] to-[#0f79ff]", glow: "bg-[#7c3aed]/10" },
+  ];
+
+  const moduleMeta: Array<{ icon: PartnerIconName; accent: string; signal: string }> = [
+    { icon: "workflow", accent: "from-[#0f79ff] to-[#13b5ba]", signal: "bg-[#0f79ff]" },
+    { icon: "grid", accent: "from-[#13b5ba] to-[#10b981]", signal: "bg-[#13b5ba]" },
+    { icon: "brain", accent: "from-[#7c3aed] to-[#0f79ff]", signal: "bg-[#7c3aed]" },
+    { icon: "file", accent: "from-[#10b981] to-[#f59e0b]", signal: "bg-[#10b981]" },
+    { icon: "spark", accent: "from-[#f59e0b] to-[#e11d48]", signal: "bg-[#f59e0b]" },
+    { icon: "route", accent: "from-[#e11d48] to-[#7c3aed]", signal: "bg-[#e11d48]" },
+    { icon: "shield", accent: "from-[#0f79ff] to-[#7c3aed]", signal: "bg-[#0f79ff]" },
+  ];
 
   return (
     <main className="page-gradient-shell pb-10">
       <section className="relative overflow-hidden pt-32">
         <div className="section-shell">
-          <div className="panel-surface accent-border reveal-section relative overflow-hidden rounded-[2.4rem] p-6 md:p-8 xl:p-10">
+          <div className="reveal-section relative overflow-hidden rounded-[2.8rem] border border-[#d8e4ee] bg-[radial-gradient(circle_at_top_left,rgba(19,181,186,0.16),transparent_24%),radial-gradient(circle_at_top_right,rgba(15,121,255,0.18),transparent_28%),linear-gradient(135deg,rgba(255,255,255,0.98)_0%,rgba(244,250,255,0.96)_44%,rgba(235,246,255,0.94)_100%)] p-6 shadow-[0_34px_90px_rgba(11,31,53,0.14)] md:p-8 xl:p-10">
+            <div className="pointer-events-none absolute -left-12 top-10 h-40 w-40 rounded-full bg-[#13b5ba]/12 blur-3xl" />
+            <div className="pointer-events-none absolute right-0 top-0 h-52 w-52 rounded-full bg-[#0f79ff]/12 blur-3xl" />
+
             <Breadcrumbs
               items={[
                 { label: isRomanian ? "Acasa" : "Home", href: "/" },
@@ -240,25 +327,21 @@ export default async function PartnersPage() {
                   {isRomanian ? "Operational AI built for DMT" : "Operational AI built for DMT"}
                 </div>
 
-                <div className="mt-6 flex items-center gap-4">
-                  <div className="overflow-hidden rounded-[1.35rem] border border-[#d9e5ef] bg-white p-2 shadow-[0_18px_38px_rgba(11,31,53,0.08)]">
-                    <Image
-                      src={dmtLogo}
-                      alt="DMT Marine Equipment logo"
-                      className="h-14 w-14 rounded-xl object-cover"
-                      priority
-                    />
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold uppercase tracking-[0.12em] text-[#0b58d0]">
-                      DMT Marine Equipment
-                    </p>
-                    <p className="mt-1 text-sm text-muted">
-                      {isRomanian
-                        ? "Case de parteneriat prezentat la nivel de capabilitate"
-                        : "Partnership case presented at capability level"}
-                    </p>
-                  </div>
+                <Image
+                  src={dmtLogo}
+                  alt="DMT Marine Equipment logo"
+                  className="mt-6 h-14 w-14 rounded-xl object-cover shadow-[0_18px_38px_rgba(11,31,53,0.08)]"
+                  priority
+                />
+                <div className="mt-4">
+                  <p className="text-sm font-semibold uppercase tracking-[0.12em] text-[#0b58d0]">
+                    DMT Marine Equipment
+                  </p>
+                  <p className="mt-1 text-sm text-muted">
+                    {isRomanian
+                      ? "AI mobil si operational pentru echipe tehnice"
+                      : "Mobile and operational AI for technical teams"}
+                  </p>
                 </div>
 
                 <h1 className="font-display mt-8 max-w-3xl text-4xl font-semibold tracking-[-0.05em] text-[#081a2b] md:text-6xl">
@@ -269,8 +352,8 @@ export default async function PartnersPage() {
 
                 <p className="mt-6 max-w-2xl text-base leading-8 text-[#3a5b74] md:text-lg">
                   {isRomanian
-                    ? "Mesajul acestei pagini ramane intentionat la nivel de valoare si capabilitate. Aratam clar ce am construit pentru DMT, dar nu publicam nume, coduri interne, exemple sensibile sau alte informatii care trebuie pastrate in afara spatiului public."
-                    : "The message on this page stays intentionally at capability and value level. We clearly show what we built for DMT, but we do not publish names, internal codes, sensitive examples, or other information that should stay outside the public website."}
+                    ? "Rezultatul este un asistent digital care aduce raspunsuri mai rapide, rutare mai buna si acces controlat la cunostintele operationale relevante."
+                    : "The result is a digital assistant that brings faster replies, better routing, and controlled access to relevant operational knowledge."}
                 </p>
 
                 <div className="mt-7 flex flex-wrap gap-3">
@@ -294,178 +377,161 @@ export default async function PartnersPage() {
                 </div>
               </div>
 
-              <div className="reveal-section relative">
-                <div className="relative overflow-hidden rounded-[2.3rem] border border-[#d8e4ee] bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(244,249,255,0.92))] p-6 shadow-[0_28px_76px_rgba(11,31,53,0.14)] md:p-7">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#0b58d0]">
-                    {isRomanian ? "Parteneriat in productie" : "Partnership in production"}
-                  </p>
-
-                  <div className="mt-5 rounded-[2rem] bg-[linear-gradient(135deg,#07192c_0%,#0b2847_52%,#0f79ff_100%)] p-6 text-white shadow-[0_24px_60px_rgba(11,31,53,0.24)]">
-                    <div className="flex items-center gap-4">
-                      <div className="overflow-hidden rounded-[1.2rem] border border-white/18 bg-white p-2.5 shadow-[0_16px_34px_rgba(255,255,255,0.12)]">
-                        <Image src={dmtLogo} alt="DMT logo" className="h-12 w-12 rounded-lg object-cover" />
-                      </div>
-                      <div>
-                        <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-white/64">
-                          {isRomanian ? "Client in focus" : "Client in focus"}
-                        </p>
-                        <p className="mt-1 text-xl font-semibold">DMT Marine Equipment</p>
-                      </div>
-                    </div>
-
-                    <div className="mt-6 grid gap-3 sm:grid-cols-3">
-                      {heroSignals.map((item) => (
-                        <div
-                          key={item.label}
-                          className="rounded-[1.25rem] border border-white/12 bg-white/8 px-4 py-4 backdrop-blur-sm"
-                        >
-                          <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-white/58">
-                            {item.label}
-                          </p>
-                          <p className="mt-2 text-sm font-semibold text-white">{item.value}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                </div>
-
-                <div className="absolute -bottom-6 -right-2 rounded-[1.35rem] border border-[#d8e4ee] bg-white/92 px-4 py-3 shadow-[0_20px_42px_rgba(11,31,53,0.12)]">
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-[#557089]">
-                    {isRomanian ? "Mesaj cheie" : "Core message"}
-                  </p>
-                  <p className="mt-1 text-sm font-semibold text-[#0b1f35]">
-                    {isRomanian ? "AI operational, file-grounded, secure by design" : "Operational AI, file-grounded, secure by design"}
-                  </p>
-                </div>
-              </div>
+              <PartnersDeviceShowcase isRomanian={isRomanian} />
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-16">
-        <div className="section-shell space-y-8">
-          <SectionHeading
-            eyebrow={isRomanian ? "De ce conteaza" : "Why it matters"}
-            title={isRomanian
-              ? "Pentru DMT am construit mai mult decat un chatbot: am construit o arhitectura de lucru"
-              : "For DMT we built more than a chatbot: we built an operating architecture"}
-            description={isRomanian
-              ? "Mesajul de parteneriat trebuie sa arate clar ca sistemul raspunde pe baza de reguli, fisiere si fluxuri specializate, nu pe raspunsuri generice."
-              : "The partnership message should make it clear that the system responds through rules, files, and specialized flows, not through generic replies."}
-          />
+      <section className="py-14 md:py-16">
+        <div className="section-shell">
+          <div className="relative overflow-hidden rounded-[2.45rem] border border-[#d2e4f3] bg-[linear-gradient(135deg,rgba(255,255,255,0.96),rgba(239,249,255,0.9)_48%,rgba(241,253,249,0.86))] p-5 shadow-[0_30px_86px_rgba(11,31,53,0.12)] md:p-8">
+            <div className="absolute inset-x-0 top-0 h-1.5 bg-[linear-gradient(90deg,#0f79ff,#13b5ba,#10b981,#f59e0b,#7c3aed)]" />
+            <div className="pointer-events-none absolute -left-20 top-16 h-52 w-52 rounded-full bg-[#0f79ff]/10 blur-3xl" />
+            <div className="pointer-events-none absolute right-0 bottom-0 h-56 w-56 rounded-full bg-[#13b5ba]/10 blur-3xl" />
 
-          <div className="grid gap-5 md:grid-cols-3">
-            {pillars.map((item) => (
-              <article
-                key={item.id}
-                className="panel-surface contact-card-hover reveal-section relative overflow-hidden rounded-[1.9rem] p-6"
-              >
-                <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#0f79ff]/40 to-transparent" />
-                <p className="font-display text-4xl font-semibold tracking-[-0.04em] text-[#0f79ff]/30">{item.id}</p>
-                <h2 className="mt-4 text-2xl font-semibold tracking-[-0.03em] text-[#0b1f35]">{item.title}</h2>
-                <p className="mt-4 text-sm leading-7 text-muted">{item.text}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="modules" className="py-16">
-        <div className="section-shell space-y-8">
-          <SectionHeading
-            eyebrow={isRomanian ? "Ce am livrat" : "What we delivered"}
-            title={isRomanian
-              ? "Modulele care transforma AI-ul DMT intr-un instrument operational real"
-              : "The modules that turn DMT AI into a real operational tool"}
-            description={isRomanian
-              ? "Fiecare modul comunica o functie clara in business: routing, raspunsuri documentate, suport pentru planning, zona tehnica si workflows operationale."
-              : "Each module communicates a clear business function: routing, documented answers, planning support, technical support, and operational workflows."}
-          />
-
-          <div className="grid gap-5 xl:grid-cols-2">
-            {modules.map((item) => (
-              <article
-                key={item.title}
-                className="reveal-section overflow-hidden rounded-[2rem] border border-[#d8e4ee] bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(244,249,255,0.9))] p-6 shadow-[0_20px_52px_rgba(11,31,53,0.1)]"
-              >
-                <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#0b58d0]">{item.eyebrow}</p>
-                <h2 className="mt-4 text-2xl font-semibold tracking-[-0.03em] text-[#0b1f35]">{item.title}</h2>
-                <ul className="mt-5 space-y-3 text-sm leading-7 text-[#35556f]">
-                  {item.points.map((point) => (
-                    <li key={point} className="flex gap-3">
-                      <span className="mt-2 h-2 w-2 rounded-full bg-[#13b5ba]" />
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16">
-        <div className="section-shell grid gap-5 lg:grid-cols-[0.94fr_1.06fr]">
-          <article className="panel-surface reveal-section rounded-[2rem] p-6 md:p-8">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#0b58d0]">
-              {isRomanian ? "Rezultatul pentru client" : "The client outcome"}
-            </p>
-            <h2 className="font-display mt-4 text-3xl font-semibold tracking-[-0.03em] text-[#0b1f35] md:text-4xl">
-              {isRomanian
-                ? "Ce aratam public despre colaborarea cu DMT"
-                : "What we show publicly about the collaboration with DMT"}
-            </h2>
-            <ul className="mt-6 space-y-4 text-sm leading-7 text-[#0b1f35]">
-              {outcomes.map((item) => (
-                <li key={item} className="flex gap-3">
-                  <span className="mt-2 h-2 w-2 rounded-full bg-[#13b5ba]" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </article>
-
-          <article className="reveal-section overflow-hidden rounded-[2.2rem] border border-[#d8e4ee] bg-[linear-gradient(135deg,#07192c_0%,#0b2745_50%,#0f79ff_100%)] p-8 text-white shadow-[0_30px_80px_rgba(11,31,53,0.22)] md:p-10">
-            <div className="flex items-center gap-4">
-              <div className="overflow-hidden rounded-[1.3rem] border border-white/18 bg-white p-2.5 shadow-[0_18px_42px_rgba(255,255,255,0.14)]">
-                <Image src={dmtLogo} alt="DMT Marine Equipment logo" className="h-14 w-14 rounded-xl object-cover" />
-              </div>
+            <div className="relative grid gap-8 xl:grid-cols-[0.92fr_1.08fr] xl:items-start">
               <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-white/64">
-                  {isRomanian ? "Parteneriat activ" : "Active partnership"}
-                </p>
-                <p className="mt-1 text-lg font-semibold text-white">DMT Marine Equipment</p>
+                <SectionHeading
+                  eyebrow={isRomanian ? "De ce conteaza" : "Why it matters"}
+                  title={
+                    isRomanian
+                      ? "O arhitectura operationala care face AI-ul util in fiecare zi"
+                      : "An operational architecture that makes AI useful every day"
+                  }
+                  description={
+                    isRomanian
+                      ? "Pentru DMT, AI-ul nu este prezentat ca efect vizual, ci ca un sistem de lucru: intelege intentia, alege fluxul corect si pastreaza raspunsurile controlate."
+                      : "For DMT, AI is not presented as a visual effect. It works as an operating system: it understands intent, selects the right flow, and keeps answers controlled."
+                  }
+                />
+
+                <div className="mt-7 grid gap-3 sm:grid-cols-3 xl:grid-cols-1">
+                  {impactStats.map((item, index) => (
+                    <div
+                      key={item.label}
+                      className="group rounded-[1.35rem] border border-[#d6e7f5] bg-white/82 p-4 shadow-[0_16px_36px_rgba(11,31,53,0.06)] transition duration-300 hover:-translate-y-1 hover:border-[#0f79ff]/22 hover:bg-white hover:shadow-[0_24px_52px_rgba(15,121,255,0.1)]"
+                    >
+                      <div className="flex items-start gap-3">
+                        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-[#0f79ff]/14 bg-[#eef6ff] text-lg font-semibold text-[#0b58d0] transition duration-300 group-hover:scale-105">
+                          {item.value}
+                        </span>
+                        <span>
+                          <span className="block text-sm font-semibold text-[#0b1f35]">{item.label}</span>
+                          <span className="mt-1 block text-xs leading-5 text-muted">{item.text}</span>
+                        </span>
+                      </div>
+                      <div className={`mt-4 h-1 rounded-full bg-gradient-to-r ${pillarMeta[index % pillarMeta.length].accent}`} />
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="grid gap-4 md:grid-cols-3 xl:grid-cols-1">
+                {pillars.map((item, index) => {
+                  const meta = pillarMeta[index % pillarMeta.length];
+
+                  return (
+                    <article
+                      key={item.id}
+                      className="group relative overflow-hidden rounded-[1.8rem] border border-[#d6e7f5] bg-white/86 p-5 shadow-[0_18px_46px_rgba(11,31,53,0.08)] transition duration-300 hover:-translate-y-1 hover:border-[#0f79ff]/24 hover:bg-white hover:shadow-[0_28px_64px_rgba(15,121,255,0.12)] md:p-6"
+                    >
+                      <div className={`pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full ${meta.glow} blur-3xl transition duration-500 group-hover:scale-125`} />
+                      <div className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${meta.accent}`} />
+                      <div className="relative flex items-start justify-between gap-4">
+                        <span className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[#d8e7f5] bg-[#f8fcff] text-[#0b58d0] shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] transition duration-300 group-hover:scale-105 group-hover:bg-white">
+                          <PartnerIcon name={meta.icon} />
+                        </span>
+                        <span className="rounded-full border border-[#d8e7f5] bg-white/82 px-3 py-1 text-xs font-semibold text-[#557089]">
+                          {item.id}
+                        </span>
+                      </div>
+                      <h2 className="relative mt-5 text-2xl font-semibold tracking-normal text-[#0b1f35]">{item.title}</h2>
+                      <p className="relative mt-4 text-sm leading-7 text-muted">{item.text}</p>
+                    </article>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="modules" className="pb-16 pt-6 md:pb-20 md:pt-8">
+        <div className="section-shell">
+          <div className="grid gap-8 xl:grid-cols-[0.78fr_1.22fr] xl:items-start">
+            <div className="xl:sticky xl:top-28">
+              <div className="relative overflow-hidden rounded-[2rem] border border-[#d2e4f3] bg-white/82 p-6 shadow-[0_22px_60px_rgba(11,31,53,0.09)] backdrop-blur-xl md:p-7">
+                <div className="absolute inset-x-0 top-0 h-1.5 bg-[linear-gradient(90deg,#0f79ff,#13b5ba,#10b981)]" />
+                <SectionHeading
+                  eyebrow={isRomanian ? "Ce am livrat" : "What we delivered"}
+                  title={
+                    isRomanian
+                      ? "Module conectate intr-o interfata operationala coerenta"
+                      : "Connected modules inside one coherent operational interface"
+                  }
+                  description={
+                    isRomanian
+                      ? "Fiecare modul are un rol clar: reduce cautarea manuala, directioneaza cererea si transforma documentatia in raspunsuri pregatite pentru actiune."
+                      : "Each module has a clear role: reduce manual search, route the request, and turn documentation into answers ready for action."
+                  }
+                />
+
+                <div className="mt-7 grid gap-3">
+                  {(isRomanian
+                    ? ["Intentie detectata", "Flux selectat", "Raspuns controlat"]
+                    : ["Intent detected", "Flow selected", "Controlled answer"]
+                  ).map((item, index) => (
+                    <div key={item} className="flex items-center gap-3 rounded-[1.1rem] border border-[#d8e7f5] bg-[#f8fcff] px-4 py-3 text-sm font-semibold text-[#0b1f35]">
+                      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-[#0b58d0] shadow-[0_8px_18px_rgba(11,31,53,0.06)]">
+                        <PartnerIcon name={index === 0 ? "brain" : index === 1 ? "route" : "shield"} className="h-4 w-4" />
+                      </span>
+                      {item}
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 
-            <h2 className="font-display mt-8 text-3xl font-semibold tracking-[-0.03em] md:text-5xl">
-              {isRomanian
-                ? "Pentru DMT prezentam un AI operational assistant care stie sa routeze, sa consulte fisierele potrivite si sa raspunda cu disciplina."
-                : "For DMT we present an operational AI assistant that knows how to route, consult the right files, and answer with discipline."}
-            </h2>
-            <p className="mt-5 max-w-3xl text-base leading-8 text-white/78">
-              {isRomanian
-                ? "Acesta este un mesaj de marketing construit responsabil: vorbim despre capabilitati reale, rezultate de produs si arhitectura de lucru, fara sa expunem date personale, exemple sensibile sau continut intern pe website."
-                : "This is a responsibly built marketing message: we talk about real capabilities, product outcomes, and workflow architecture without exposing personal data, sensitive examples, or internal content on the website."}
-            </p>
+            <div className="grid gap-4 lg:grid-cols-2">
+              {modules.map((item, index) => {
+                const meta = moduleMeta[index % moduleMeta.length];
 
-            <div className="mt-8 flex flex-wrap gap-3">
-              <CTAButton href="/contact" className="justify-center bg-white text-[#0b1f35] hover:!text-[#0b1f35]">
-                {isRomanian ? "Solicita o prezentare" : "Request a presentation"}
-              </CTAButton>
-              <CTAButton
-                href="/product"
-                variant="secondary"
-                className="justify-center border-white/22 bg-white/10 text-white hover:bg-white/16 hover:!text-white"
-              >
-                {isRomanian ? "Vezi produsul" : "View the product"}
-              </CTAButton>
+                return (
+                  <article
+                    key={item.title}
+                    className="group relative overflow-hidden rounded-[1.85rem] border border-[#d8e4ee] bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(245,250,255,0.92))] p-5 shadow-[0_18px_48px_rgba(11,31,53,0.08)] transition duration-300 hover:-translate-y-1 hover:border-[#0f79ff]/22 hover:bg-white hover:shadow-[0_28px_68px_rgba(15,121,255,0.12)] md:p-6"
+                  >
+                    <div className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${meta.accent}`} />
+                    <div className="flex items-start justify-between gap-4">
+                      <span className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[#d8e7f5] bg-[#f8fcff] text-[#0b58d0] transition duration-300 group-hover:scale-105 group-hover:bg-white">
+                        <PartnerIcon name={meta.icon} />
+                      </span>
+                      <span className="inline-flex items-center gap-2 rounded-full border border-[#d8e7f5] bg-white/82 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-normal text-[#557089]">
+                        <span className={`h-2 w-2 rounded-full ${meta.signal}`} />
+                        {item.eyebrow}
+                      </span>
+                    </div>
+
+                    <h2 className="mt-5 text-2xl font-semibold tracking-normal text-[#0b1f35]">{item.title}</h2>
+                    <ul className="mt-5 space-y-3 text-sm leading-7 text-[#35556f]">
+                      {item.points.map((point) => (
+                        <li key={point} className="flex gap-3 rounded-[1rem] border border-transparent px-3 py-2 transition duration-300 group-hover:border-[#dceaf6] group-hover:bg-[#f8fcff]">
+                          <span className="mt-1.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#eef6ff] text-[#0b58d0]">
+                            <PartnerIcon name="check" className="h-3.5 w-3.5" />
+                          </span>
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </article>
+                );
+              })}
             </div>
-          </article>
+          </div>
         </div>
       </section>
+
     </main>
   );
 }

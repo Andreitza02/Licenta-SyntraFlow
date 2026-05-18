@@ -99,7 +99,7 @@ const navbarMenuRo: NavbarMenuItem[] = [
           {
             label: "Contact",
             href: "/contact",
-            description: "Conecteaza prezentarea proiectului cu un demo sau o discutie aplicata.",
+    description: "Leaga povestea SyntraFlow de un demo sau de o discutie aplicata.",
           },
         ],
       },
@@ -220,7 +220,7 @@ const navbarMenuRo: NavbarMenuItem[] = [
           {
             label: "Education",
             href: "/industrii",
-            description: "Ghidare pentru inscrieri, cursuri si suport informational.",
+            description: "Ghidare pentru inscrieri, cursuri si conversii mai rapide.",
           },
           {
             label: "Consulting",
@@ -458,7 +458,7 @@ const menuTranslations: Record<string, string> = {
   "Modulele esentiale care sustin interactiunile automate.": "Core modules that support automated interactions.",
   "Beneficii": "Benefits",
   "Rezultate concrete in scenarii de business si suport.": "Clear outcomes in support and business scenarios.",
-  "Conecteaza prezentarea proiectului cu un demo sau o discutie aplicata.": "Connect the project presentation to a demo or a practical discussion.",
+  "Leaga povestea SyntraFlow de un demo sau de o discutie aplicata.": "Connect the SyntraFlow story to a demo or a practical conversation.",
   "Viziunea platformei": "Platform vision",
   "Context, directie si valoare intr-un singur overview": "Context, direction, and value in one overview",
   "Descopera de ce a fost construit SyntraFlow, ce probleme rezolva si cum se transforma conceptul intr-o experienta digitala coerenta.": "Discover why SyntraFlow was built, which problems it solves, and how the concept becomes a coherent digital experience.",
@@ -487,7 +487,7 @@ const menuTranslations: Record<string, string> = {
   "Coordonare de solicitari si fluxuri critice cu mai multi actori.": "Coordination for critical requests and flows involving multiple stakeholders.",
   "FAQ, retururi, disponibilitate si programari rapide.": "FAQ, returns, availability, and quick scheduling.",
   "Programari, intrebari standard si orientare initiala.": "Bookings, common questions, and first-step guidance.",
-  "Ghidare pentru inscrieri, cursuri si suport informational.": "Guidance for enrollment, courses, and informational support.",
+  "Ghidare pentru inscrieri, cursuri si conversii mai rapide.": "Guidance for enrollment, courses, and faster conversions.",
   "Lead qualification si triere pentru cereri cu context complex.": "Lead qualification and triage for requests with more context.",
   "Scenarii adaptabile": "Adaptable scenarios",
   "Acelasi nucleu logic, personalizat pe industrie": "The same logic, tailored by industry",
@@ -565,7 +565,7 @@ const menuTranslations: Record<string, string> = {
   "Arhitectura leaga UI-ul, logica de conversatie si fluxurile operationale intr-un traseu care ramane usor de controlat.": "The architecture connects the UI, conversation logic, and operational flows in a journey that remains easy to control.",
   "Vezi arhitectura": "View the architecture",
   "Parteneri": "Partners",
-  "Produse": "Products",
+  "Produse": "Product",
   "Contact": "Contact",
 };
 
