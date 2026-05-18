@@ -8,17 +8,17 @@ type DeviceId = "android" | "apple";
 const devices = [
   {
     id: "android",
-    src: "/partners/galaxy-s21-dmt-ai.png",
+    src: "/partners/Galaxy-S21-Ultra-dmt-ai-netlify.vercel.app (1).png",
     alt: "Galaxy S21 Ultra preview of the DMT AI assistant",
     width: 718,
     height: 1558,
   },
   {
     id: "apple",
-    src: "/partners/iphone-14-pro-dmt-ai.png",
-    alt: "iPhone 14 Pro Max preview of the DMT AI assistant",
-    width: 878,
-    height: 1790,
+    src: "/partners/iPhone-14-PRO-dmt-ai-netlify.vercel.app.png",
+    alt: "iPhone 14 Pro preview of the DMT AI assistant",
+    width: 808,
+    height: 1646,
   },
 ] satisfies Array<{
   id: DeviceId;
@@ -67,7 +67,7 @@ export function PartnersDeviceShowcase({ isRomanian }: { isRomanian: boolean }) 
         </button>
         <button
           type="button"
-          aria-label="Apple iPhone 14 Pro Max"
+          aria-label="Apple iPhone 14 Pro"
           aria-selected={activeDevice === "apple"}
           className={`grid h-10 w-11 place-items-center rounded-full border transition ${
             activeDevice === "apple"
@@ -99,7 +99,7 @@ export function PartnersDeviceShowcase({ isRomanian }: { isRomanian: boolean }) 
         ))}
       </div>
 
-      <p className="sr-only">{activeDevice === "android" ? "Galaxy S21 Ultra" : "iPhone 14 Pro Max"}</p>
+      <p className="sr-only">{activeDevice === "android" ? "Galaxy S21 Ultra" : "iPhone 14 Pro"}</p>
     </div>
   );
 }
