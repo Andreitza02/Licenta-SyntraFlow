@@ -74,6 +74,7 @@ export type ChatPreset = {
 };
 
 export type ArchitectureLayerItem = Record<string, any>;
+export type ArchitectureLayer = ArchitectureLayerItem;
 
 export const architectureLayers: ArchitectureLayerItem[] = [];
 
