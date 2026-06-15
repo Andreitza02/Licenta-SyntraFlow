@@ -39,17 +39,13 @@ export type BenefitItem = {
 
 export type CaseStudyItem = {
   title: string;
+  overview?: string[];
+  objective?: string;
   problem: string;
   solution: string;
   benefit: string;
   impact: string;
-  icon: string;
-};
-
-export type ArchitectureLayer = {
-  title: string;
-  summary: string;
-  details: string[];
+  features?: string[];
   icon: string;
 };
 
@@ -81,128 +77,128 @@ export const stats: StatItem[] = [
   {
     value: 92,
     suffix: "%",
-    label: "raspuns initial automatizat",
-    description: "Solicitarile repetitive pot fi preluate instant si rutate coerent catre echipa potrivita.",
+    label: "produs AI principal",
+    description: "Custom AI Assistant preia intrebari, califica lead-uri si arata valoarea inainte de oferta.",
   },
   {
     value: 3,
     suffix: "x",
-    label: "mai multe lead-uri calificate",
-    description: "Conversatiile ghidate colecteaza date complete si reduc pierderea oportunitatilor comerciale.",
+    label: "pachet vandut mai clar",
+    description: "AI Assistant, Website Builder si Hosting sunt prezentate ca produse concrete pentru client.",
   },
   {
     value: 24,
     suffix: "/7",
-    label: "disponibilitate digitala",
-    description: "Platforma ramane activa pentru clienti, parteneri si solicitari de demo in afara programului.",
+    label: "demo disponibil permanent",
+    description: "Butonul Try me transforma pagina intr-o demonstratie live pentru best seller.",
   },
   {
     value: 8,
     suffix: " sec",
-    label: "timp mediu de preluare",
-    description: "Primul contact incepe rapid, cu raspuns contextual si traseu orientat spre conversie.",
+    label: "prim contact pentru cumparare",
+    description: "Vizitatorul intelege rapid produsul, pretul si urmatorul pas catre oferta.",
   },
 ];
 
 export const solutionTabs: SolutionTab[] = [
   {
     id: "capture",
-    label: "Captare inteligenta",
+    label: "Oferta si lead capture",
     summary:
-      "Platforma transforma traficul in date utile prin formulare ghidate, calificare progresiva si trimitere controlata catre echipa.",
-    metric: "Lead pipeline stabil",
+      "Fluxul transforma interesul pentru Custom AI Assistant in cereri clare, cu date utile pentru oferta.",
+    metric: "Cereri pregatite",
     points: [
-      "Colecteaza nume, email, telefon si context in aceeasi interactiune.",
-      "Aplica reguli simple de validare inainte de trimitere.",
-      "Clasifica intentia pentru vanzari, suport sau demo.",
+      "Colecteaza nume, email, telefon si obiectiv in aceeasi interactiune.",
+      "Valideaza datele inainte ca cererea sa ajunga la echipa.",
+      "Clasifica intentia pentru oferta, demo, suport sau pachet complet.",
     ],
   },
   {
     id: "assist",
-    label: "Asistent conversational",
+    label: "Best seller AI Assistant",
     summary:
-      "Raspunsurile FAQ, recomandarea de pasi urmatori si trierea solicitarii sunt livrate intr-o interfata coerenta si credibila.",
-    metric: "Suport digital constant",
+      "Produsul principal raspunde instant, explica oferta si muta clientul catre demo, contact sau cumparare.",
+    metric: "Produs demonstrabil",
     points: [
-      "Livreaza raspunsuri bazate pe o baza de cunostinte structurata.",
-      "Califica intentia prin intrebari scurte si utile pentru vanzare.",
-      "Propune CTA relevante: oferta, consultanta sau escaladare catre operator.",
+      "Livreaza raspunsuri bazate pe oferta si baza de cunostinte.",
+      "Califica intentia prin intrebari scurte, utile pentru vanzare.",
+      "Propune CTA relevante: Try me, oferta, contact sau cos.",
     ],
   },
   {
     id: "operate",
-    label: "Orchestrare operationala",
+    label: "Pachet complet",
     summary:
-      "Fiecare conversatie poate declansa automat notificari, emailuri de follow-up si actualizari in sisteme interne.",
-    metric: "Fluxuri fara blocaje",
+      "Website Builder, Hosting si automatizarile extind produsul AI intr-o oferta completa pentru client.",
+    metric: "Oferta extinsa",
     points: [
-      "Trimite solicitari catre rolul intern potrivit.",
-      "Pregateste payload-uri pentru CRM, email sau ticketing.",
-      "Pastreaza trasabilitatea fiecarei interactiuni pentru analiza.",
+      "Trimite solicitarile catre vanzari sau follow-up.",
+      "Pregateste payload-uri pentru CRM, email sau estimare.",
+      "Pastreaza trasabilitatea pentru analiza comerciala.",
     ],
   },
 ];
 
 export const solutions: SolutionItem[] = [
   {
-    title: "Asistent virtual AI",
-    summary: "Interfata conversationala care raspunde instant si muta intentia catre actiunea potrivita.",
-    benefits: ["Disponibilitate permanenta", "Raspuns coerent", "Experienta premium pentru lead"],
-    useCase: "Ideal pentru preluarea intrebarilor introductive si calificarea prospectilor noi.",
+    title: "Custom AI Assistant",
+    summary: "Produsul principal SyntraFlow: asistentul care raspunde instant si ajuta clientul sa ajunga la oferta.",
+    benefits: ["Best seller", "Try me live", "Lead-uri pentru vanzare"],
+    useCase: "Ideal pentru clientii care vor un produs AI usor de demonstrat si vandut.",
     icon: "bot",
     href: "/asistent-virtual",
     category: "Conversatie",
   },
   {
-    title: "Automatizare lead capture",
-    summary: "Colecteaza date esentiale si transforma interesul initial in oportunitati cu date complete.",
-    benefits: ["Mai putine lead-uri incomplete", "Date standardizate", "Transfer rapid catre vanzari"],
-    useCase: "Potrivit pentru companii care primesc cereri frecvente de oferta sau consultanta.",
+    title: "Add-on lead capture",
+    summary: "Colecteaza datele necesare pentru o oferta mai rapida si un follow-up mai clar.",
+    benefits: ["Cereri complete", "Date standardizate", "Transfer rapid catre vanzari"],
+    useCase: "Potrivit pentru clienti care vor ca produsul AI sa pregateasca cererea de oferta.",
     icon: "pipeline",
     href: "/solutii",
     category: "Captare",
   },
   {
-    title: "FAQ inteligent",
-    summary: "Baza de cunostinte este folosita pentru raspunsuri rapide, consistente si scalabile.",
-    benefits: ["Scade volumul de suport repetitiv", "Raspunsuri uniforme", "Actualizare centralizata"],
-    useCase: "Util in organizatii cu multe intrebari recurente din partea clientilor.",
+    title: "FAQ pentru produsul AI",
+    summary: "Baza de cunostinte sustine raspunsuri rapide despre produse, preturi, demo si urmatorul pas.",
+    benefits: ["Raspunsuri uniforme", "Mai putine ezitari", "Actualizare centralizata"],
+    useCase: "Util pentru clientii care primesc multe intrebari inainte de cumparare.",
     icon: "faq",
     href: "/asistent-virtual",
     category: "Conversatie",
   },
   {
-    title: "Formular cerere oferta",
-    summary: "Traseu ghidat pentru cereri comerciale cu campuri dinamice si validare client-side.",
+    title: "Cerere oferta pentru AI Assistant",
+    summary: "Traseu ghidat pentru clienti care vor pret, demo sau recomandarea produsului potrivit.",
     benefits: ["Solicitari mai clare", "Mai putine reveniri", "Context complet pentru echipa"],
-    useCase: "Recomandat pentru servicii tehnice, integratori si companii B2B.",
+    useCase: "Recomandat cand vrei sa vinzi produsul rapid, cu date utile de la inceput.",
     icon: "form",
     href: "/contact",
     category: "Captare",
   },
   {
-    title: "Programare demo sau consultanta",
-    summary: "CTA-uri dedicate pentru programari, cu intentie clara si pregatirea rapida a discutiei.",
+    title: "Demo pentru best seller",
+    summary: "CTA-uri dedicate pentru prezentarea Custom AI Assistant si pregatirea discutiei comerciale.",
     benefits: ["Conversie mai buna", "Timp redus de preluare", "Agenda clarificata dinainte"],
-    useCase: "Util pentru prezentari comerciale, validare de proiect si discutii cu decidenti.",
+    useCase: "Util pentru clienti care trebuie sa vada produsul in actiune inainte de cumparare.",
     icon: "calendar",
     href: "/contact",
     category: "Operare",
   },
   {
-    title: "Integrare email si CRM",
-    summary: "Evenimentele importante pot declansa trimiteri de email si sincronizare in sisteme externe.",
+    title: "Integrare CRM pentru vanzare",
+    summary: "Cererea pornita din asistent poate ajunge in email, CRM sau alt sistem de follow-up.",
     benefits: ["Mai putine task-uri manuale", "Trasabilitate", "Follow-up consecvent"],
-    useCase: "Potrivit pentru scalarea proceselor comerciale si a suportului.",
+    useCase: "Potrivit pentru echipe care vor sa transforme demo-ul in oferta si cumparare.",
     icon: "integration",
     href: "/automatizari",
     category: "Operare",
   },
   {
-    title: "Automatizare suport clienti",
-    summary: "Combinatie intre raspunsuri imediate, triere si escaladare catre echipa interna.",
+    title: "Suport automatizat pentru clienti",
+    summary: "Raspunsuri imediate si escaladare pentru clientii care au intrebari dupa ce vad produsul.",
     benefits: ["Timp de raspuns redus", "Prioritizare corecta", "Satisfactie mai mare"],
-    useCase: "Relevant pentru business-uri cu volume mari de solicitari repetitive.",
+    useCase: "Relevant pentru business-uri care vor sa vanda fara sa piarda timp in intrebari repetitive.",
     icon: "support",
     href: "/automatizari",
     category: "Operare",
@@ -212,111 +208,136 @@ export const solutions: SolutionItem[] = [
 export const industries: IndustryItem[] = [
   {
     title: "Productie / Manufacturing",
-    summary: "Preia cereri tehnice, intrebari despre disponibilitate si solicitari de oferta intr-un flux standardizat.",
-    impact: "Reduce timpul de pre-calificare si pregateste contextul pentru echipele comerciale sau tehnice.",
+    summary: "Clientul cumpara AI Assistant pentru cereri tehnice, disponibilitate si oferte preluate intr-un flux standardizat.",
+    impact: "Produsul reduce timpul de pre-calificare si pregateste contextul pentru vanzari sau echipa tehnica.",
     icon: "factory",
   },
   {
     title: "Servicii tehnice",
-    summary: "Centralizeaza intrebarile recurente, urgenta solicitarii si tipul de interventie necesar.",
-    impact: "Scade timpul de coordonare si ajuta la distribuirea corecta a cazurilor.",
+    summary: "AI Assistant centralizeaza intrebarile recurente, urgenta solicitarii si tipul de interventie necesar.",
+    impact: "Oferta devine mai usor de vandut pentru echipe care pierd timp in coordonare.",
     icon: "tools",
   },
   {
     title: "Retail",
-    summary: "Raspunde la intrebari despre produse, livrare, stoc si directioneaza clientul catre pasul urmator.",
-    impact: "Imbunatateste experienta digitala si reduce presiunea pe suportul uman.",
+    summary: "Produsul raspunde la intrebari despre oferta, livrare, stoc si directioneaza clientul catre pasul urmator.",
+    impact: "Creste increderea in cumparare si reduce presiunea pe suportul uman.",
     icon: "cart",
   },
   {
     title: "Clinici",
-    summary: "Ghideaza pacientii catre specialitati, programari si mesaje preliminare cu mai putina frictiune.",
-    impact: "Optimizeaza interactiunea initiala si pastreaza claritatea fluxului de programare.",
+    summary: "AI Assistant ghideaza pacientii catre specialitati, programari si intrebari preliminare cu mai putina frictiune.",
+    impact: "Clientul vede rapid valoarea: programari mai clare si raspuns initial mai bun.",
     icon: "health",
   },
   {
     title: "HoReCa",
-    summary: "Poate prelua intrebari despre rezervari, program, meniu si evenimente private.",
-    impact: "Reduce apelurile repetitive si accelereaza conversia solicitarilor in rezervari.",
+    summary: "Produsul poate prelua intrebari despre rezervari, program, meniu si evenimente private.",
+    impact: "Este usor de vandut pentru businessuri care vor rezervari si mai putine apeluri repetitive.",
     icon: "hospitality",
   },
   {
     title: "Logistica",
-    summary: "Structurarea cererilor de transport, status si intrebari operationale intr-un flux clar.",
-    impact: "Creeaza un punct unic de preluare pentru solicitari repetitive si urgente.",
+    summary: "AI Assistant structureaza cereri de transport, status si intrebari operationale intr-un flux clar.",
+    impact: "Oferta creeaza un punct unic de preluare pentru solicitari repetitive si urgente.",
     icon: "logistics",
   },
   {
     title: "Companii B2B",
     summary: "Filtreaza intentia comerciala, pregateste briefingul si accelereaza handoff-ul catre sales.",
-    impact: "Creste calitatea lead-urilor si standardizeaza contactul de pre-vanzare.",
+    impact: "Custom AI Assistant creste calitatea lead-urilor si standardizeaza contactul de pre-vanzare.",
     icon: "b2b",
   },
 ];
 
 export const workflowSteps: WorkflowStep[] = [
   {
-    title: "Intrebare initiala",
-    summary: "Prospectul porneste conversatia din website sau dintr-un canal digital conectat.",
-    detail: "Prompturile ghidate reduc ambiguitatea si accelereaza intentia.",
+    title: "Vizitatorul vede produsul",
+    summary: "Pagina prezinta Custom AI Assistant ca best seller, cu pret, beneficiu si CTA clar.",
+    detail: "Mesajul reduce ezitarea si arata rapid ce cumpara clientul.",
     icon: "message",
   },
   {
-    title: "Raspuns contextual",
-    summary: "Asistentul livreaza un raspuns bazat pe FAQ, reguli de business si continut de referinta.",
-    detail: "Se pot afisa si recomandari pentru pasii urmatori.",
+    title: "Try me demonstreaza valoarea",
+    summary: "Asistentul raspunde live si transforma pagina intr-o prezentare interactiva.",
+    detail: "Clientul vede produsul in actiune inainte de oferta.",
     icon: "spark",
   },
   {
-    title: "Colectare date",
-    summary: "Sunt cerute datele necesare: nume, email, telefon, companie si tipul solicitarii.",
-    detail: "Campurile sunt adaptate la contextul conversatiei.",
+    title: "Cerere pregatita",
+    summary: "Fluxul strange nume, email, telefon, companie si obiectivul clientului.",
+    detail: "Campurile sunt adaptate la produsul cerut si la nivelul de intentie.",
     icon: "form",
   },
   {
-    title: "Validare si clasificare",
-    summary: "Datele sunt validate rapid si solicitarea ajunge pe fluxul potrivit.",
-    detail: "Regulile simple reduc erorile si dublele interpretari.",
+    title: "Validare pentru oferta",
+    summary: "Datele sunt verificate rapid si solicitarea ajunge pe fluxul potrivit.",
+    detail: "Regulile simple reduc erorile si pregatesc un raspuns comercial mai bun.",
     icon: "shield",
   },
   {
-    title: "Rutare operationala",
+    title: "Rutare catre vanzare",
     summary: "Cazul ajunge catre vanzari, suport sau consultanta, cu toate detaliile relevante.",
-    detail: "Se poate pregati payload pentru CRM, email sau ticketing.",
+    detail: "Se poate pregati payload pentru CRM, email sau estimare.",
     icon: "route",
   },
   {
-    title: "Follow-up automat",
-    summary: "Clientul primeste confirmare, iar echipa interna are un punct clar de actiune.",
-    detail: "Fluxul ramane auditabil si usor de masurat.",
+    title: "Follow-up pentru cumparare",
+    summary: "Clientul primeste confirmare, iar echipa are un punct clar de actiune.",
+    detail: "Fluxul ramane masurabil de la interes pana la oferta.",
     icon: "mail",
   },
 ];
 
 export const benefits: BenefitItem[] = [
   {
-    title: "Claritate operationala",
-    summary: "Fiecare solicitare este preluata intr-un format repetabil si usor de urmarit.",
-    metric: "Fluxuri standardizate",
+    title: "Produs principal clar",
+    summary: "Custom AI Assistant este prezentat ca best seller, cu demo live si urmator pas usor de inteles.",
+    metric: "Oferta usor de vandut",
   },
   {
-    title: "Experienta digitala coerenta",
+    title: "Experienta care vinde",
     summary: "Prospectii primesc raspunsuri si CTA-uri relevante fara sa fie blocati in formulare rigide.",
-    metric: "Interactiuni ghidate",
+    metric: "Drum scurt spre oferta",
   },
   {
-    title: "Scalare fara frictiune",
-    summary: "Platforma poate prelua volume mai mari fara crestere proportionala a efortului uman.",
-    metric: "Cost operational optimizat",
+    title: "Pachet complet",
+    summary: "Website Builder si Hosting pot fi vandute impreuna cu AI Assistant cand clientul vrea lansare completa.",
+    metric: "AI plus website plus hosting",
   },
   {
-    title: "Valoare practica si operationala",
-    summary: "Platforma arata cum UI-ul premium, automatizarea si orchestrarea digitala pot accelera servicii reale.",
-    metric: "Servicii optimizate",
+    title: "Valoare comerciala",
+    summary: "Platforma arata cum produsul AI, automatizarea si interfata premium pot genera cereri reale.",
+    metric: "Vanzare mai coerenta",
   },
 ];
 
 export const caseStudies: CaseStudyItem[] = [
+  {
+    title: "Custom AI Assistant pentru servicii de arhivare și digitalizare",
+    overview: [
+      "Am dezvoltat o soluție AI pentru o companie din domeniul arhivării și digitalizării documentelor, cu scopul de a automatiza comunicarea inițială cu vizitatorii website-ului.",
+      "Asistentul virtual răspunde la întrebări frecvente despre servicii precum arhivarea documentelor, digitalizarea, depozitarea, îndosarierea și distrugerea securizată a documentelor. În același timp, acesta colectează date relevante de la utilizatori și îi direcționează către o consultație gratuită.",
+    ],
+    objective:
+      "Reducerea întrebărilor repetitive gestionate manual și îmbunătățirea experienței vizitatorilor prin răspunsuri rapide, clare și disponibile direct pe website.",
+    problem:
+      "Întrebările repetitive despre arhivare, digitalizare, depozitare, îndosariere și distrugere securizată erau gestionate manual în comunicarea inițială.",
+    solution:
+      "A fost integrat un asistent AI pe website, configurat să ofere informații generale despre servicii, să evite răspunsurile comerciale sensibile și să trimită lead-urile către echipa responsabilă.",
+    benefit:
+      "Soluția ajută compania să economisească timp, să răspundă mai rapid potențialilor clienți și să transforme vizitatorii interesați în lead-uri mai bine structurate.",
+    impact:
+      "Vizitatorii primesc răspunsuri rapide, clare și disponibile direct pe website, iar lead-urile ajung structurate către echipa responsabilă.",
+    features: [
+      "răspunsuri automate la întrebări frecvente",
+      "colectare nume, email, telefon și nevoi specifice",
+      "calificare lead-uri",
+      "direcționare către consultație gratuită",
+      "integrare directă pe website",
+    ],
+    icon: "database",
+  },
   {
     title: "Restaurant cu rezervari si intrebari frecvente",
     problem: "Personalul pierde timp cu apeluri repetitive despre program, rezervari si evenimente.",
@@ -348,45 +369,6 @@ export const caseStudies: CaseStudyItem[] = [
     benefit: "Clientii primesc raspuns imediat, iar echipa umana se concentreaza pe cazuri cu valoare mare.",
     impact: "Crestere a satisfactiei percepute si timp de raspuns mai predictibil.",
     icon: "cart",
-  },
-];
-
-export const architectureLayers: ArchitectureLayer[] = [
-  {
-    title: "Experienta de conversie",
-    summary: "Primul contact trebuie sa arate premium, sa inspire incredere si sa impinga intentia spre actiune.",
-    details: ["Pagini orientate spre conversie", "Actiuni clare pentru prospect", "Formulare rapide"],
-    icon: "browser",
-  },
-  {
-    title: "Gestionarea solicitarilor",
-    summary: "Solicitarea este preluata intr-un format clar, verificata si trimisa catre echipa potrivita.",
-    details: ["Preluare clara a cererii", "Verificarea datelor importante", "Trimitere catre persoana potrivita"],
-    icon: "server",
-  },
-  {
-    title: "Inteligenta conversationala",
-    summary: "Asistentul raspunde rapid, pune intrebarile potrivite si duce prospectul mai aproape de demo sau oferta.",
-    details: ["Raspunsuri rapide", "Calificare scurta", "Escaladare cand intentia este valoroasa"],
-    icon: "bot",
-  },
-  {
-    title: "Baza de cunostinte comerciale",
-    summary: "Aici stau mesajele, regulile si raspunsurile care pastreaza promisiunea brandului coerenta.",
-    details: ["Mesaje usor de actualizat", "Ton unitar", "Raspunsuri stabile"],
-    icon: "database",
-  },
-  {
-    title: "Integrari",
-    summary: "Datele colectate pot merge mai departe catre email, CRM sau alte sisteme folosite in companie.",
-    details: ["Trimitere catre email sau CRM", "Notificari automate", "Legatura cu alte sisteme"],
-    icon: "integration",
-  },
-  {
-    title: "Analiza, securitate si conformitate",
-    summary: "Platforma poate urmari ce functioneaza si poate proteja datele folosite in conversatii.",
-    details: ["Vizibilitate asupra interactiunilor", "Colectare limitata de date", "Acces controlat"],
-    icon: "shield",
   },
 ];
 
@@ -472,7 +454,7 @@ export const chatPresets: ChatPreset[] = [
       { role: "user", text: "Se poate integra in site-ul meu?" },
       {
         role: "assistant",
-        text: "Da. Arhitectura este gandita pentru embed web, iar ca extensie poate sustine si canale precum WhatsApp sau Facebook.",
+        text: "Da. Produsul este gandit pentru embed web, iar ca extensie poate sustine si canale precum WhatsApp sau Facebook.",
       },
       { role: "user", text: "Pot trimite lead-urile si in CRM?" },
       {
@@ -503,6 +485,97 @@ export const chatPresets: ChatPreset[] = [
 ];
 
 const siteDataTranslations: Record<string, string> = {
+  "produs AI principal": "main AI product",
+  "Custom AI Assistant preia intrebari, califica lead-uri si arata valoarea inainte de oferta.": "Custom AI Assistant handles questions, qualifies leads, and shows value before the offer.",
+  "pachet vandut mai clar": "clearer product package",
+  "AI Assistant, Website Builder si Hosting sunt prezentate ca produse concrete pentru client.": "AI Assistant, Website Builder, and Hosting are presented as concrete products for the client.",
+  "demo disponibil permanent": "always-on demo",
+  "Butonul Try me transforma pagina intr-o demonstratie live pentru best seller.": "The Try me button turns the page into a live demo for the best seller.",
+  "prim contact pentru cumparare": "first contact for purchase",
+  "Vizitatorul intelege rapid produsul, pretul si urmatorul pas catre oferta.": "The visitor quickly understands the product, price, and next step toward the offer.",
+  "Oferta si lead capture": "Offer and Lead Capture",
+  "Fluxul transforma interesul pentru Custom AI Assistant in cereri clare, cu date utile pentru oferta.": "The flow turns interest in Custom AI Assistant into clear requests, with useful data for the offer.",
+  "Cereri pregatite": "Prepared requests",
+  "Colecteaza nume, email, telefon si obiectiv in aceeasi interactiune.": "Collects name, email, phone, and goal in the same interaction.",
+  "Valideaza datele inainte ca cererea sa ajunga la echipa.": "Validates data before the request reaches the team.",
+  "Clasifica intentia pentru oferta, demo, suport sau pachet complet.": "Classifies intent for offer, demo, support, or complete package.",
+  "Best seller AI Assistant": "Best Seller AI Assistant",
+  "Produsul principal raspunde instant, explica oferta si muta clientul catre demo, contact sau cumparare.": "The main product replies instantly, explains the offer, and moves the client toward demo, contact, or purchase.",
+  "Produs demonstrabil": "Demo-ready product",
+  "Livreaza raspunsuri bazate pe oferta si baza de cunostinte.": "Delivers replies based on the offer and knowledge base.",
+  "Califica intentia prin intrebari scurte, utile pentru vanzare.": "Qualifies intent through short questions that are useful for sales.",
+  "Propune CTA relevante: Try me, oferta, contact sau cos.": "Suggests relevant CTAs: Try me, offer, contact, or cart.",
+  "Pachet complet": "Complete Package",
+  "Website Builder, Hosting si automatizarile extind produsul AI intr-o oferta completa pentru client.": "Website Builder, Hosting, and automations extend the AI product into a complete client offer.",
+  "Oferta extinsa": "Extended offer",
+  "Trimite solicitarile catre vanzari sau follow-up.": "Routes requests to sales or follow-up.",
+  "Pregateste payload-uri pentru CRM, email sau estimare.": "Prepares payloads for CRM, email, or estimation.",
+  "Pastreaza trasabilitatea pentru analiza comerciala.": "Keeps traceability for commercial analysis.",
+  "Custom AI Assistant": "Custom AI Assistant",
+  "Produsul principal SyntraFlow: asistentul care raspunde instant si ajuta clientul sa ajunga la oferta.": "SyntraFlow's main product: the assistant that replies instantly and helps the client reach the offer.",
+  "Best seller": "Best seller",
+  "Try me live": "Try me live",
+  "Lead-uri pentru vanzare": "Sales-ready leads",
+  "Ideal pentru clientii care vor un produs AI usor de demonstrat si vandut.": "Ideal for clients who want an AI product that is easy to demo and sell.",
+  "Add-on lead capture": "Lead Capture Add-on",
+  "Colecteaza datele necesare pentru o oferta mai rapida si un follow-up mai clar.": "Collects the data needed for a faster offer and clearer follow-up.",
+  "Cereri complete": "Complete requests",
+  "Potrivit pentru clienti care vor ca produsul AI sa pregateasca cererea de oferta.": "Well suited for clients who want the AI product to prepare quote requests.",
+  "FAQ pentru produsul AI": "FAQ for the AI Product",
+  "Baza de cunostinte sustine raspunsuri rapide despre produse, preturi, demo si urmatorul pas.": "The knowledge base supports quick replies about products, prices, demos, and the next step.",
+  "Mai putine ezitari": "Less hesitation",
+  "Util pentru clientii care primesc multe intrebari inainte de cumparare.": "Useful for clients who receive many questions before purchase.",
+  "Cerere oferta pentru AI Assistant": "Quote Request for AI Assistant",
+  "Traseu ghidat pentru clienti care vor pret, demo sau recomandarea produsului potrivit.": "A guided path for clients who want a price, demo, or the right product recommendation.",
+  "Recomandat cand vrei sa vinzi produsul rapid, cu date utile de la inceput.": "Recommended when you want to sell the product quickly, with useful data from the start.",
+  "Demo pentru best seller": "Demo for the Best Seller",
+  "CTA-uri dedicate pentru prezentarea Custom AI Assistant si pregatirea discutiei comerciale.": "Dedicated CTAs for presenting Custom AI Assistant and preparing the sales conversation.",
+  "Util pentru clienti care trebuie sa vada produsul in actiune inainte de cumparare.": "Useful for clients who need to see the product in action before purchase.",
+  "Integrare CRM pentru vanzare": "CRM Integration for Sales",
+  "Cererea pornita din asistent poate ajunge in email, CRM sau alt sistem de follow-up.": "A request started in the assistant can reach email, CRM, or another follow-up system.",
+  "Potrivit pentru echipe care vor sa transforme demo-ul in oferta si cumparare.": "Well suited for teams that want to turn demos into offers and purchases.",
+  "Suport automatizat pentru clienti": "Automated Customer Support",
+  "Raspunsuri imediate si escaladare pentru clientii care au intrebari dupa ce vad produsul.": "Immediate replies and escalation for clients who have questions after seeing the product.",
+  "Relevant pentru business-uri care vor sa vanda fara sa piarda timp in intrebari repetitive.": "Relevant for businesses that want to sell without losing time on repetitive questions.",
+  "Clientul cumpara AI Assistant pentru cereri tehnice, disponibilitate si oferte preluate intr-un flux standardizat.": "The client buys AI Assistant for technical requests, availability, and offers handled in a standardized flow.",
+  "Produsul reduce timpul de pre-calificare si pregateste contextul pentru vanzari sau echipa tehnica.": "The product reduces pre-qualification time and prepares context for sales or the technical team.",
+  "AI Assistant centralizeaza intrebarile recurente, urgenta solicitarii si tipul de interventie necesar.": "AI Assistant centralizes recurring questions, request urgency, and the required type of intervention.",
+  "Oferta devine mai usor de vandut pentru echipe care pierd timp in coordonare.": "The offer becomes easier to sell to teams that lose time in coordination.",
+  "Produsul raspunde la intrebari despre oferta, livrare, stoc si directioneaza clientul catre pasul urmator.": "The product answers questions about the offer, delivery, and stock, then guides the client to the next step.",
+  "Creste increderea in cumparare si reduce presiunea pe suportul uman.": "It increases purchase confidence and reduces pressure on human support.",
+  "AI Assistant ghideaza pacientii catre specialitati, programari si intrebari preliminare cu mai putina frictiune.": "AI Assistant guides patients toward specialties, appointments, and preliminary questions with less friction.",
+  "Clientul vede rapid valoarea: programari mai clare si raspuns initial mai bun.": "The client quickly sees the value: clearer appointments and a better first reply.",
+  "Produsul poate prelua intrebari despre rezervari, program, meniu si evenimente private.": "The product can handle questions about reservations, schedule, menu, and private events.",
+  "Este usor de vandut pentru businessuri care vor rezervari si mai putine apeluri repetitive.": "It is easy to sell to businesses that want bookings and fewer repetitive calls.",
+  "AI Assistant structureaza cereri de transport, status si intrebari operationale intr-un flux clar.": "AI Assistant structures transport requests, status, and operational questions into a clear flow.",
+  "Oferta creeaza un punct unic de preluare pentru solicitari repetitive si urgente.": "The offer creates one intake point for repetitive and urgent requests.",
+  "Custom AI Assistant creste calitatea lead-urilor si standardizeaza contactul de pre-vanzare.": "Custom AI Assistant improves lead quality and standardizes pre-sales contact.",
+  "Vizitatorul vede produsul": "The visitor sees the product",
+  "Pagina prezinta Custom AI Assistant ca best seller, cu pret, beneficiu si CTA clar.": "The page presents Custom AI Assistant as the best seller, with price, benefit, and a clear CTA.",
+  "Mesajul reduce ezitarea si arata rapid ce cumpara clientul.": "The message reduces hesitation and quickly shows what the client is buying.",
+  "Try me demonstreaza valoarea": "Try me proves the value",
+  "Asistentul raspunde live si transforma pagina intr-o prezentare interactiva.": "The assistant replies live and turns the page into an interactive presentation.",
+  "Clientul vede produsul in actiune inainte de oferta.": "The client sees the product in action before the offer.",
+  "Cerere pregatita": "Prepared request",
+  "Fluxul strange nume, email, telefon, companie si obiectivul clientului.": "The flow gathers name, email, phone, company, and the client's goal.",
+  "Campurile sunt adaptate la produsul cerut si la nivelul de intentie.": "Fields adapt to the requested product and intent level.",
+  "Validare pentru oferta": "Offer validation",
+  "Datele sunt verificate rapid si solicitarea ajunge pe fluxul potrivit.": "Data is checked quickly and the request reaches the right flow.",
+  "Regulile simple reduc erorile si pregatesc un raspuns comercial mai bun.": "Simple rules reduce errors and prepare a better sales reply.",
+  "Rutare catre vanzare": "Routing to sales",
+  "Follow-up pentru cumparare": "Purchase follow-up",
+  "Clientul primeste confirmare, iar echipa are un punct clar de actiune.": "The client receives confirmation, and the team has a clear action point.",
+  "Fluxul ramane masurabil de la interes pana la oferta.": "The flow remains measurable from interest to offer.",
+  "Produs principal clar": "Clear main product",
+  "Custom AI Assistant este prezentat ca best seller, cu demo live si urmator pas usor de inteles.": "Custom AI Assistant is presented as the best seller, with a live demo and an easy-to-understand next step.",
+  "Oferta usor de vandut": "Easy-to-sell offer",
+  "Experienta care vinde": "Experience that sells",
+  "Drum scurt spre oferta": "Short path to offer",
+  "Website Builder si Hosting pot fi vandute impreuna cu AI Assistant cand clientul vrea lansare completa.": "Website Builder and Hosting can be sold together with AI Assistant when the client wants a complete launch.",
+  "AI plus website plus hosting": "AI plus website plus hosting",
+  "Valoare comerciala": "Commercial value",
+  "Platforma arata cum produsul AI, automatizarea si interfata premium pot genera cereri reale.": "The platform shows how the AI product, automation, and premium interface can generate real requests.",
+  "Vanzare mai coerenta": "More coherent sales",
   "raspuns initial automatizat": "automated first response",
   "Solicitarile repetitive pot fi preluate instant si rutate coerent catre echipa potrivita.": "Repetitive requests can be handled instantly and routed consistently to the right team.",
   "mai multe lead-uri calificate": "more qualified leads",
@@ -625,6 +698,19 @@ const siteDataTranslations: Record<string, string> = {
   "Valoare practica si operationala": "Practical Business Value",
   "Platforma arata cum UI-ul premium, automatizarea si orchestrarea digitala pot accelera servicii reale.": "The platform shows how premium UI, automation, and digital orchestration can accelerate real services.",
   "Servicii optimizate": "Optimized Services",
+  "Custom AI Assistant pentru servicii de arhivare și digitalizare": "Custom AI Assistant for archiving and document digitization services",
+  "Am dezvoltat o soluție AI pentru o companie din domeniul arhivării și digitalizării documentelor, cu scopul de a automatiza comunicarea inițială cu vizitatorii website-ului.": "We developed an AI solution for a company in the archiving and document digitization sector, with the goal of automating the first communication with website visitors.",
+  "Asistentul virtual răspunde la întrebări frecvente despre servicii precum arhivarea documentelor, digitalizarea, depozitarea, îndosarierea și distrugerea securizată a documentelor. În același timp, acesta colectează date relevante de la utilizatori și îi direcționează către o consultație gratuită.": "The virtual assistant answers frequently asked questions about services such as document archiving, digitization, storage, filing, and secure document destruction. At the same time, it collects relevant user data and directs visitors toward a free consultation.",
+  "Reducerea întrebărilor repetitive gestionate manual și îmbunătățirea experienței vizitatorilor prin răspunsuri rapide, clare și disponibile direct pe website.": "Reducing manually handled repetitive questions and improving the visitor experience through fast, clear answers available directly on the website.",
+  "Întrebările repetitive despre arhivare, digitalizare, depozitare, îndosariere și distrugere securizată erau gestionate manual în comunicarea inițială.": "Repetitive questions about archiving, digitization, storage, filing, and secure destruction were handled manually during the first interaction.",
+  "A fost integrat un asistent AI pe website, configurat să ofere informații generale despre servicii, să evite răspunsurile comerciale sensibile și să trimită lead-urile către echipa responsabilă.": "An AI assistant was integrated into the website and configured to provide general service information, avoid sensitive commercial replies, and send leads to the responsible team.",
+  "Soluția ajută compania să economisească timp, să răspundă mai rapid potențialilor clienți și să transforme vizitatorii interesați în lead-uri mai bine structurate.": "The solution helps the company save time, respond faster to potential clients, and turn interested visitors into better-structured leads.",
+  "Vizitatorii primesc răspunsuri rapide, clare și disponibile direct pe website, iar lead-urile ajung structurate către echipa responsabilă.": "Visitors receive fast, clear answers directly on the website, while leads reach the responsible team in a structured format.",
+  "răspunsuri automate la întrebări frecvente": "automatic answers to frequently asked questions",
+  "colectare nume, email, telefon și nevoi specifice": "collection of name, email, phone, and specific needs",
+  "calificare lead-uri": "lead qualification",
+  "direcționare către consultație gratuită": "routing toward a free consultation",
+  "integrare directă pe website": "direct website integration",
   "Restaurant cu rezervari si intrebari frecvente": "Restaurant with Reservations and FAQs",
   "Personalul pierde timp cu apeluri repetitive despre program, rezervari si evenimente.": "Staff lose time on repetitive calls about schedule, reservations, and events.",
   "Asistentul preia intrebarile uzuale, colecteaza detalii despre rezervare si directioneaza cererile speciale.": "The assistant handles common questions, collects booking details, and routes special requests.",
@@ -707,7 +793,7 @@ const siteDataTranslations: Record<string, string> = {
   "Canal de follow-up": "Follow-up Channel",
   "Se poate integra in site-ul meu?": "Can it be integrated into my website?",
   "Implementare rapida": "Fast Implementation",
-  "Da. Arhitectura este gandita pentru embed web, iar ca extensie poate sustine si canale precum WhatsApp sau Facebook.": "Yes. The architecture is designed for web embed and, as an extension, can support channels like WhatsApp or Facebook.",
+  "Da. Produsul este gandit pentru embed web, iar ca extensie poate sustine si canale precum WhatsApp sau Facebook.": "Yes. The product is designed for web embed and, as an extension, can support channels like WhatsApp or Facebook.",
   "Pot trimite lead-urile si in CRM?": "Can I send leads into my CRM as well?",
   "Da. Fluxul poate valida datele si apoi declansa o integrare catre CRM, email sau alt sistem operational.": "Yes. The flow can validate the data and then trigger an integration to CRM, email, or another operational system.",
   "Canal principal": "Primary Channel",
@@ -796,19 +882,13 @@ export function getCaseStudies(locale: Locale): CaseStudyItem[] {
   return caseStudies.map((item) => ({
     ...item,
     title: translateSiteText(item.title, locale),
+    overview: item.overview ? translateTextList(item.overview, locale) : undefined,
+    objective: item.objective ? translateSiteText(item.objective, locale) : undefined,
     problem: translateSiteText(item.problem, locale),
     solution: translateSiteText(item.solution, locale),
     benefit: translateSiteText(item.benefit, locale),
     impact: translateSiteText(item.impact, locale),
-  }));
-}
-
-export function getArchitectureLayers(locale: Locale): ArchitectureLayer[] {
-  return architectureLayers.map((item) => ({
-    ...item,
-    title: translateSiteText(item.title, locale),
-    summary: translateSiteText(item.summary, locale),
-    details: translateTextList(item.details, locale),
+    features: item.features ? translateTextList(item.features, locale) : undefined,
   }));
 }
 
@@ -841,7 +921,6 @@ export function getSiteData(locale: Locale) {
     workflowSteps: getWorkflowSteps(locale),
     benefits: getBenefits(locale),
     caseStudies: getCaseStudies(locale),
-    architectureLayers: getArchitectureLayers(locale),
     faqItems: getFaqItems(locale),
     chatPresets: getChatPresets(locale),
   };

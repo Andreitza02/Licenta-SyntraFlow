@@ -53,65 +53,9 @@ const navbarMenuRo: NavbarMenuItem[] = [
   },
   {
     id: "despre-proiect",
-    label: "Despre Proiect",
+    label: "Despre SyntraFlow",
     href: "/despre-proiect",
-    type: "mega",
-    description: "O privire rapida asupra viziunii, capabilitatilor si impactului operational.",
-    groups: [
-      {
-        title: "Viziune",
-        links: [
-          {
-            label: "Despre Proiect",
-            href: "/despre-proiect",
-            description: "Cum pozitioneaza SyntraFlow experienta digitala cu clientii.",
-          },
-          {
-            label: "Asistent Virtual",
-            href: "/asistent-virtual",
-            description: "Un punct unic pentru conversatie, FAQ, intent detection si pregatirea pasului urmator.",
-          },
-        ],
-      },
-      {
-        title: "Functionalitati",
-        links: [
-          {
-            label: "Functionalitati",
-            href: "/solutii",
-            description: "Modulele esentiale care sustin interactiunile automate.",
-          },
-          {
-            label: "Arhitectura",
-            href: "/arhitectura",
-            description: "Modul in care platforma sustine viteza, claritatea si continuitatea interactiunilor cu clientii.",
-          },
-        ],
-      },
-      {
-        title: "Beneficii",
-        links: [
-          {
-            label: "Beneficii",
-            href: "/studii-de-caz",
-            description: "Rezultate concrete in scenarii de business si suport.",
-          },
-          {
-            label: "Contact",
-            href: "/contact",
-    description: "Leaga povestea SyntraFlow de un demo sau de o discutie aplicata.",
-          },
-        ],
-      },
-    ],
-    featured: {
-      eyebrow: "Viziunea platformei",
-      title: "Context, directie si valoare intr-un singur overview",
-      description:
-        "Descopera de ce a fost construit SyntraFlow, ce probleme rezolva si cum se transforma conceptul intr-o experienta digitala coerenta.",
-      href: "/despre-proiect",
-      ctaLabel: "Vezi proiectul",
-    },
+    type: "link",
   },
   {
     id: "solutii",
@@ -156,7 +100,7 @@ const navbarMenuRo: NavbarMenuItem[] = [
         links: [
           {
             label: "Integrare CRM",
-            href: "/arhitectura",
+            href: "/automatizari",
             description: "Datele pot fi rutate spre CRM si sisteme interne.",
           },
           {
@@ -312,127 +256,7 @@ const navbarMenuRo: NavbarMenuItem[] = [
     id: "studii-de-caz",
     label: "Studii de Caz",
     href: "/studii-de-caz",
-    homeSectionId: "home-cases",
-    type: "mega",
-    description: "Exemple de implementare si rezultate pentru scenarii frecvente de business.",
-    groups: [
-      {
-        title: "Implementare website AI",
-        links: [
-          {
-            label: "Implementare website AI",
-            href: "/studii-de-caz",
-            description: "Website cu raspuns instant si triere automata a intentiei.",
-          },
-          {
-            label: "Asistent virtual AI",
-            href: "/asistent-virtual",
-            description: "Raspunsuri, calificare si directionare intr-un singur flux.",
-          },
-        ],
-      },
-      {
-        title: "Automatizare formulare",
-        links: [
-          {
-            label: "Automatizare formulare",
-            href: "/studii-de-caz",
-            description: "Cereri mai clare, cu mai putine interventii manuale.",
-          },
-          {
-            label: "Lead capture",
-            href: "/solutii",
-            description: "Colectare structurata a datelor relevante pentru vanzari.",
-          },
-        ],
-      },
-      {
-        title: "Conversie lead-uri",
-        links: [
-          {
-            label: "Conversie lead-uri",
-            href: "/studii-de-caz",
-            description: "Mai mult context util pentru vanzari si follow-up.",
-          },
-          {
-            label: "Programare demo",
-            href: "/contact",
-            description: "Leaga scenariile validate de un pas comercial clar.",
-          },
-        ],
-      },
-    ],
-    featured: {
-      eyebrow: "Scenarii aplicate",
-      title: "Exemple care arata cum se traduce platforma in rezultate",
-      description:
-        "Vezi cum pot fi combinate asistenta conversationala, formularele si automatizarea pentru cazuri de business usor de inteles.",
-      href: "/studii-de-caz",
-      ctaLabel: "Vezi studiile",
-    },
-  },
-  {
-    id: "arhitectura",
-    label: "Arhitectura",
-    href: "/arhitectura",
-    homeSectionId: "home-architecture",
-    type: "mega",
-    description: "Modul in care platforma sustine viteza, claritatea si continuitatea interactiunilor cu clientii.",
-    groups: [
-      {
-        title: "Experienta utilizatorului",
-        links: [
-          {
-            label: "Experienta utilizatorului",
-            href: "/arhitectura",
-            description: "Un parcurs clar, rapid si usor de urmat pentru fiecare vizitator.",
-          },
-          {
-            label: "Asistent si informatii",
-            href: "/arhitectura",
-            description: "Raspunsuri coerente, clare si orientate spre rezultat.",
-          },
-        ],
-      },
-      {
-        title: "Gestionarea solicitarilor",
-        links: [
-          {
-            label: "Gestionarea solicitarilor",
-            href: "/arhitectura",
-            description: "Cereri organizate, validate si directionate eficient.",
-          },
-          {
-            label: "Integrare CRM",
-            href: "/arhitectura",
-            description: "Datele pot fi rutate spre CRM si sisteme interne.",
-          },
-        ],
-      },
-      {
-        title: "Automatizari",
-        links: [
-          {
-            label: "Routing cereri",
-            href: "/automatizari",
-            description: "Distribuire catre vanzari, suport sau consultanta.",
-          },
-          {
-            label: "Automatizare email",
-            href: "/automatizari",
-            description: "Follow-up si notificari automate pentru echipe si clienti.",
-          },
-        ],
-      },
-    ],
-    featured: {
-      eyebrow: "Fundatie scalabila",
-      title: "O structura clara pentru raspuns rapid si extindere",
-      description:
-        "Arhitectura leaga UI-ul, logica de conversatie si fluxurile operationale intr-un traseu care ramane usor de controlat.",
-      href: "/arhitectura",
-      ctaLabel: "Vezi arhitectura",
-    },
+    type: "link",
   },
   {
     id: "parteneri",
@@ -450,12 +274,13 @@ const navbarMenuRo: NavbarMenuItem[] = [
 
 const menuTranslations: Record<string, string> = {
   "Acasa": "Home",
-  "Despre Proiect": "About",
+  "Despre SyntraFlow": "About SyntraFlow",
   "O privire rapida asupra viziunii, capabilitatilor si impactului operational.": "A quick look at the platform vision, capabilities, and operational impact.",
   "Viziune": "Vision",
   "Cum pozitioneaza SyntraFlow experienta digitala cu clientii.": "How SyntraFlow improves the digital customer experience.",
   "Functionalitati": "Features",
   "Modulele esentiale care sustin interactiunile automate.": "Core modules that support automated interactions.",
+  "Fluxuri care fac produsul AI mai usor de vandut si scalat.": "Flows that make the AI product easier to sell and scale.",
   "Beneficii": "Benefits",
   "Rezultate concrete in scenarii de business si suport.": "Clear outcomes in support and business scenarios.",
   "Leaga povestea SyntraFlow de un demo sau de o discutie aplicata.": "Connect the SyntraFlow story to a demo or a practical conversation.",
@@ -539,14 +364,6 @@ const menuTranslations: Record<string, string> = {
   "Automatizare fara frictiune pentru cereri repetitive": "Frictionless automation for repetitive requests",
   "Fiecare interactiune poate declansa un traseu predictibil: validare, decizie, notificare si follow-up.": "Every interaction can trigger a predictable path: validation, decision, notification, and follow-up.",
   "Vezi fluxurile": "See workflows",
-  "Arhitectura": "Architecture",
-  "Modul in care platforma sustine viteza, claritatea si continuitatea interactiunilor cu clientii.": "How the platform supports speed, clarity, and continuity in customer interactions.",
-  "Experienta utilizatorului": "User Experience",
-  "Un parcurs clar, rapid si usor de urmat pentru fiecare vizitator.": "A clear, fast, and easy flow for every visitor.",
-  "Gestionarea solicitarilor": "Request Handling",
-  "Cereri organizate, validate si directionate eficient.": "Requests are organized, validated, and routed efficiently.",
-  "Asistent si informatii": "Assistant & Information",
-  "Raspunsuri coerente, clare si orientate spre rezultat.": "Clear, consistent answers focused on outcomes.",
   "Studii de Caz": "Case Studies",
   "Exemple de implementare si rezultate pentru scenarii frecvente de business.": "Implementation examples and outcomes for common business scenarios.",
   "Implementare website AI": "AI Website Rollout",
@@ -560,10 +377,6 @@ const menuTranslations: Record<string, string> = {
   "Exemple care arata cum se traduce platforma in rezultate": "Examples that show how the platform translates into results",
   "Vezi cum pot fi combinate asistenta conversationala, formularele si automatizarea pentru cazuri de business usor de inteles.": "See how conversational assistance, forms, and automation can be combined into business cases that are easy to understand.",
   "Vezi studiile": "View the case studies",
-  "Fundatie scalabila": "Scalable foundation",
-  "O structura clara pentru raspuns rapid si extindere": "A clear structure for fast response and expansion",
-  "Arhitectura leaga UI-ul, logica de conversatie si fluxurile operationale intr-un traseu care ramane usor de controlat.": "The architecture connects the UI, conversation logic, and operational flows in a journey that remains easy to control.",
-  "Vezi arhitectura": "View the architecture",
   "Parteneri": "Partners",
   "Produse": "Product",
   "Contact": "Contact",

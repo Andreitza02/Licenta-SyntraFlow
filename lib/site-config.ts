@@ -3,23 +3,22 @@ import type { Locale } from "@/lib/i18n";
 
 export const siteConfig = {
   name: "SyntraFlow",
-  tagline: "Platforma web inteligenta pentru automatizarea interactiunii cu clientii",
+  tagline: "Produse digitale pentru vanzare: AI Assistant, website si hosting",
   shortDescription:
-    "Platforma web inteligenta cu asistent virtual bazat pe inteligenta artificiala, construita pentru automatizarea si optimizarea proceselor de interactiune cu clientii.",
+    "SyntraFlow vinde produse digitale pentru clienti: Custom AI Assistant ca best seller, website premium si hosting pentru conversie.",
   thesisTitle:
-    "Proiectarea si dezvoltarea unei platforme web inteligente cu asistent virtual bazat pe inteligenta artificiala pentru automatizarea si optimizarea proceselor de interactiune cu clientii",
+    "Proiectarea si dezvoltarea unei platforme comerciale pentru vanzarea produselor digitale SyntraFlow, cu focus pe asistent virtual AI",
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
 };
 
 export const navigation = [
   { label: "Acasa", href: "/", homeSectionId: "home-top" },
-  { label: "Despre proiect", href: "/despre-proiect" },
+  { label: "Despre SyntraFlow", href: "/despre-proiect" },
   { label: "Solutii", href: "/solutii", homeSectionId: "home-solutions" },
   { label: "Industrii", href: "/industrii", homeSectionId: "home-industries" },
   { label: "Asistent virtual", href: "/asistent-virtual", homeSectionId: "home-assistant" },
   { label: "Product", href: "/product" },
-  { label: "Studii de caz", href: "/studii-de-caz", homeSectionId: "home-cases" },
-  { label: "Arhitectura", href: "/arhitectura", homeSectionId: "home-architecture" },
+  { label: "Studii de caz", href: "/studii-de-caz" },
   { label: "Parteneri", href: "/parteneri" },
   { label: "Contact", href: "/contact" },
 ];
@@ -36,6 +35,9 @@ export function buildMetadata(title: string, description: string, path = "/", lo
     keywords: isRomanian
       ? [
           "platforma web inteligenta",
+          "produse digitale",
+          "custom ai assistant",
+          "best seller ai assistant",
           "asistent virtual",
           "automatizare procese",
           "interactiune cu clientii",
@@ -49,6 +51,9 @@ export function buildMetadata(title: string, description: string, path = "/", lo
         ]
       : [
           "smart web platform",
+          "digital products",
+          "custom ai assistant",
+          "best seller ai assistant",
           "virtual assistant",
           "process automation",
           "customer interaction",
