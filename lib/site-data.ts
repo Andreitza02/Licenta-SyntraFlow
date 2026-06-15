@@ -73,6 +73,10 @@ export type ChatPreset = {
   collectedData: string[];
 };
 
+export type ArchitectureLayerItem = Record<string, any>;
+
+export const architectureLayers: ArchitectureLayerItem[] = [];
+
 export const stats: StatItem[] = [
   {
     value: 92,
@@ -912,11 +916,16 @@ export function getChatPresets(locale: Locale): ChatPreset[] {
   }));
 }
 
+export function getArchitectureLayers(_locale: Locale): ArchitectureLayerItem[] {
+  return architectureLayers;
+}
+
 export function getSiteData(locale: Locale) {
   return {
     stats: getStats(locale),
     solutionTabs: getSolutionTabs(locale),
     solutions: getSolutions(locale),
+    architectureLayers: getArchitectureLayers(locale),
     industries: getIndustries(locale),
     workflowSteps: getWorkflowSteps(locale),
     benefits: getBenefits(locale),
