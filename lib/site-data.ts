@@ -73,8 +73,13 @@ export type ChatPreset = {
   collectedData: string[];
 };
 
-export type ArchitectureLayerItem = Record<string, any>;
-export type ArchitectureLayer = ArchitectureLayerItem;
+export type ArchitectureLayer = {
+  title: string;
+  summary: string;
+  details: string[];
+  [key: string]: any;
+};
+export type ArchitectureLayerItem = ArchitectureLayer;
 
 export const architectureLayers: ArchitectureLayerItem[] = [];
 
