@@ -3,8 +3,10 @@
 import { useEffect, useMemo, useState } from "react";
 import type { ReactNode } from "react";
 
+import { ProductCatalogCard } from "@/components/sections/product-catalog-grid";
 import { CTAButton } from "@/components/ui/cta-button";
 import type { Locale } from "@/lib/i18n";
+import { getProductCatalog } from "@/lib/product-catalog";
 import type { CaseStudyItem, FaqItem, IndustryItem } from "@/lib/site-data";
 import { getSiteData } from "@/lib/site-data";
 import { technologyItems, type TechnologyIconName } from "@/lib/technology-items";
@@ -36,88 +38,88 @@ type IconName =
 
 const copy = {
   ro: {
-    eyebrow: "AI, website si automatizari pentru crestere",
-    heroTitle: "Transforma fiecare vizita intr-un lead mai bun cu SyntraFlow.",
+    eyebrow: "Produse digitale care vand pentru clientul tau",
+    heroTitle: "SyntraFlow vinde produse digitale care transforma vizitatorii in clienti.",
     heroText:
-      "SyntraFlow combina website premium, asistent AI si automatizari care capteaza cereri, califica intentia si muta clientul mai repede spre demo, oferta sau vanzare.",
-    primaryCta: "Vreau un demo",
-    secondaryCta: "Vezi solutiile",
+      "Oferta principala este Custom AI Assistant: best seller-ul nostru pentru businessuri care vor raspuns instant, lead-uri mai clare si un traseu rapid spre demo, oferta sau vanzare.",
+    primaryCta: "Cumpara AI Assistant",
+    secondaryCta: "Vezi toate produsele",
     proofLabel: "Tehnologii",
-    proofTitle: "Stack-ul care livreaza viteza",
+    proofTitle: "Stack-ul din spatele produselor vandute",
     proofText:
-      "AI, date, voce si automatizari conectate intr-un flux care reduce raspunsurile lente si creste conversia.",
-    whatEyebrow: "Ce castigi",
-    whatTitle: "Mai multe lead-uri calificate, mai putina munca manuala.",
+      "AI, date, voce si automatizari conectate pentru produse care raspund mai repede si vand mai convingator.",
+    whatEyebrow: "De ce cumpara clientii",
+    whatTitle: "Produse clare, usor de inteles si pregatite pentru vanzare.",
     whatText:
-      "SyntraFlow transforma prezenta digitala intr-un sistem comercial: atrage, raspunde, filtreaza si directioneaza fiecare solicitare catre urmatorul pas.",
+      "SyntraFlow impacheteaza AI-ul, website-ul si hostingul in oferte concrete: clientul vede ce primeste, intelege valoarea si poate trece rapid la actiune.",
     casesEyebrow: "Studii de caz",
-    casesTitle: "Rezultate concrete pentru businessuri care vor viteza.",
+    casesTitle: "Dovezi de vanzare pentru produse care rezolva probleme reale.",
     casesText:
-      "De la clinici si servicii pana la e-commerce, fiecare scenariu arata cum poti converti intrebari repetitive in interactiuni utile.",
+      "Fiecare scenariu arata cum un produs SyntraFlow poate transforma intrebari repetitive in cereri, rezervari, lead-uri sau discutii comerciale.",
     viewCases: "Vezi studiile",
     caseDetails: "Vezi detalii",
-    processEyebrow: "Traseu de conversie",
-    processTitle: "De la primul click la cerere calificata.",
+    processEyebrow: "Traseu de vanzare",
+    processTitle: "De la interes la produs ales.",
     processText:
-      "Fiecare sectiune sustine o decizie comerciala: prezinti oferta, dovedesti valoarea si duci vizitatorul spre actiune.",
+      "Pagina trebuie sa vanda clar: prezinta produsul, arata beneficiul, elimina ezitarea si duce clientul spre demo, cos sau contact.",
     agentsEyebrow: "Asistent AI",
-    agentsTitle: "Un asistent AI care vinde claritatea pentru tine.",
+    agentsTitle: "Best seller: Custom AI Assistant.",
     agentsText:
-      "Asistentul raspunde instant, califica nevoia si trimite oamenii catre produsul, demo-ul sau oferta potrivita.",
-    activeLabel: "Activ comercial",
-    exploreModule: "Exploreaza solutiile",
+      "Acesta este produsul pe care il impingem cel mai mult: raspunde instant, califica nevoia si transforma conversatia intr-o oportunitate de vanzare.",
+    activeLabel: "Best seller",
+    exploreModule: "Vezi produsul AI",
     industriesEyebrow: "Industrii",
-    industriesTitle: "Fluxuri digitale pentru industrii care nu isi permit raspunsuri lente.",
+    industriesTitle: "Industrii unde produsul AI se vinde usor.",
     industriesText:
-      "Fiecare industrie primeste un mesaj adaptat, o triere mai rapida si un parcurs comercial mai usor de convertit.",
+      "Restaurante, clinici, retail si companii B2B au aceeasi nevoie: raspunsuri rapide, mai putina munca repetitiva si lead-uri mai curate.",
     channelsEyebrow: "Canale",
-    channelsTitle: "Canale care aduc conversatia mai aproape de vanzare.",
+    channelsTitle: "Canale care duc produsul mai aproape de client.",
     channelsText:
-      "Chat, email, voce si CRM lucreaza impreuna pentru raspunsuri mai rapide, follow-up curat si oportunitati mai bine captate.",
+      "Chat, email, voce si CRM sustin aceeasi oferta: Custom AI Assistant ca punct principal de contact si vanzare.",
     faqEyebrow: "FAQ",
-    faqTitle: "Raspunsuri care transforma curiozitatea in incredere.",
+    faqTitle: "Raspunsuri care ajuta clientul sa cumpere mai repede.",
   },
   en: {
-    eyebrow: "AI, websites, and automations for growth",
-    heroTitle: "Turn every visit into a better lead with SyntraFlow.",
+    eyebrow: "Digital products that sell for your client",
+    heroTitle: "SyntraFlow sells digital products that turn visitors into customers.",
     heroText:
-      "SyntraFlow combines a premium website, an AI assistant, and automations that capture requests, qualify intent, and move buyers faster toward a demo, quote, or sale.",
-    primaryCta: "Book a demo",
-    secondaryCta: "View solutions",
+      "The main offer is Custom AI Assistant: our best seller for businesses that want instant replies, clearer leads, and a faster path to demo, quote, or sale.",
+    primaryCta: "Buy AI Assistant",
+    secondaryCta: "View all products",
     proofLabel: "Technologies",
-    proofTitle: "The stack built for speed",
+    proofTitle: "The stack behind the products we sell",
     proofText:
-      "AI, data, voice, and automations connected into one flow that reduces slow replies and improves conversion.",
-    whatEyebrow: "What you gain",
-    whatTitle: "More qualified leads, less manual work.",
+      "AI, data, voice, and automations connected into products that reply faster and sell more clearly.",
+    whatEyebrow: "Why clients buy",
+    whatTitle: "Clear products, easy to understand, ready to sell.",
     whatText:
-      "SyntraFlow turns your digital presence into a commercial system: attract, answer, filter, and route every request to the next step.",
+      "SyntraFlow packages AI, websites, and hosting into concrete offers: clients see what they get, understand the value, and can act quickly.",
     casesEyebrow: "Case studies",
-    casesTitle: "Concrete outcomes for businesses that want speed.",
+    casesTitle: "Sales proof for products that solve real problems.",
     casesText:
-      "From clinics and services to e-commerce, each scenario shows how repetitive questions become useful interactions.",
+      "Each scenario shows how a SyntraFlow product can turn repetitive questions into requests, bookings, leads, or commercial conversations.",
     viewCases: "View studies",
     caseDetails: "View details",
-    processEyebrow: "Conversion path",
-    processTitle: "From first click to qualified request.",
+    processEyebrow: "Sales path",
+    processTitle: "From interest to chosen product.",
     processText:
-      "Every section supports a commercial decision: present the offer, prove value, and move visitors toward action.",
+      "The page must sell clearly: present the product, show the benefit, reduce hesitation, and move the client toward demo, cart, or contact.",
     agentsEyebrow: "AI assistant",
-    agentsTitle: "An AI assistant that sells clarity for you.",
+    agentsTitle: "Best seller: Custom AI Assistant.",
     agentsText:
-      "The assistant replies instantly, qualifies the need, and sends people toward the right product, demo, or offer.",
-    activeLabel: "Commercially active",
-    exploreModule: "Explore solutions",
+      "This is the product we push the most: it replies instantly, qualifies the need, and turns the conversation into a sales opportunity.",
+    activeLabel: "Best seller",
+    exploreModule: "View AI product",
     industriesEyebrow: "Industries",
-    industriesTitle: "Digital flows for industries that cannot afford slow replies.",
+    industriesTitle: "Industries where the AI product is easy to sell.",
     industriesText:
-      "Each industry gets tailored messaging, faster triage, and a commercial journey that is easier to convert.",
+      "Restaurants, clinics, retail, and B2B companies all need fast replies, less repetitive work, and cleaner leads.",
     channelsEyebrow: "Channels",
-    channelsTitle: "Channels that move the conversation closer to revenue.",
+    channelsTitle: "Channels that move the product closer to the client.",
     channelsText:
-      "Chat, email, voice, and CRM work together for faster replies, cleaner follow-up, and better captured opportunities.",
+      "Chat, email, voice, and CRM support the same offer: Custom AI Assistant as the main contact and sales point.",
     faqEyebrow: "FAQ",
-    faqTitle: "Answers that turn curiosity into confidence.",
+    faqTitle: "Answers that help the client buy faster.",
   },
 } satisfies Record<Locale, Record<string, string>>;
 
@@ -141,59 +143,59 @@ const accentBars = [
 
 const heroMetrics = {
   ro: [
-    { value: "24/7", label: "raspuns initial" },
-    { value: "3 pasi", label: "demo, oferta, suport" },
-    { value: "AI + CRM", label: "context pentru vanzari" },
+    { value: "Best seller", label: "Custom AI Assistant" },
+    { value: "1.000 EUR", label: "setup initial AI" },
+    { value: "3 produse", label: "AI, website, hosting" },
   ],
   en: [
-    { value: "24/7", label: "first response" },
-    { value: "3 steps", label: "demo, quote, support" },
-    { value: "AI + CRM", label: "sales-ready context" },
+    { value: "Best seller", label: "Custom AI Assistant" },
+    { value: "EUR 1,000", label: "AI initial setup" },
+    { value: "3 products", label: "AI, website, hosting" },
   ],
 } satisfies Record<Locale, Array<{ value: string; label: string }>>;
 
 const whatWeDoItems = {
   ro: [
     {
-      title: "Vizitatorul ajunge mai repede la actiune",
-      text: "Butoanele si sectiunile imping fiecare intentie spre demo, produs, studiu de caz sau contact, fara ezitare.",
+      title: "Clientul intelege rapid ce cumpara",
+      text: "Oferta este structurata pe produse clare: AI Assistant, Website Builder si Hosting, fiecare cu rol comercial usor de explicat.",
       icon: "target",
     },
     {
-      title: "Tehnologie transformata in avantaj comercial",
-      text: "Stack-ul este pozitionat prin beneficii directe: viteza, incredere, automatizare si livrare mai buna.",
+      title: "Best seller-ul este mereu in fata",
+      text: "Custom AI Assistant este prezentat ca produs principal, cu CTA-uri de demo, testare si cumparare.",
       icon: "database",
     },
     {
-      title: "Raspunsurile umplu golurile din pagina",
-      text: "Intrebarile obisnuite primesc raspuns instant, astfel incat vizitatorul ramane in fluxul de conversie.",
+      title: "Pagina vinde, nu doar informeaza",
+      text: "Textele duc vizitatorul spre actiune: incearca asistentul, cere detalii, adauga in cos sau programeaza discutia.",
       icon: "message",
     },
     {
-      title: "Follow-up mai curat pentru echipa",
-      text: "Datele utile sunt directionate spre contact, oferta sau demo cu mai putine clarificari manuale.",
+      title: "Pachetul poate creste natural",
+      text: "Website-ul si hostingul completeaza produsul AI pentru clientii care vor o prezenta digitala completa.",
       icon: "route",
     },
   ],
   en: [
     {
-      title: "Visitors reach action faster",
-      text: "Buttons and sections push every intent toward a demo, product, case study, or contact point without hesitation.",
+      title: "The client quickly understands what they buy",
+      text: "The offer is structured into clear products: AI Assistant, Website Builder, and Hosting, each with an easy commercial role.",
       icon: "target",
     },
     {
-      title: "Technology turned into a commercial advantage",
-      text: "The stack is positioned through direct benefits: speed, trust, automation, and better delivery.",
+      title: "The best seller stays in front",
+      text: "Custom AI Assistant is presented as the main product, with CTAs for demo, testing, and purchase.",
       icon: "database",
     },
     {
-      title: "Replies fill the gaps on the page",
-      text: "Common questions get an instant answer, so the visitor stays inside the conversion flow.",
+      title: "The page sells, not only informs",
+      text: "The copy moves visitors toward action: try the assistant, request details, add to cart, or book a call.",
       icon: "message",
     },
     {
-      title: "Cleaner follow-up for the team",
-      text: "Useful details are routed toward contact, quote, or demo with fewer manual clarifications.",
+      title: "The package can grow naturally",
+      text: "The website and hosting complete the AI product for clients who want a full digital presence.",
       icon: "route",
     },
   ],
@@ -202,45 +204,45 @@ const whatWeDoItems = {
 const processItems = {
   ro: [
     {
-      title: "Captezi atentia",
-      text: "Prima impresie vinde promisiunea: un sistem digital care raspunde rapid si transforma interesul in oportunitate.",
+      title: "Prezinti produsul principal",
+      text: "Custom AI Assistant apare primul, cu valoare clara si actiune directa pentru clientul interesat.",
       icon: "users",
     },
     {
-      title: "Arati valoarea",
-      text: "Produsele, tehnologiile si industriile sunt prezentate prin rezultate, nu prin descrieri sterile.",
+      title: "Dovedesti valoarea",
+      text: "Beneficiile sunt explicate prin rezultate: raspuns instant, lead-uri mai clare si mai putina munca repetitiva.",
       icon: "file",
     },
     {
-      title: "Raspunzi instant",
-      text: "Asistentul AI elimina asteptarea si pastreaza conversatia vie exact cand interesul este cel mai ridicat.",
+      title: "Il lasi sa testeze",
+      text: "Butonul Try me deschide asistentul integrat si transforma pagina intr-o demonstratie interactiva.",
       icon: "workflow",
     },
     {
-      title: "Transformi intentia in lead",
-      text: "Cand vizitatorul este pregatit, fluxul il duce direct catre demo, oferta sau discutia potrivita.",
+      title: "Inchizi urmatorul pas",
+      text: "Clientul poate cere detalii, adauga produsul in cos sau trimite o solicitare catre echipa.",
       icon: "spark",
     },
   ],
   en: [
     {
-      title: "Capture attention",
-      text: "The first impression sells the promise: a digital system that replies fast and turns interest into opportunity.",
+      title: "Present the main product",
+      text: "Custom AI Assistant appears first, with clear value and direct action for interested clients.",
       icon: "users",
     },
     {
-      title: "Show the value",
-      text: "Products, technologies, and industries are positioned through outcomes, not sterile descriptions.",
+      title: "Prove the value",
+      text: "Benefits are explained through outcomes: instant replies, cleaner leads, and less repetitive work.",
       icon: "file",
     },
     {
-      title: "Reply instantly",
-      text: "The AI assistant removes waiting and keeps the conversation alive when intent is at its highest.",
+      title: "Let them test it",
+      text: "The Try me button opens the integrated assistant and turns the page into an interactive demo.",
       icon: "workflow",
     },
     {
-      title: "Turn intent into a lead",
-      text: "When visitors are ready, the flow sends them directly toward a demo, quote, or the right conversation.",
+      title: "Close the next step",
+      text: "The client can request details, add the product to cart, or send a request to the team.",
       icon: "spark",
     },
   ],
@@ -250,68 +252,68 @@ const agentCapabilities = {
   ro: [
     {
       id: "conversations",
-      label: "Raspuns instant",
-      title: "Transforma intrebarile in conversatii care duc spre vanzare.",
-      text: "Asistentul mentine interesul activ, raspunde rapid si elimina frictiunea dintre curiozitate si actiune.",
-      points: ["Raspunsuri rapide", "Obiectii reduse", "Actiune recomandata"],
+      label: "Best seller",
+      title: "Custom AI Assistant este produsul principal SyntraFlow.",
+      text: "Este oferta pe care o vindem prima: un asistent care raspunde instant si face businessul clientului sa para pregatit, rapid si profesionist.",
+      points: ["Demo interactiv", "Lead-uri mai clare", "Oferta usor de vandut"],
       icon: "bot",
     },
     {
       id: "actions",
-      label: "Routing comercial",
-      title: "Duce fiecare intentie spre oferta potrivita.",
-      text: "In loc sa lase oamenii sa caute, asistentul trimite fiecare conversatie spre produs, studiu de caz sau contact.",
-      points: ["Produse potrivite", "Studii relevante", "Contact rapid"],
+      label: "Conversie",
+      title: "Duce fiecare intrebare spre un pas comercial.",
+      text: "In loc sa lase oamenii sa caute singuri, asistentul ii trimite spre produs, demo, oferta sau contact.",
+      points: ["Actiune clara", "Mai putina ezitare", "Contact mai rapid"],
       icon: "zap",
     },
     {
       id: "triggers",
       label: "Lead capture",
-      title: "Pregateste cereri mai bune pentru echipa de vanzari.",
-      text: "Cand intentia este clara, fluxul colecteaza datele esentiale si face urmatoarea discutie mai eficienta.",
-      points: ["Date de contact", "Nevoie concreta", "Context de vanzare"],
+      title: "Transforma interesul in cereri mai curate.",
+      text: "Cand clientul are intentie, fluxul strange datele importante si pregateste discutia de vanzare.",
+      points: ["Date de contact", "Nevoie concreta", "Context comercial"],
       icon: "workflow",
     },
     {
       id: "documentation",
-      label: "Mesaj coerent",
-      title: "Pastreaza promisiunea comerciala consistenta in fiecare interactiune.",
-      text: "Brandul vorbeste la fel de clar in pagina, chat si follow-up, ceea ce creste increderea inainte de demo.",
-      points: ["Mesaj premium", "FAQ orientat spre vanzare", "Follow-up mai bun"],
+      label: "Pachet complet",
+      title: "Se poate vinde impreuna cu website si hosting.",
+      text: "Dupa asistentul AI, clientul poate extinde natural pachetul cu Website Builder si Website Hosting.",
+      points: ["Website premium", "Hosting lunar", "Ecosistem complet"],
       icon: "file",
     },
   ],
   en: [
     {
       id: "conversations",
-      label: "Instant reply",
-      title: "Turns questions into conversations that move toward sales.",
-      text: "The assistant keeps interest active, replies fast, and removes friction between curiosity and action.",
-      points: ["Fast replies", "Fewer objections", "Recommended action"],
+      label: "Best seller",
+      title: "Custom AI Assistant is SyntraFlow's main product.",
+      text: "It is the offer we sell first: an assistant that replies instantly and makes the client's business feel ready, fast, and professional.",
+      points: ["Interactive demo", "Cleaner leads", "Easy-to-sell offer"],
       icon: "bot",
     },
     {
       id: "actions",
-      label: "Commercial routing",
-      title: "Moves every intent toward the right offer.",
-      text: "Instead of making people search, the assistant sends each conversation toward a product, case study, or contact point.",
-      points: ["Right products", "Relevant studies", "Fast contact"],
+      label: "Conversion",
+      title: "Moves every question toward a commercial step.",
+      text: "Instead of making people search alone, the assistant routes them toward a product, demo, quote, or contact.",
+      points: ["Clear action", "Less hesitation", "Faster contact"],
       icon: "zap",
     },
     {
       id: "triggers",
       label: "Lead capture",
-      title: "Prepares better requests for the sales team.",
-      text: "When intent is clear, the flow collects the essential details and makes the next conversation more efficient.",
-      points: ["Contact details", "Concrete need", "Sales context"],
+      title: "Turns interest into cleaner requests.",
+      text: "When the client shows intent, the flow gathers the important details and prepares the sales conversation.",
+      points: ["Contact details", "Concrete need", "Commercial context"],
       icon: "workflow",
     },
     {
       id: "documentation",
-      label: "Consistent message",
-      title: "Keeps the commercial promise consistent in every interaction.",
-      text: "The brand speaks clearly across the page, chat, and follow-up, building trust before the demo.",
-      points: ["Premium message", "Sales-focused FAQ", "Better follow-up"],
+      label: "Complete package",
+      title: "It can be sold together with website and hosting.",
+      text: "After the AI assistant, the client can naturally expand the package with Website Builder and Website Hosting.",
+      points: ["Premium website", "Monthly hosting", "Complete ecosystem"],
       icon: "file",
     },
   ],
@@ -676,12 +678,12 @@ function HeroActions({ locale }: { locale: Locale }) {
   const t = copy[locale];
 
   return (
-    <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-      <CTAButton href="/contact">
+    <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+      <CTAButton href="/product#ai">
         <span>{t.primaryCta}</span>
         <Icon name="arrow" />
       </CTAButton>
-      <CTAButton href="#home-process" variant="secondary">
+      <CTAButton href="/product" variant="secondary">
         <Icon name="workflow" />
         <span>{t.secondaryCta}</span>
       </CTAButton>
@@ -695,6 +697,20 @@ function HeroTag({ children, icon }: { children: ReactNode; icon: IconName }) {
       <Icon name={icon} className="h-4 w-4 text-[#0b58d0]" />
       {children}
     </span>
+  );
+}
+
+function BestSellerSpotlight({ locale }: { locale: Locale }) {
+  const bestSeller = getProductCatalog(locale).find((item) => item.id === "ai");
+
+  if (!bestSeller) {
+    return null;
+  }
+
+  return (
+    <div className="reveal-section">
+      <ProductCatalogCard item={bestSeller} locale={locale} />
+    </div>
   );
 }
 
@@ -926,7 +942,6 @@ function AgentCapabilitiesSection({ locale }: { locale: Locale }) {
   return (
     <section id="home-assistant" className="py-10 md:py-12">
       <div className="section-shell">
-        <span id="home-architecture" className="block scroll-mt-28" aria-hidden="true" />
         <div className="grid gap-8 lg:grid-cols-[0.84fr_1.16fr] lg:items-start">
           <div>
             <SectionHeader eyebrow={t.agentsEyebrow} title={t.agentsTitle} description={t.agentsText} />
@@ -1205,22 +1220,26 @@ export function HomePage({ locale }: HomePageProps) {
     <div className="page-gradient-shell overflow-hidden">
       <section id="home-top" className="relative pb-12 pt-32 md:pt-36 lg:pb-16">
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#0f79ff]/20 to-transparent" />
-        <div className="section-shell flex min-h-[calc(72vh-6rem)] items-center justify-center py-8">
-          <div className="reveal-section mx-auto max-w-4xl text-center">
+        <div className="section-shell py-8">
+          <div className="grid min-h-[calc(72vh-6rem)] gap-8 lg:grid-cols-[minmax(0,1fr)_25rem] lg:items-center">
+            <div className="reveal-section max-w-4xl">
               <p className="eyebrow">
                 <Icon name="spark" />
                 {t.eyebrow}
               </p>
-              <h1 className="font-display mx-auto mt-6 max-w-5xl text-4xl font-semibold leading-[1.02] tracking-normal text-[#06192c] md:text-6xl lg:text-7xl">
+              <h1 className="font-display mt-6 max-w-5xl text-4xl font-semibold leading-[1.02] tracking-normal text-[#06192c] md:text-6xl lg:text-7xl">
                 {t.heroTitle}
               </h1>
-              <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-[#365a78] md:text-lg">{t.heroText}</p>
+              <p className="mt-6 max-w-2xl text-base leading-8 text-[#365a78] md:text-lg">{t.heroText}</p>
               <HeroActions locale={locale} />
-              <div className="mt-7 flex flex-wrap justify-center gap-3">
-                <HeroTag icon="bot">{locale === "ro" ? "AI care raspunde" : "AI that replies"}</HeroTag>
-                <HeroTag icon="grid">{locale === "ro" ? "Produse si servicii" : "Products and services"}</HeroTag>
-                <HeroTag icon="shield">{locale === "ro" ? "Conversii clare" : "Clear conversions"}</HeroTag>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <HeroTag icon="bot">{locale === "ro" ? "Best seller AI" : "Best seller AI"}</HeroTag>
+                <HeroTag icon="grid">{locale === "ro" ? "3 produse vandute" : "3 products sold"}</HeroTag>
+                <HeroTag icon="shield">{locale === "ro" ? "Demo si oferta" : "Demo and quote"}</HeroTag>
               </div>
+            </div>
+
+            <BestSellerSpotlight locale={locale} />
           </div>
         </div>
       </section>

@@ -11,8 +11,8 @@ export async function generateMetadata() {
   return buildMetadata(
     locale === "ro" ? "Industrii" : "Industries",
     locale === "ro"
-      ? "Industrii in care SyntraFlow poate reduce raspunsurile lente, califica cereri si transforma conversatiile repetitive in oportunitati."
-      : "Industries where SyntraFlow can reduce slow replies, qualify requests, and turn repetitive conversations into opportunities.",
+      ? "Industrii unde vindem rapid Custom AI Assistant, cu website si hosting ca produse complementare pentru clienti."
+      : "Industries where we sell Custom AI Assistant fast, with website and hosting as complementary client products.",
     "/industrii",
     locale,
   );
@@ -26,17 +26,17 @@ export default async function IndustriesPage() {
     <main className="pb-6">
       <PageIntro
         locale={locale}
-        eyebrow={locale === "ro" ? "Domenii de utilizare" : "Use cases"}
+        eyebrow={locale === "ro" ? "Clienti potriviti" : "Best-fit clients"}
         currentLabel={locale === "ro" ? "Industrii" : "Industries"}
         title={locale === "ro"
-          ? "Fiecare industrie poate castiga timp, lead-uri mai bune si un prim contact mai profesionist"
-          : "Every industry can gain time, better leads, and a more professional first contact"}
+          ? "Industrii unde vindem rapid Custom AI Assistant"
+          : "Industries where we can sell Custom AI Assistant fast"}
         description={locale === "ro"
-          ? "SyntraFlow adapteaza mesajele, intrebarile si CTA-urile la intentia reala a clientului: rezervare, oferta, suport, demo sau consultanta."
-          : "SyntraFlow adapts messages, questions, and CTAs to the customer’s real intent: booking, quote, support, demo, or consulting."}
+          ? "Clientii cumpara mai usor cand vad un produs concret: un asistent AI care raspunde, califica cereri si creeaza un prim contact mai bun."
+          : "Clients buy more easily when they see a concrete product: an AI assistant that replies, qualifies requests, and creates a better first contact."}
         highlights={locale === "ro"
-          ? ["B2B", "Servicii", "Retail", "Canale digitale"]
-          : ["B2B", "Services", "Retail", "Digital channels"]}
+          ? ["HoReCa", "Clinici", "Retail", "B2B"]
+          : ["HoReCa", "Clinics", "Retail", "B2B"]}
       />
 
       <section className="py-14">
@@ -51,14 +51,14 @@ export default async function IndustriesPage() {
         <div className="section-shell grid gap-5 lg:grid-cols-3">
           {(locale === "ro"
             ? [
-                "Mesaje si intrebari adaptate pentru intentia reala din fiecare industrie.",
-                "CTA-uri construite pentru rezervare, oferta, suport, demo sau consultanta.",
-                "Date colectate strategic pentru un follow-up mai rapid si mai relevant.",
+                "Pozitionam Custom AI Assistant ca produs principal pentru fiecare industrie.",
+                "Adaptam exemplele pe rezervare, oferta, suport, demo sau consultanta.",
+                "Folosim website si hosting ca pachet complementar cand clientul are nevoie de prezenta completa.",
               ]
             : [
-                "Messages and questions adapted to the real intent in each industry.",
-                "CTAs built for booking, quote, support, demo, or consulting.",
-                "Strategically collected data for faster and more relevant follow-up.",
+                "We position Custom AI Assistant as the main product for every industry.",
+                "We adapt examples around booking, quote, support, demo, or consulting.",
+                "We use website and hosting as a complementary package when the client needs a complete presence.",
               ]).map((item, index) => (
             <article key={item} className="panel-surface rounded-[1.75rem] p-6">
               <p className="text-xs font-semibold uppercase tracking-[0.08em] text-[#0b58d0]">
@@ -70,7 +70,7 @@ export default async function IndustriesPage() {
         </div>
         <div className="section-shell mt-8">
           <CTAButton href="/contact">
-            {locale === "ro" ? "Discuta un scenariu pentru compania ta" : "Discuss a scenario for your company"}
+            {locale === "ro" ? "Cere oferta pentru industria ta" : "Request an offer for your industry"}
           </CTAButton>
         </div>
       </section>

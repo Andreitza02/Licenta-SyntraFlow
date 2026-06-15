@@ -8,8 +8,8 @@ export async function generateMetadata() {
   return buildMetadata(
     locale === "ro" ? "Acasa" : "Home",
     locale === "ro"
-      ? "SyntraFlow transforma website-ul, AI-ul si automatizarile intr-un sistem comercial care capteaza lead-uri, raspunde rapid si accelereaza conversia."
-      : "SyntraFlow turns websites, AI, and automations into a commercial system that captures leads, replies fast, and accelerates conversion.",
+      ? "SyntraFlow vinde produse digitale pentru clienti: Custom AI Assistant ca best seller, website premium si hosting pentru conversie."
+      : "SyntraFlow sells digital products for clients: Custom AI Assistant as the best seller, premium websites, and conversion-focused hosting.",
     "/",
     locale,
   );

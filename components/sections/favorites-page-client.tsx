@@ -3,9 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 
 import { useCart } from "@/components/providers/cart-provider";
+import { useProductPricing } from "@/components/providers/product-pricing-provider";
 import { SiteLink } from "@/components/ui/site-link";
 import type { Locale } from "@/lib/i18n";
-import { formatEuroPrice, getProductCatalogMap, type ProductCatalogItem } from "@/lib/product-catalog";
+import { formatEuroPrice, type ProductCatalogItem } from "@/lib/product-catalog";
 import { cn } from "@/lib/utils";
 
 type FavoritesPageClientProps = {
@@ -37,6 +38,12 @@ const productTones: Record<ProductCatalogItem["id"], ProductTone> = {
     icon: "border-[#b7791f]/16 bg-[#fff8e6] text-[#b7791f]",
     soft: "bg-[linear-gradient(135deg,rgba(183,121,31,0.1),rgba(240,180,41,0.08))]",
     price: "text-[#955f12]",
+  },
+  "maintenance-support": {
+    badge: "bg-[#0f766e]",
+    icon: "border-[#0f766e]/16 bg-[#ecfeff] text-[#0f766e]",
+    soft: "bg-[linear-gradient(135deg,rgba(15,118,110,0.1),rgba(19,181,186,0.08))]",
+    price: "text-[#0f766e]",
   },
 };
 
@@ -130,6 +137,15 @@ function ProductIcon({ id }: { id: ProductCatalogItem["id"] }) {
     );
   }
 
+  if (id === "maintenance-support") {
+    return (
+      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+        <path d="M12 3.5 18.5 6v5.4c0 4.1-2.6 7.3-6.5 9.1-3.9-1.8-6.5-5-6.5-9.1V6L12 3.5Z" />
+        <path d="m8.8 12.2 2.2 2.1 4.2-4.4" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    );
+  }
+
   return (
     <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
       <path d="M5 7h14a1.5 1.5 0 0 1 1.5 1.5V11h-17V8.5A1.5 1.5 0 0 1 5 7Z" />
@@ -141,10 +157,11 @@ function ProductIcon({ id }: { id: ProductCatalogItem["id"] }) {
 
 export function FavoritesPageClient({ locale }: FavoritesPageClientProps) {
   const { favoriteIds, removeFromFavorites, clearFavorites, toggleCart, isInCart, isHydrated } = useCart();
+  const { getCatalogMap } = useProductPricing();
   const [removingIds, setRemovingIds] = useState<string[]>([]);
   const timersRef = useRef<Record<string, number>>({});
   const isRomanian = locale === "ro";
-  const catalogMap = getProductCatalogMap(locale);
+  const catalogMap = getCatalogMap(locale);
   const items = favoriteIds.map((id) => catalogMap[id as keyof typeof catalogMap]).filter(Boolean);
   const estimatedTotal = items.reduce((sum, item) => sum + item.price, 0);
 
@@ -273,6 +290,7 @@ export function FavoritesPageClient({ locale }: FavoritesPageClientProps) {
               {items.map((item) => {
                 const tone = productTones[item.id];
                 const itemInCart = isInCart(item.id);
+                const showTag = item.id !== "website-builder" && item.id !== "hosting";
 
                 return (
                   <article
@@ -294,10 +312,17 @@ export function FavoritesPageClient({ locale }: FavoritesPageClientProps) {
                               <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#fff1f2] text-[#e11d48]">
                                 <HeartIcon className="h-3 w-3" filled />
                               </span>
-                              <span className={cn("h-2 w-2 rounded-full", tone.badge)} />
-                              <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#557089]">
-                                {item.tag}
-                              </p>
+                              {showTag ? (
+                                <>
+                                  <span className={cn("h-2 w-2 rounded-full", tone.badge)} />
+                                  <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#557089]">
+                                    {item.tag}
+                                  </p>
+                                </>
+                              ) : null}
+                              <span className="rounded-full border border-[#d8e6f4] bg-white px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-[#0b58d0]">
+                                {item.code}
+                              </span>
                             </div>
                             <h2 className="font-display mt-2 text-2xl font-semibold tracking-[-0.04em] text-[#0b1f35]">
                               {item.title}

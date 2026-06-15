@@ -11,8 +11,8 @@ export async function generateMetadata() {
   return buildMetadata(
     locale === "ro" ? "Studii de caz" : "Case studies",
     locale === "ro"
-      ? "Studii de caz SyntraFlow pentru businessuri care vor raspunsuri mai rapide, cereri mai clare si conversii mai bune."
-      : "SyntraFlow case studies for businesses that want faster replies, clearer requests, and better conversions.",
+      ? "Studii de caz SyntraFlow care arata unde se vinde Custom AI Assistant si cum poate deveni pachet complet pentru clienti."
+      : "SyntraFlow case studies showing where Custom AI Assistant sells and how it can become a complete client package.",
     "/studii-de-caz",
     locale,
   );
@@ -41,22 +41,22 @@ export default async function CaseStudiesPage() {
               </nav>
 
               <span className="eyebrow mt-8">
-                {locale === "ro" ? "Rezultate aplicate" : "Applied outcomes"}
+                {locale === "ro" ? "Dovezi pentru vanzare" : "Sales proof"}
               </span>
               <h1 id="case-studies-hero-title" className="font-display mt-5 max-w-4xl text-5xl font-semibold leading-[0.98] text-[#0b1f35] md:text-7xl">
                 {locale === "ro" ? "Studii de caz" : "Case studies"}
               </h1>
               <p className="mt-6 max-w-3xl text-base leading-8 text-muted md:text-lg md:leading-9">
                 {locale === "ro"
-                  ? "Vezi cum restaurantele, clinicile, companiile B2B si magazinele online pot transforma intrebarile repetitive in lead-uri, rezervari si cereri mai bine pregatite."
-                  : "See how restaurants, clinics, B2B companies, and online stores can turn repetitive questions into leads, bookings, and better-prepared requests."}
+                  ? "Vezi industriile unde Custom AI Assistant se poate vinde usor: raspuns instant, demo clar, lead-uri pregatite si pachet complet cand clientul vrea website si hosting."
+                  : "See the industries where Custom AI Assistant can sell easily: instant replies, clear demo, prepared leads, and a complete package when the client wants website and hosting."}
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <CTAButton href="#case-study-list" className="w-full sm:w-auto">
-                  {locale === "ro" ? "Vezi studiile de caz" : "View case studies"}
+                  {locale === "ro" ? "Vezi unde se vinde" : "See where it sells"}
                 </CTAButton>
                 <CTAButton href="/contact" variant="secondary" className="w-full bg-white sm:w-auto">
-                  {locale === "ro" ? "Contacteaza-ne" : "Contact us"}
+                  {locale === "ro" ? "Cere oferta" : "Request an offer"}
                 </CTAButton>
               </div>
             </div>

@@ -83,8 +83,8 @@ export async function generateMetadata() {
   return buildMetadata(
     "Contact",
     locale === "ro"
-      ? "Contact SyntraFlow pentru demo, oferta si discutii despre automatizarea interactiunilor cu clientii."
-      : "Contact SyntraFlow for demos, quotes, and conversations about automating customer interactions.",
+      ? "Contact SyntraFlow pentru oferta Custom AI Assistant, demo de produs si pachete cu website sau hosting."
+      : "Contact SyntraFlow for a Custom AI Assistant quote, product demo, and website or hosting packages.",
     "/contact",
     locale,
   );
@@ -113,14 +113,14 @@ export default async function ContactPage() {
           label: "Email",
           value: contactEmail,
           href: `mailto:${contactEmail}`,
-          helper: "Pentru demo, oferta, colaborari si intrebari despre produs.",
+          helper: "Pentru oferta Custom AI Assistant, demo si pachete digitale.",
         },
         {
           icon: "phone" as const,
           label: "Telefon",
           value: contactPhone,
           href: `tel:${contactPhoneHref}`,
-          helper: "Pentru o discutie rapida despre proiectul tau.",
+          helper: "Pentru o discutie rapida despre produsul potrivit pentru client.",
         },
       ]
     : [
@@ -129,14 +129,14 @@ export default async function ContactPage() {
           label: "Email",
           value: contactEmail,
           href: `mailto:${contactEmail}`,
-          helper: "For demos, quotes, partnerships, and product questions.",
+          helper: "For Custom AI Assistant quotes, demos, and digital packages.",
         },
         {
           icon: "phone" as const,
           label: "Phone",
           value: contactPhone,
           href: `tel:${contactPhoneHref}`,
-          helper: "For a quick conversation about your project.",
+          helper: "For a quick conversation about the right product for the client.",
         },
       ];
 
@@ -144,35 +144,35 @@ export default async function ContactPage() {
     ? [
         {
           icon: "message" as const,
-          title: "Trimiti contextul",
-          text: "Completezi formularul sau alegi contactul direct.",
+          title: "Alegi produsul",
+          text: "Pornim de la Custom AI Assistant sau de la pachetul complet.",
         },
         {
           icon: "route" as const,
-          title: "Pregatim traseul",
-          text: "Structuram nevoia, produsul potrivit si urmatorul pas.",
+          title: "Pregatim oferta",
+          text: "Structuram nevoia, demo-ul si valoarea pentru client.",
         },
         {
           icon: "calendar" as const,
-          title: "Stabilim discutia",
-          text: "Revenim cu un demo, o estimare sau o recomandare clara.",
+          title: "Inchidem pasul urmator",
+          text: "Revenim cu demo, estimare sau recomandare clara de cumparare.",
         },
       ]
     : [
         {
           icon: "message" as const,
-          title: "Send the context",
-          text: "Fill in the form or choose a direct contact channel.",
+          title: "Choose the product",
+          text: "We start from Custom AI Assistant or the complete package.",
         },
         {
           icon: "route" as const,
-          title: "Shape the path",
-          text: "We map the need, the right product, and the next step.",
+          title: "Prepare the offer",
+          text: "We structure the need, demo, and value for the client.",
         },
         {
           icon: "calendar" as const,
-          title: "Plan the discussion",
-          text: "We follow up with a demo, estimate, or clear recommendation.",
+          title: "Close the next step",
+          text: "We follow up with a demo, estimate, or clear buying recommendation.",
         },
       ];
 
@@ -189,20 +189,20 @@ export default async function ContactPage() {
 
               <h1 className="font-display mt-8 max-w-4xl text-5xl font-semibold tracking-[-0.05em] text-[#071d33] md:text-7xl">
                 {isRomanian
-                  ? "Hai sa transformam ideea intr-un demo clar."
-                  : "Turn the idea into a clear demo."}
+                  ? "Hai sa alegem produsul pe care il vinzi clientului."
+                  : "Choose the product you sell to the client."}
               </h1>
 
               <p className="mt-6 max-w-2xl text-lg leading-9 text-muted">
                 {isRomanian
-                  ? "Spune-ne ce vrei sa automatizezi, ce experienta digitala vrei sa lansezi sau ce flux comercial trebuie simplificat. Revenim cu pasul potrivit pentru produs, demo sau oferta."
-                  : "Tell us what you want to automate, what digital experience you want to launch, or which commercial flow needs to be simplified. We follow up with the right next step for product, demo, or quote."}
+                  ? "Recomandarea principala este Custom AI Assistant. Spune-ne ce client ai, ce vrea sa vanda si daca are nevoie si de website sau hosting."
+                  : "The main recommendation is Custom AI Assistant. Tell us what client you have, what they want to sell, and whether they also need website or hosting."}
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <a href={`mailto:${contactEmail}`} className={buttonVariants("primary", "gap-2")}>
                   <ContactIcon name="email" />
-                  {isRomanian ? "Trimite email" : "Send email"}
+                  {isRomanian ? "Cere oferta" : "Request quote"}
                 </a>
                 <a href={`tel:${contactPhoneHref}`} className={buttonVariants("secondary", "gap-2")}>
                   <ContactIcon name="phone" />
@@ -247,12 +247,12 @@ export default async function ContactPage() {
                 {isRomanian ? "Contact direct" : "Direct contact"}
               </p>
               <h2 className="font-display mt-3 text-3xl font-semibold tracking-[-0.04em] text-[#071d33]">
-                {isRomanian ? "Alege canalul potrivit." : "Choose the right channel."}
+                {isRomanian ? "Alege canalul de vanzare." : "Choose the sales channel."}
               </h2>
               <p className="mt-3 text-sm leading-7 text-muted">
                 {isRomanian
-                  ? "Pentru solicitari rapide, foloseste emailul sau telefonul. Pentru context complet, formularul din dreapta este traseul recomandat."
-                  : "For quick requests, use email or phone. For complete context, the form on the right is the recommended path."}
+                  ? "Pentru oferta rapida, foloseste emailul sau telefonul. Pentru context complet despre client, formularul din dreapta este traseul recomandat."
+                  : "For a quick quote, use email or phone. For full client context, the form on the right is the recommended path."}
               </p>
 
               <div className="mt-6 space-y-3">
@@ -307,7 +307,7 @@ export default async function ContactPage() {
 
               <SiteLink href="/produse" className={buttonVariants("secondary", "mt-5 w-full gap-2")}>
                 <ContactIcon name="route" />
-                {isRomanian ? "Vezi produsele" : "View products"}
+                {isRomanian ? "Vezi produsele vandute" : "View products sold"}
               </SiteLink>
             </article>
           </aside>

@@ -95,8 +95,8 @@ export async function generateMetadata() {
   return buildMetadata(
     locale === "ro" ? "Parteneri" : "Partners",
     locale === "ro"
-      ? "Pentru DMT Marine Equipment am livrat un AI operational assistant care accelereaza raspunsurile, reduce cautarea manuala si sustine decizii mai rapide."
-      : "For DMT Marine Equipment we delivered an operational AI assistant that accelerates replies, reduces manual search, and supports faster decisions.",
+      ? "Parteneri SyntraFlow: exemplu de Custom AI Assistant vandut si adaptat pentru DMT Marine Equipment."
+      : "SyntraFlow partners: an example of Custom AI Assistant sold and adapted for DMT Marine Equipment.",
     "/parteneri",
     locale,
   );
@@ -107,41 +107,41 @@ export default async function PartnersPage() {
   const isRomanian = locale === "ro";
 
   const heroTags = isRomanian
-    ? ["DMT x SyntraFlow", "Operational AI", "Smart Routing", "Secure by design"]
-    : ["DMT x SyntraFlow", "Operational AI", "Smart Routing", "Secure by design"];
+    ? ["DMT x SyntraFlow", "Produs AI vandut", "Smart Routing", "Secure by design"]
+    : ["DMT x SyntraFlow", "Sold AI product", "Smart Routing", "Secure by design"];
 
   const pillars = isRomanian
     ? [
         {
           id: "01",
-          title: "Router inteligent pentru fiecare intrebare",
-          text: "Pentru DMT am structurat un entry point unic care detecteaza intentia si trimite fiecare intrebare in modulul potrivit: planning, workload, PLC, documente interne, cable sizing, Senior MES sau PDF analysis.",
+          title: "Produs AI adaptat pentru fiecare intrebare",
+          text: "Pentru DMT am livrat un entry point unic care detecteaza intentia si trimite fiecare intrebare in modulul potrivit: planning, workload, PLC, documente interne, cable sizing, Senior MES sau PDF analysis.",
         },
         {
           id: "02",
-          title: "Raspunsuri bazate strict pe fisiere si procese",
+          title: "Raspunsuri care fac produsul credibil",
           text: "Asistentul nu improvizeaza. Fiecare raspuns este ancorat in fisierele, sabloanele si regulile de lucru configurate pentru fluxurile operationale relevante.",
         },
         {
           id: "03",
-          title: "Valoare comunicata responsabil",
+          title: "Dovada ca produsul poate fi vandut responsabil",
           text: "Colaborarea arata impactul operational livrat pentru DMT fara sa expuna date interne, exemple sensibile sau continut care trebuie pastrat privat.",
         },
       ]
     : [
         {
           id: "01",
-          title: "An intelligent router for every request",
-          text: "For DMT we designed a single entry point that detects intent and sends each request to the right module: planning, workload, PLC, internal documents, cable sizing, Senior MES, or PDF analysis.",
+          title: "An AI product adapted for every request",
+          text: "For DMT we delivered a single entry point that detects intent and sends each request to the right module: planning, workload, PLC, internal documents, cable sizing, Senior MES, or PDF analysis.",
         },
         {
           id: "02",
-          title: "Answers grounded strictly in files and processes",
+          title: "Answers that make the product credible",
           text: "The assistant does not improvise. Every answer is anchored in the files, templates, and workflow rules configured for the relevant operational flow.",
         },
         {
           id: "03",
-          title: "Value communicated responsibly",
+          title: "Proof the product can be sold responsibly",
           text: "The collaboration shows the operational impact delivered for DMT without exposing internal data, sensitive examples, or content that must remain private.",
         },
       ];
@@ -324,7 +324,7 @@ export default async function PartnersPage() {
             <div className="mt-8 grid gap-10 xl:grid-cols-[1fr_0.96fr] xl:items-center">
               <div>
                 <div className="inline-flex rounded-full border border-[#0f79ff]/14 bg-white/86 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.1em] text-[#0b58d0] shadow-[0_14px_30px_rgba(15,121,255,0.08)]">
-                  {isRomanian ? "Operational AI built for DMT" : "Operational AI built for DMT"}
+                  {isRomanian ? "Custom AI Assistant vandut si adaptat" : "Custom AI Assistant sold and adapted"}
                 </div>
 
                 <Image
@@ -339,21 +339,21 @@ export default async function PartnersPage() {
                   </p>
                   <p className="mt-1 text-sm text-muted">
                     {isRomanian
-                      ? "AI mobil si operational pentru echipe tehnice"
-                      : "Mobile and operational AI for technical teams"}
+                      ? "Exemplu de produs AI livrat catre client"
+                      : "Example of an AI product delivered to a client"}
                   </p>
                 </div>
 
                 <h1 className="font-display mt-8 max-w-3xl text-4xl font-semibold tracking-[-0.05em] text-[#081a2b] md:text-6xl">
                   {isRomanian
-                    ? "Pentru DMT am construit un AI operational assistant care transforma intrebarile complexe in raspunsuri rapide, bine rutate si bazate strict pe fisierele si procesele configurate."
-                    : "For DMT we built an operational AI assistant that turns complex requests into fast, well-routed answers grounded strictly in the configured files and processes."}
+                    ? "Pentru DMT am vandut si adaptat un Custom AI Assistant operational care transforma intrebarile complexe in raspunsuri rapide, bine rutate si bazate strict pe fisierele si procesele configurate."
+                    : "For DMT we sold and adapted an operational Custom AI Assistant that turns complex requests into fast, well-routed answers grounded strictly in the configured files and processes."}
                 </h1>
 
                 <p className="mt-6 max-w-2xl text-base leading-8 text-[#3a5b74] md:text-lg">
                   {isRomanian
-                    ? "Rezultatul este un asistent digital care aduce raspunsuri mai rapide, rutare mai buna si acces controlat la cunostintele operationale relevante."
-                    : "The result is a digital assistant that brings faster replies, better routing, and controlled access to relevant operational knowledge."}
+                    ? "Rezultatul arata cum produsul principal SyntraFlow poate deveni oferta potrivita pentru un client real: demo clar, valoare concreta si implementare controlata."
+                    : "The result shows how SyntraFlow's main product can become the right offer for a real client: clear demo, concrete value, and controlled implementation."}
                 </p>
 
                 <div className="mt-7 flex flex-wrap gap-3">
@@ -369,10 +369,10 @@ export default async function PartnersPage() {
 
                 <div className="mt-8 flex flex-wrap gap-3">
                   <CTAButton href="/contact">
-                    {isRomanian ? "Discuta implementarea" : "Discuss the implementation"}
+                    {isRomanian ? "Cere un AI Assistant similar" : "Request a similar AI Assistant"}
                   </CTAButton>
-                  <CTAButton href="#modules" variant="secondary">
-                    {isRomanian ? "Vezi modulele livrate" : "See the delivered modules"}
+                  <CTAButton href="/product#ai" variant="secondary">
+                    {isRomanian ? "Vezi produsul principal" : "View the main product"}
                   </CTAButton>
                 </div>
               </div>
@@ -396,13 +396,13 @@ export default async function PartnersPage() {
                   eyebrow={isRomanian ? "De ce conteaza" : "Why it matters"}
                   title={
                     isRomanian
-                      ? "O arhitectura operationala care face AI-ul util in fiecare zi"
-                      : "An operational architecture that makes AI useful every day"
+                      ? "Un produs AI vandut, adaptat si folosit intr-un context real"
+                      : "An AI product sold, adapted, and used in a real context"
                   }
                   description={
                     isRomanian
-                      ? "Pentru DMT, AI-ul nu este prezentat ca efect vizual, ci ca un sistem de lucru: intelege intentia, alege fluxul corect si pastreaza raspunsurile controlate."
-                      : "For DMT, AI is not presented as a visual effect. It works as an operating system: it understands intent, selects the right flow, and keeps answers controlled."
+                      ? "Pentru DMT, AI-ul nu este prezentat ca efect vizual, ci ca produs de lucru: intelege intentia, alege fluxul corect si pastreaza raspunsurile controlate."
+                      : "For DMT, AI is not presented as a visual effect. It works as a product: it understands intent, selects the right flow, and keeps answers controlled."
                   }
                 />
 
@@ -467,13 +467,13 @@ export default async function PartnersPage() {
                   eyebrow={isRomanian ? "Ce am livrat" : "What we delivered"}
                   title={
                     isRomanian
-                      ? "Module conectate intr-o interfata operationala coerenta"
-                      : "Connected modules inside one coherent operational interface"
+                      ? "Ce poate include produsul AI vandut unui client"
+                      : "What the AI product sold to a client can include"
                   }
                   description={
                     isRomanian
-                      ? "Fiecare modul are un rol clar: reduce cautarea manuala, directioneaza cererea si transforma documentatia in raspunsuri pregatite pentru actiune."
-                      : "Each module has a clear role: reduce manual search, route the request, and turn documentation into answers ready for action."
+                      ? "Fiecare modul are un rol clar in oferta: reduce cautarea manuala, directioneaza cererea si transforma documentatia in raspunsuri pregatite pentru actiune."
+                      : "Each module has a clear role in the offer: reduce manual search, route the request, and turn documentation into answers ready for action."
                   }
                 />
 

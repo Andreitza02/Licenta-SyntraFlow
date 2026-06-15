@@ -26,35 +26,44 @@ function getCaseMeta(item: CaseStudyItem, locale: Locale) {
 
   if (title.includes("restaurant")) {
     return {
-      category: locale === "ro" ? "Website" : "Website",
+      category: locale === "ro" ? "AI + Rezervari" : "AI + Bookings",
       domain: locale === "ro" ? "HoReCa" : "Hospitality",
-      resultLabel: locale === "ro" ? "Solicitari repetitive reduse" : "Fewer repetitive requests",
+      resultLabel: locale === "ro" ? "Produs usor de demonstrat" : "Easy-to-demo product",
       ctaHref: "/industrii",
     };
   }
 
   if (title.includes("clinica") || title.includes("clinic")) {
     return {
-      category: locale === "ro" ? "Client Support" : "Client Support",
+      category: locale === "ro" ? "AI + Programari" : "AI + Bookings",
       domain: locale === "ro" ? "Clinici" : "Clinics",
-      resultLabel: locale === "ro" ? "Raspuns initial rapid" : "Fast first response",
+      resultLabel: locale === "ro" ? "Raspuns initial vandabil" : "Sellable first reply",
       ctaHref: "/industrii",
     };
   }
 
   if (title.includes("b2b")) {
     return {
-      category: locale === "ro" ? "Workflow" : "Workflow",
+      category: locale === "ro" ? "AI + B2B" : "AI + B2B",
       domain: locale === "ro" ? "B2B" : "B2B",
-      resultLabel: locale === "ro" ? "Lead-uri mai clare" : "Clearer leads",
+      resultLabel: locale === "ro" ? "Lead-uri pentru oferta" : "Offer-ready leads",
       ctaHref: "/solutii",
     };
   }
 
+  if (title.includes("arhivare") || title.includes("digitalizare") || title.includes("archiving") || title.includes("digitization")) {
+    return {
+      category: "AI + Lead capture",
+      domain: locale === "ro" ? "Arhivare & digitalizare" : "Archiving & digitization",
+      resultLabel: locale === "ro" ? "Lead-uri structurate" : "Structured leads",
+      ctaHref: "/asistent-virtual",
+    };
+  }
+
   return {
-    category: locale === "ro" ? "AI Assistant" : "AI Assistant",
+    category: locale === "ro" ? "AI + Suport" : "AI + Support",
     domain: locale === "ro" ? "Business online" : "Online business",
-    resultLabel: locale === "ro" ? "Suport optimizat" : "Optimized support",
+    resultLabel: locale === "ro" ? "Intrebari transformate in actiune" : "Questions turned into action",
     ctaHref: "/asistent-virtual",
   };
 }
@@ -70,57 +79,63 @@ function getFilterLabels(locale: Locale) {
   return locale === "ro"
     ? {
         all: "Toate",
-        headingEyebrow: "Biblioteca de scenarii",
-        headingTitle: "Studii de caz structurate pentru contexte reale de business",
+        headingEyebrow: "Biblioteca de vanzare",
+        headingTitle: "Scenarii unde Custom AI Assistant se poate vinde mai usor",
         headingDescription:
-          "Fiecare card pastreaza problema, solutia si beneficiul intr-un format usor de scanat, cu impactul evidentiat separat.",
-        featuredEyebrow: "Studiu evidentiat",
-        featuredLabel: "Flux complet",
-        featuredTitle: "Un scenariu reprezentativ pentru automatizare conversationala",
+          "Fiecare card arata problema clientului, produsul AI propus, beneficiul si motivul pentru care oferta devine mai convingatoare.",
+        featuredEyebrow: "Best seller in context",
+        featuredLabel: "Flux de vanzare",
+        featuredTitle: "Un scenariu reprezentativ pentru vanzarea Custom AI Assistant",
         featuredDescription:
-          "Studiul evidentiat arata cum acelasi nucleu SyntraFlow poate reduce interactiunile repetitive, poate colecta date utile si poate directiona cererile catre pasul urmator.",
+          "Studiul evidentiat arata cum acelasi produs AI poate raspunde, demonstra valoarea, colecta date utile si duce clientul catre oferta.",
         problem: "Problema",
+        context: "Context",
+        objective: "Obiectivul proiectului",
         solution: "Solutia",
+        features: "Functionalitati principale",
         benefit: "Beneficiu",
         impact: "Impact",
-        details: "Afla mai multe",
-        read: "Citeste studiul",
-        metricsEyebrow: "Rezultate urmarite",
-        metricsTitle: "Indicatori relevanti pentru o experienta digitala mai eficienta",
+        details: "Vezi industria",
+        read: "Vezi scenariul",
+        metricsEyebrow: "Semnale de vanzare",
+        metricsTitle: "Indicatori care fac produsul AI mai usor de cumparat",
         metricsDescription:
-          "Acolo unde exista valori in continutul curent, le pastram. Pentru restul, folosim etichete calitative fara a inventa cifre noi.",
-        finalTitle: "Vrei o solutie similara pentru afacerea ta?",
+          "Pastram valorile existente si tratam restul ca semnale comerciale: claritate, incredere si urmator pas pregatit.",
+        finalTitle: "Vrei sa vinzi Custom AI Assistant pentru afacerea ta?",
         finalDescription:
-          "Putem construi un asistent virtual sau o platforma inteligenta adaptata proceselor, intrebarilor si modului tau de lucru.",
-        contact: "Contacteaza-ne",
-        solutions: "Vezi solutiile",
+          "Pornim cu best seller-ul, il demonstram prin Try me si il completam cu website sau hosting cand ai nevoie de pachet complet.",
+        contact: "Cere oferta",
+        solutions: "Vezi produsele",
       }
     : {
         all: "All",
-        headingEyebrow: "Scenario library",
-        headingTitle: "Case studies structured for real business contexts",
+        headingEyebrow: "Sales library",
+        headingTitle: "Scenarios where Custom AI Assistant is easier to sell",
         headingDescription:
-          "Each card keeps the problem, solution, and benefit easy to scan, with the impact separated as a clear result.",
-        featuredEyebrow: "Featured case study",
-        featuredLabel: "Complete flow",
-        featuredTitle: "A representative scenario for conversational automation",
+          "Each card shows the client problem, proposed AI product, benefit, and why the offer becomes more convincing.",
+        featuredEyebrow: "Best seller in context",
+        featuredLabel: "Sales flow",
+        featuredTitle: "A representative scenario for selling Custom AI Assistant",
         featuredDescription:
-          "The featured study shows how the same SyntraFlow core can reduce repetitive interactions, collect useful data, and route requests to the next step.",
+          "The featured study shows how the same AI product can answer, prove value, collect useful data, and move the client toward an offer.",
         problem: "Problem",
+        context: "Context",
+        objective: "Project objective",
         solution: "Solution",
+        features: "Main features",
         benefit: "Benefit",
         impact: "Impact",
-        details: "Learn more",
-        read: "Read study",
-        metricsEyebrow: "Tracked outcomes",
-        metricsTitle: "Relevant indicators for a more efficient digital experience",
+        details: "View industry",
+        read: "View scenario",
+        metricsEyebrow: "Sales signals",
+        metricsTitle: "Indicators that make the AI product easier to buy",
         metricsDescription:
-          "Where the current content includes values, we keep them. For the rest, we use qualitative labels without inventing new numbers.",
-        finalTitle: "Want a similar solution for your business?",
+          "We keep existing values and treat the rest as commercial signals: clarity, trust, and a prepared next step.",
+        finalTitle: "Want to sell Custom AI Assistant for your business?",
         finalDescription:
-          "We can build a virtual assistant or intelligent platform adapted to your processes, questions, and way of working.",
-        contact: "Contact us",
-        solutions: "View solutions",
+          "We start with the best seller, prove it through Try me, and complete it with website or hosting when you need the full package.",
+        contact: "Request an offer",
+        solutions: "View products",
       };
 }
 
@@ -167,13 +182,13 @@ function NarrativeStep({
   return (
     <article
       className={cn(
-        "contact-card-hover rounded-[1.45rem] border p-5 md:p-6",
+        "contact-card-hover h-auto rounded-[1.45rem] border p-4 md:p-5",
         isImpact
           ? "border-[#0b1f35]/10 bg-[#0b1f35] text-white shadow-[0_22px_48px_rgba(11,31,53,0.18)]"
           : "border-[#d8e6f4] bg-white/82 shadow-[0_14px_30px_rgba(11,31,53,0.045)]",
       )}
     >
-      <div className="grid gap-4 sm:grid-cols-[3rem_1fr]">
+      <div className="grid items-start gap-3 sm:grid-cols-[3rem_1fr]">
         <span
           className={cn(
             "font-display flex h-12 w-12 items-center justify-center rounded-[1rem] border text-sm font-semibold",
@@ -193,7 +208,7 @@ function NarrativeStep({
           >
             {title}
           </p>
-          <p className={cn("mt-3 text-sm leading-7", isImpact ? "text-white/88" : "text-muted")}>{text}</p>
+          <p className={cn("mt-2 text-sm leading-6", isImpact ? "text-white/88" : "text-muted")}>{text}</p>
         </div>
       </div>
     </article>
@@ -207,9 +222,16 @@ function CaseStudyPremiumCard({
   item: EnrichedCaseStudy;
   labels: ReturnType<typeof getFilterLabels>;
 }) {
+  const caseDetails = [
+    [labels.problem, item.problem],
+    ...(item.objective ? [[labels.objective, item.objective]] : []),
+    [labels.solution, item.solution],
+    [labels.benefit, item.benefit],
+  ];
+
   return (
-    <article className="panel-surface contact-card-hover accent-border flex h-full flex-col overflow-hidden rounded-[1.75rem]">
-      <div className="border-b border-[#d8e6f4]/80 bg-[linear-gradient(135deg,rgba(255,255,255,0.95),rgba(238,248,255,0.86))] p-5 md:p-6">
+    <article className="panel-surface contact-card-hover accent-border flex h-auto flex-col self-start overflow-hidden rounded-[1.75rem]">
+      <div className="border-b border-[#d8e6f4]/80 bg-[linear-gradient(135deg,rgba(255,255,255,0.95),rgba(238,248,255,0.86))] p-4 md:p-5">
         <div className="flex items-start justify-between gap-4">
           <IconBadge icon={item.icon} className="bg-white/92" />
           <span className="rounded-full border border-[#0f79ff]/12 bg-white/84 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-[#0b58d0]">
@@ -217,7 +239,7 @@ function CaseStudyPremiumCard({
           </span>
         </div>
 
-        <div className="mt-5 flex flex-wrap gap-2">
+        <div className="mt-4 flex flex-wrap gap-2">
           <span className="rounded-full border border-[#0d3358]/10 bg-white/88 px-3 py-1 text-xs font-semibold text-[#0b1f35]">
             {item.category}
           </span>
@@ -226,29 +248,52 @@ function CaseStudyPremiumCard({
           </span>
         </div>
 
-        <h3 className="mt-5 text-xl font-semibold leading-tight text-[#0b1f35] md:text-2xl">{item.title}</h3>
+        <h3 className="mt-4 text-xl font-semibold leading-tight text-[#0b1f35] md:text-2xl">{item.title}</h3>
       </div>
 
-      <div className="flex flex-1 flex-col p-5 md:p-6">
-        <dl className="grid flex-1 gap-3">
-          {[
-            [labels.problem, item.problem],
-            [labels.solution, item.solution],
-            [labels.benefit, item.benefit],
-          ].map(([title, text]) => (
-            <div key={title} className="rounded-[1.15rem] border border-[#d8e6f4] bg-white/78 p-4">
+      <div className="flex h-auto flex-col p-4 md:p-5">
+        {item.overview?.length ? (
+          <div className="mb-3 h-auto rounded-[1.2rem] border border-[#d8e6f4] bg-[#f8fcff] p-3.5">
+            <p className="text-xs font-semibold uppercase tracking-[0.08em] text-[#0b58d0]">{labels.context}</p>
+            <div className="mt-2.5 grid items-start gap-2.5">
+              {item.overview.map((paragraph) => (
+                <p key={paragraph} className="text-sm leading-6 text-muted">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+          </div>
+        ) : null}
+
+        <dl className="grid h-auto items-start gap-2.5">
+          {caseDetails.map(([title, text]) => (
+            <div key={title} className="h-auto rounded-[1.15rem] border border-[#d8e6f4] bg-white/78 p-3.5">
               <dt className="text-xs font-semibold uppercase tracking-[0.08em] text-[#0b58d0]">{title}</dt>
-              <dd className="mt-2 text-sm leading-7 text-muted">{text}</dd>
+              <dd className="mt-2 text-sm leading-6 text-muted">{text}</dd>
             </div>
           ))}
         </dl>
 
-        <div className="mt-5 rounded-[1.3rem] bg-[#0b1f35] p-4 text-white shadow-[0_16px_34px_rgba(11,31,53,0.16)]">
+        {item.features?.length ? (
+          <div className="mt-3.5 h-auto rounded-[1.2rem] border border-[#13b5ba]/16 bg-[#ecfeff] p-3.5">
+            <p className="text-xs font-semibold uppercase tracking-[0.08em] text-[#0b7e84]">{labels.features}</p>
+            <ul className="mt-2.5 grid items-start gap-1.5">
+              {item.features.map((feature) => (
+                <li key={feature} className="flex items-start gap-2 text-sm leading-6 text-[#0b1f35]">
+                  <span className="mt-1 inline-flex h-2 w-2 shrink-0 rounded-full bg-[#13b5ba]" />
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
+
+        <div className="mt-4 h-auto rounded-[1.3rem] bg-[#0b1f35] p-3.5 text-white shadow-[0_16px_34px_rgba(11,31,53,0.16)]">
           <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-white/62">{labels.impact}</p>
-          <p className="mt-2 text-sm font-medium leading-7 text-white/90">{item.impact}</p>
+          <p className="mt-2 text-sm font-medium leading-6 text-white/90">{item.impact}</p>
         </div>
 
-        <CTAButton href={item.ctaHref} variant="secondary" className="mt-5 w-full bg-white">
+        <CTAButton href={item.ctaHref} variant="secondary" className="mt-4 w-full bg-white">
           {labels.details}
         </CTAButton>
       </div>
@@ -275,26 +320,35 @@ export function CaseStudiesPageClient({ caseStudies, locale }: CaseStudiesPageCl
       value: featured?.impact ?? (locale === "ro" ? "Procese mai rapide" : "Faster processes"),
       description:
         locale === "ro"
-          ? "Solicitarile repetitive pot fi preluate si directionate fara blocaje inutile."
-          : "Repetitive requests can be captured and routed without unnecessary delays.",
+          ? "Solicitarile repetitive devin un argument clar pentru cumpararea produsului AI."
+          : "Repetitive requests become a clear reason to buy the AI product.",
     },
     {
-      label: locale === "ro" ? "Procese automatizate" : "Automated processes",
-      value: locale === "ro" ? "FAQ, lead capture si routing" : "FAQ, lead capture, and routing",
+      label: locale === "ro" ? "Pachet vandabil" : "Sellable package",
+      value: locale === "ro" ? "AI, lead capture si follow-up" : "AI, lead capture, and follow-up",
       description:
         locale === "ro"
-          ? "Scenariile combina raspunsuri, validare de date si transfer catre echipe."
-          : "The scenarios combine answers, data validation, and team handoff.",
+          ? "Scenariile combina raspunsuri, validare de date si pas urmator pentru oferta."
+          : "The scenarios combine answers, data validation, and a next step for the offer.",
     },
     {
-      label: locale === "ro" ? "Interactiuni optimizate" : "Optimized interactions",
+      label: locale === "ro" ? "Demo mai convingator" : "More convincing demo",
       value: locale === "ro" ? "Experienta ghidata" : "Guided experience",
       description:
         locale === "ro"
-          ? "Utilizatorii primesc pasi clari in locul formularelor rigide sau al raspunsurilor incomplete."
-          : "Users receive clear next steps instead of rigid forms or incomplete answers.",
+          ? "Clientul vede cum produsul raspunde, strange context si pregateste oferta."
+          : "The client sees how the product replies, gathers context, and prepares the offer.",
     },
   ];
+  const featuredNarrativeSteps = featured
+    ? [
+        [labels.problem, featured.problem, false],
+        ...(featured.objective ? [[labels.objective, featured.objective, false]] : []),
+        [labels.solution, featured.solution, false],
+        [labels.benefit, featured.benefit, false],
+        [labels.impact, featured.impact, true],
+      ]
+    : [];
 
   return (
     <>
@@ -337,13 +391,8 @@ export function CaseStudiesPageClient({ caseStudies, locale }: CaseStudiesPageCl
                 </div>
               </article>
 
-              <div className="grid gap-4">
-                {[
-                  [labels.problem, featured.problem, false],
-                  [labels.solution, featured.solution, false],
-                  [labels.benefit, featured.benefit, false],
-                  [labels.impact, featured.impact, true],
-                ].map(([title, text, isImpact], index) => (
+              <div className="grid items-start gap-3">
+                {featuredNarrativeSteps.map(([title, text, isImpact], index) => (
                   <NarrativeStep
                     key={title as string}
                     index={index + 1}
@@ -387,7 +436,7 @@ export function CaseStudiesPageClient({ caseStudies, locale }: CaseStudiesPageCl
             </div>
           </div>
 
-          <div id="case-study-list" className="mt-8 grid gap-5 lg:grid-cols-2">
+          <div id="case-study-list" className="mt-7 grid items-start gap-4 lg:grid-cols-2">
             {filteredCaseStudies.map((item) => (
               <CaseStudyPremiumCard key={item.title} item={item} labels={labels} />
             ))}
@@ -434,7 +483,7 @@ export function CaseStudiesPageClient({ caseStudies, locale }: CaseStudiesPageCl
                 <CTAButton href="/contact" className="w-full whitespace-nowrap sm:w-auto">
                   {labels.contact}
                 </CTAButton>
-                <CTAButton href="/solutii" variant="secondary" className="w-full whitespace-nowrap bg-white sm:w-auto">
+                <CTAButton href="/product" variant="secondary" className="w-full whitespace-nowrap bg-white sm:w-auto">
                   {labels.solutions}
                 </CTAButton>
               </div>

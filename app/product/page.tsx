@@ -1,4 +1,5 @@
 import { ProductCatalogGrid } from "@/components/sections/product-catalog-grid";
+import { AssistantTryMeButton } from "@/components/ui/assistant-try-me-button";
 import { CTAButton } from "@/components/ui/cta-button";
 import { getServerLocale } from "@/lib/i18n-server";
 import { getProductCatalog } from "@/lib/product-catalog";
@@ -44,7 +45,7 @@ function CartIcon() {
   );
 }
 
-type ObjectiveIconName = "chat" | "hosting" | "website";
+type ObjectiveIconName = "chat" | "hosting" | "website" | "support";
 
 function ObjectiveIcon({ name }: { name: ObjectiveIconName }) {
   const common = {
@@ -84,6 +85,13 @@ function ObjectiveIcon({ name }: { name: ObjectiveIconName }) {
           <path d="M4.5 9.5h15" />
           <path d="M7.4 13h4.2" />
           <path d="M7.4 15.5h8.8" />
+        </svg>
+      );
+    case "support":
+      return (
+        <svg {...common} aria-hidden="true">
+          <path d="M12 3.5 18.5 6v5.4c0 4.1-2.6 7.3-6.5 9.1-3.9-1.8-6.5-5-6.5-9.1V6L12 3.5Z" />
+          <path d="m8.8 12.2 2.2 2.1 4.2-4.4" />
         </svg>
       );
   }
@@ -243,8 +251,8 @@ export async function generateMetadata() {
   return buildMetadata(
     isRomanian ? "Produse" : "Product",
     isRomanian
-      ? "Produse SyntraFlow pentru branduri care vor AI, website si hosting intr-un ecosistem creat pentru conversie."
-      : "SyntraFlow products for brands that want AI, website, and hosting in one conversion-focused ecosystem.",
+      ? "Cumpara produsele SyntraFlow: Custom AI Assistant, Website Builder, Hosting si abonamentul lunar de mentenanta si suport."
+      : "Buy SyntraFlow products: Custom AI Assistant, Website Builder, Hosting, and the monthly maintenance and support subscription.",
     "/product",
     locale,
   );
@@ -260,15 +268,15 @@ export default async function ProductPage() {
         {
           accent: "from-[#0f79ff] to-[#14b8c7]",
           icon: "chat" as const,
-          label: "Produs 01",
+          label: "Best seller",
           product: "Custom AI Assistant",
-          title: "Vrei conversatii mai bune",
-          text: "Alege asistentul AI pentru intrebari, calificare si captare rapida de intentie.",
+          title: "Vrei produsul care vinde cel mai bine",
+          text: "Alege asistentul AI pentru raspuns instant, calificare de lead-uri si demonstratie live direct in pagina.",
         },
         {
           accent: "from-[#10a37f] to-[#13b5ba]",
           icon: "website" as const,
-          label: "Produs 02",
+          label: "",
           product: "Website Builder",
           title: "Vrei un website care vinde",
           text: "Alege Website Builder pentru o prezenta premium care sustine increderea si conversia.",
@@ -276,25 +284,33 @@ export default async function ProductPage() {
         {
           accent: "from-[#7c5cff] to-[#0f79ff]",
           icon: "hosting" as const,
-          label: "Produs 03",
+          label: "",
           product: "Website Hosting",
           title: "Vrei stabilitate dupa lansare",
           text: "Alege Hosting pentru mentenanta simpla si un website disponibil permanent.",
+        },
+        {
+          accent: "from-[#0f766e] to-[#13b5ba]",
+          icon: "support" as const,
+          label: "Abonament lunar",
+          product: "Mentenanta & Suport",
+          title: "Vrei suport dupa primele luni",
+          text: "Primele 3 luni sunt gratuite. Dupa aceea, clientul plateste 199 EUR/luna pentru mentenanta si suport.",
         },
       ]
     : [
         {
           accent: "from-[#0f79ff] to-[#14b8c7]",
           icon: "chat" as const,
-          label: "Product 01",
+          label: "Best seller",
           product: "Custom AI Assistant",
-          title: "You need better conversations",
-          text: "Choose the AI assistant for questions, qualification, and fast intent capture.",
+          title: "You want the product that sells best",
+          text: "Choose the AI assistant for instant replies, lead qualification, and a live demo directly on the page.",
         },
         {
           accent: "from-[#10a37f] to-[#13b5ba]",
           icon: "website" as const,
-          label: "Product 02",
+          label: "",
           product: "Website Builder",
           title: "You need a website that sells",
           text: "Choose Website Builder for a premium presence that supports trust and conversion.",
@@ -302,10 +318,18 @@ export default async function ProductPage() {
         {
           accent: "from-[#7c5cff] to-[#0f79ff]",
           icon: "hosting" as const,
-          label: "Product 03",
+          label: "",
           product: "Website Hosting",
           title: "You need stability after launch",
           text: "Choose Hosting for simpler maintenance and a website that stays available.",
+        },
+        {
+          accent: "from-[#0f766e] to-[#13b5ba]",
+          icon: "support" as const,
+          label: "Monthly subscription",
+          product: "Maintenance & Support",
+          title: "You need support after the first months",
+          text: "The first 3 months are free. After that, the client pays 199 EUR/month for maintenance and support.",
         },
       ];
 
@@ -313,29 +337,29 @@ export default async function ProductPage() {
     ? [
         {
           title: "Selectie",
-          text: "Pornesti cu produsul potrivit pentru obiectivul actual: AI, website, hosting sau un pachet combinat.",
+          text: "Pornesti cu best seller-ul Custom AI Assistant sau alegi pachetul complet: AI, website, hosting si mentenanta lunara.",
         },
         {
           title: "Configurare",
-          text: "Mesajele, fluxurile si structura paginii sunt adaptate la modul in care vrei sa vinzi sau sa prezinti.",
+          text: "Mesajele, fluxurile si CTA-urile sunt adaptate ca produsul sa fie usor de explicat si vandut catre client.",
         },
         {
           title: "Lansare",
-          text: "Produsul este pregatit ca experienta digitala coerenta, usor de extins cu module noi.",
+          text: "Produsul este pregatit pentru demo, oferta, cos si conversatii comerciale reale.",
         },
       ]
     : [
         {
           title: "Select",
-          text: "Start with the product that fits the current goal: AI, website, hosting, or a combined package.",
+          text: "Start with the Custom AI Assistant best seller or choose the full package: AI, website, hosting, and monthly maintenance.",
         },
         {
           title: "Configure",
-          text: "Messaging, flows, and page structure are adapted to how you want to sell or present.",
+          text: "Messaging, flows, and CTAs are adapted so the product is easy to explain and sell to the client.",
         },
         {
           title: "Launch",
-          text: "The product is ready as a coherent digital experience that can expand with new modules.",
+          text: "The product is ready for demo, quote, cart, and real commercial conversations.",
         },
       ];
 
@@ -344,22 +368,22 @@ export default async function ProductPage() {
       <section className="pb-10 pt-32 md:pt-36">
         <div className="section-shell">
           <div className="max-w-5xl">
-            <span className="eyebrow">{isRomanian ? "Produse SyntraFlow" : "SyntraFlow Products"}</span>
-            <h1 className="font-display mt-6 max-w-4xl text-4xl font-semibold leading-[1.05] tracking-[-0.04em] text-[#0b1f35] md:text-6xl">
+            <span className="eyebrow">{isRomanian ? "Magazin de produse SyntraFlow" : "SyntraFlow Product Store"}</span>
+            <h1 className="font-display mt-6 max-w-4xl text-4xl font-semibold leading-[1.05] tracking-normal text-[#0b1f35] md:text-6xl">
               {isRomanian
-                ? "AI, website si hosting intr-un ecosistem construit pentru conversie"
-                : "AI, website, and hosting in one ecosystem built for conversion"}
+                ? "Vindem produse digitale pentru clienti care vor raspuns rapid si conversii mai clare"
+                : "We sell digital products for clients who want faster replies and clearer conversions"}
             </h1>
             <p className="mt-6 max-w-3xl text-base leading-8 text-muted md:text-lg">
               {isRomanian
-                ? "Alege modulul care iti aduce cel mai rapid impact: conversatii mai bune, prezenta digitala premium sau stabilitate dupa lansare."
-                : "Choose the module that brings the fastest impact: better conversations, a premium digital presence, or stability after launch."}
+                ? "Custom AI Assistant este best seller-ul si produsul pe care ne focusam. Website Builder, Hosting si abonamentul lunar de Mentenanta & Suport completeaza pachetul dupa lansare."
+                : "Custom AI Assistant is the best seller and the product we focus on. Website Builder, Hosting, and the monthly Maintenance & Support subscription complete the package after launch."}
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <CTAButton href="#ai">{isRomanian ? "Vezi produsele" : "View products"}</CTAButton>
+              <CTAButton href="#ai">{isRomanian ? "Vezi best seller-ul" : "View best seller"}</CTAButton>
               <CTAButton href="/contact" variant="secondary">
-                {isRomanian ? "Cere recomandare" : "Request a recommendation"}
+                {isRomanian ? "Cere oferta" : "Request quote"}
               </CTAButton>
             </div>
           </div>
@@ -372,19 +396,19 @@ export default async function ProductPage() {
             <div className="border-b border-[#d7e5f3] bg-[linear-gradient(135deg,rgba(255,255,255,0.95),rgba(232,247,255,0.68))] p-6 md:p-8">
               <span className="inline-flex items-center gap-2 rounded-full border border-[#0f79ff]/14 bg-white/82 px-3 py-2 text-xs font-semibold uppercase tracking-[0.08em] text-[#0b58d0] shadow-[0_12px_24px_rgba(11,31,53,0.04)]">
                 <span className="h-2 w-2 rounded-full bg-[#0f79ff]" />
-                {isRomanian ? "Alege dupa obiectiv" : "Choose by objective"}
+                {isRomanian ? "Alege produsul de vandut" : "Choose the product to sell"}
               </span>
-              <h2 className="font-display mt-5 max-w-3xl text-3xl font-semibold tracking-[-0.04em] text-[#071d33] md:text-5xl">
-                {isRomanian ? "Fiecare produs rezolva un pas concret" : "Each product solves a concrete step"}
+              <h2 className="font-display mt-5 max-w-3xl text-3xl font-semibold tracking-normal text-[#071d33] md:text-5xl">
+                {isRomanian ? "Incepem cu AI Assistant, apoi vindem pachetul complet" : "Start with AI Assistant, then sell the complete package"}
               </h2>
               <p className="mt-4 max-w-2xl text-sm leading-7 text-muted md:text-base">
                 {isRomanian
-                  ? "Porneste de la obiectivul comercial si ajungi rapid la produsul potrivit: conversatii, conversie sau stabilitate dupa lansare."
-                  : "Start from the commercial goal and quickly reach the right product: conversations, conversion, or post-launch stability."}
+                  ? "Clientul intelege rapid oferta: asistentul AI produce impact imediat, website-ul construieste incredere, hostingul tine totul live dupa lansare."
+                  : "The client quickly understands the offer: the AI assistant creates immediate impact, the website builds trust, and hosting keeps everything live after launch."}
               </p>
             </div>
 
-            <div className="grid gap-4 p-4 md:p-6 lg:grid-cols-3">
+            <div className="grid gap-4 p-4 md:grid-cols-2 md:p-6 xl:grid-cols-4">
               {decisionCards.map((card) => (
                 <article
                   key={card.title}
@@ -395,18 +419,32 @@ export default async function ProductPage() {
                     <div className={`flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br ${card.accent} text-white shadow-[0_16px_32px_rgba(15,121,255,0.14)]`}>
                       <ObjectiveIcon name={card.icon} />
                     </div>
-                    <span className="rounded-full border border-[#d8e6f4] bg-[#f7fbff] px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-[#0b58d0]">
-                      {card.label}
-                    </span>
+                    {card.label ? (
+                      <span className="rounded-full border border-[#d8e6f4] bg-[#f7fbff] px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-[#0b58d0]">
+                        {card.label}
+                      </span>
+                    ) : null}
                   </div>
                   <p className="mt-5 text-[11px] font-semibold uppercase tracking-[0.08em] text-[#0b58d0]">
                     {card.product}
                   </p>
-                  <h3 className="mt-2 text-xl font-semibold tracking-[-0.02em] text-[#071d33]">{card.title}</h3>
+                  <div className="mt-2 flex flex-wrap items-center gap-2">
+                    <h3 className="text-xl font-semibold tracking-normal text-[#071d33]">{card.title}</h3>
+                    {card.icon === "chat" ? (
+                      <span className="rounded-full border border-[#13b5ba]/18 bg-[#ecfeff] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-[#0b7e84]">
+                        {isRomanian ? "focus principal" : "main focus"}
+                      </span>
+                    ) : null}
+                  </div>
                   <p className="mt-3 text-sm leading-7 text-muted">{card.text}</p>
-                  <div className="mt-5 flex items-center gap-2 text-sm font-semibold text-[#0b58d0]">
-                    <span>{isRomanian ? "Vezi modulul" : "View module"}</span>
-                    <span className="transition duration-300 group-hover:translate-x-1">-&gt;</span>
+                  <div className="mt-5 flex flex-wrap items-center gap-3">
+                    <div className="flex items-center gap-2 text-sm font-semibold text-[#0b58d0]">
+                      <span>{isRomanian ? "Vezi modulul" : "View module"}</span>
+                      <span className="transition duration-300 group-hover:translate-x-1">-&gt;</span>
+                    </div>
+                    {card.icon === "chat" ? (
+                      <AssistantTryMeButton locale={locale} className="px-3.5 py-2 text-xs shadow-[0_10px_22px_rgba(19,181,186,0.1)]" />
+                    ) : null}
                   </div>
                 </article>
               ))}
@@ -422,8 +460,8 @@ export default async function ProductPage() {
           <div className="overflow-hidden rounded-[2rem] border border-[#0d3358]/10 bg-white/78 py-7 shadow-[0_28px_74px_rgba(11,31,53,0.08)] backdrop-blur-xl md:py-8">
             <div className="px-5 md:px-8">
               <div className="max-w-2xl">
-                <h2 className="font-display text-3xl font-semibold tracking-[-0.04em] text-[#0b1f35] md:text-4xl">
-                  {isRomanian ? "Tehnologii pe care le folosim" : "Technologies we use"}
+                <h2 className="font-display text-3xl font-semibold tracking-normal text-[#0b1f35] md:text-4xl">
+                  {isRomanian ? "Tehnologii care sustin produsele vandute" : "Technologies behind the products we sell"}
                 </h2>
               </div>
             </div>
@@ -472,13 +510,13 @@ export default async function ProductPage() {
               <p className="text-xs font-semibold uppercase tracking-[0.08em] text-[#0b58d0]">
                 {isRomanian ? "Proces" : "Process"}
               </p>
-              <h2 className="font-display mt-3 text-3xl font-semibold tracking-[-0.04em] text-[#0b1f35] md:text-4xl">
-                {isRomanian ? "De la selectie la lansare fara pasi neclari" : "From selection to launch without unclear steps"}
+              <h2 className="font-display mt-3 text-3xl font-semibold tracking-normal text-[#0b1f35] md:text-4xl">
+                {isRomanian ? "De la interes la cumparare fara pasi neclari" : "From interest to purchase without unclear steps"}
               </h2>
               <p className="mt-4 text-sm leading-7 text-muted">
                 {isRomanian
-                  ? "Nu vinzi doar module. Vinzi un parcurs de lansare care transforma alegerea intr-un livrabil pregatit pentru piata."
-                  : "You do not sell only modules. You sell a launch path that turns the choice into a market-ready deliverable."}
+                  ? "Nu prezentam doar module. Vindem produse clare, cu demo, oferta si urmator pas pregatit pentru client."
+                  : "We do not only present modules. We sell clear products, with demo, quote, and next step ready for the client."}
               </p>
             </div>
 
@@ -509,15 +547,15 @@ export default async function ProductPage() {
                 <p className="text-xs font-semibold uppercase tracking-[0.08em] text-[#8bd7ff]">
                   {isRomanian ? "Urmatorul pas" : "Next step"}
                 </p>
-                <h2 className="font-display mt-3 text-3xl font-semibold tracking-[-0.04em] text-white md:text-4xl">
+                <h2 className="font-display mt-3 text-3xl font-semibold tracking-normal text-white md:text-4xl">
                   {isRomanian
-                    ? "Alege produsul potrivit sau construieste pachetul complet"
-                    : "Choose the right product or build the complete package"}
+                    ? "Cumpara best seller-ul sau construieste pachetul complet"
+                    : "Buy the best seller or build the complete package"}
                 </h2>
                 <p className="mt-4 text-sm leading-7 text-white/72 md:text-base">
                   {isRomanian
-                    ? "Poti incepe cu un singur produs si extinde ulterior in acelasi ecosistem. Daca nu esti sigur, discutam obiectivul si recomandam combinatia corecta."
-                    : "You can start with one product and expand later in the same ecosystem. If you are not sure, we discuss the goal and recommend the right combination."}
+                  ? "Recomandarea principala este Custom AI Assistant. Daca vrei mai mult, il combinam cu website, hosting si abonament lunar de mentenanta pentru o oferta completa."
+                  : "The main recommendation is Custom AI Assistant. If you want more, we combine it with website, hosting, and monthly maintenance for a complete offer."}
                 </p>
               </div>
 

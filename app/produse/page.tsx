@@ -9,8 +9,8 @@ export async function generateMetadata() {
   return buildMetadata(
     isRomanian ? "Produse" : "Product",
     isRomanian
-      ? "Produse SyntraFlow pentru branduri care vor AI, website si hosting intr-un ecosistem creat pentru conversie."
-      : "SyntraFlow products for brands that want AI, website, and hosting in one conversion-focused ecosystem.",
+      ? "Produsele SyntraFlow vandute catre clienti: Custom AI Assistant ca best seller, Website Builder si Hosting pentru pachet complet."
+      : "SyntraFlow products sold to clients: Custom AI Assistant as the best seller, Website Builder, and Hosting for a complete package.",
     "/produse",
     locale,
   );

@@ -72,7 +72,7 @@ export function MegaMenu({
     .slice(0, 4);
   const panelAlignmentClass = item.id === "despre-proiect" || item.id === "solutii"
     ? "left-0 origin-top-left"
-    : item.id === "studii-de-caz" || item.id === "arhitectura"
+    : item.id === "studii-de-caz"
       ? "right-0 left-auto origin-top-right"
       : "left-1/2 -translate-x-1/2 origin-top";
 

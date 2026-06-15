@@ -131,7 +131,7 @@ export function Navbar({ locale }: NavbarProps) {
     ? {
         badge: "Cos rapid",
         title: "Cosul tau de cumparaturi",
-        description: "Revino la pachetul ales pentru AI Agent Builder si valoarea comenzii.",
+        description: "Revino la produsele selectate: Custom AI Assistant, website sau hosting.",
         actions: [],
         primaryCta: {
           label: "Vezi Cosul",
@@ -142,7 +142,7 @@ export function Navbar({ locale }: NavbarProps) {
     : {
         badge: "Quick cart",
         title: "Your shopping cart",
-        description: "Return to your selected AI Agent Builder package and order value.",
+        description: "Return to your selected products: Custom AI Assistant, website, or hosting.",
         actions: [],
         primaryCta: {
           label: "View Cart",
@@ -154,10 +154,10 @@ export function Navbar({ locale }: NavbarProps) {
     ? {
         badge: "Cont rapid",
         title: "Detalii cont",
-        description: "Optimizeaza profilul care personalizeaza experienta SyntraFlow.",
+        description: "Gestioneaza profilul care ajuta echipa sa pregateasca oferta potrivita.",
         actions: [],
         primaryCta: {
-          label: "View Details",
+          label: "Vezi contul",
           href: "/account",
         },
         minimal: true,
@@ -165,7 +165,7 @@ export function Navbar({ locale }: NavbarProps) {
     : {
         badge: "Quick account",
         title: "Account details",
-        description: "Optimize the profile that personalizes the SyntraFlow experience.",
+        description: "Manage the profile that helps the team prepare the right offer.",
         actions: [],
         primaryCta: {
           label: "View Details",
@@ -236,8 +236,8 @@ export function Navbar({ locale }: NavbarProps) {
                 <p className="font-display truncate text-base font-semibold text-[#0b1f35]">{siteConfig.name}</p>
                 <p className="truncate text-xs text-muted">
                   {locale === "ro"
-                    ? "Platforma web pentru automatizarea interactiunilor"
-                    : "Web platform for automating customer interactions"}
+                    ? "Produse digitale: AI, website si hosting"
+                    : "Digital products: AI, website, and hosting"}
                 </p>
               </div>
             </SiteLink>

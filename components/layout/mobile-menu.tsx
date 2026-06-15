@@ -127,7 +127,7 @@ export function MobileMenu({
             {
               label: "Vezi Cosul",
               href: "/cart",
-              description: "Vezi AI Agent Builder, serviciile optionale si valoarea pachetului.",
+              description: "Vezi Custom AI Assistant, website, hosting si valoarea pachetului.",
             },
           ],
         },
@@ -139,9 +139,9 @@ export function MobileMenu({
           description: "Un acces direct catre profilul care personalizeaza experienta SyntraFlow.",
           links: [
             {
-              label: "View Details",
+              label: "Vezi contul",
               href: "/account",
-              description: "Optimizeaza profilul, compania si preferintele.",
+              description: "Actualizeaza profilul pentru oferta si recomandarea potrivita.",
             },
           ],
         },
@@ -157,7 +157,7 @@ export function MobileMenu({
             {
               label: "View Cart",
               href: "/cart",
-              description: "View AI Agent Builder, optional services, and the package value.",
+              description: "View Custom AI Assistant, website, hosting, and package value.",
             },
           ],
         },
@@ -290,7 +290,7 @@ export function MobileMenu({
           aria-hidden="true"
           className="h-[18px] w-[18px] object-contain"
         />
-        <span>{locale === "ro" ? "Cauta In Platforma" : "Search Platform"}</span>
+        <span>{locale === "ro" ? "Cauta produse" : "Search products"}</span>
       </button>
 
       <div className="grid gap-3">
@@ -375,7 +375,7 @@ export function MobileMenu({
         className={buttonVariants("primary", "w-full justify-center")}
         onClick={onClose}
       >
-        {locale === "ro" ? "Solicita Demo" : "Request Demo"}
+        {locale === "ro" ? "Cere oferta" : "Request an offer"}
       </SiteLink>
     </div>
   );

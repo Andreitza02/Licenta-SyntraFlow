@@ -160,8 +160,7 @@ function AccountOverviewContent({ locale }: { locale: Locale }) {
     setIsChangingPassword(true);
 
     try {
-      // TODO: Send current and new passwords to the backend auth provider.
-      await changePassword();
+      await changePassword(passwordValues.currentPassword, passwordValues.newPassword);
       setPasswordValues({ currentPassword: "", newPassword: "", confirmPassword: "" });
       setPasswordState({
         tone: "success",

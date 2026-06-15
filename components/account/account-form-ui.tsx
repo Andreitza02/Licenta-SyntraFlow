@@ -39,6 +39,7 @@ type StatusMessageProps = {
   tone: "success" | "error" | "info";
   title: string;
   description?: string;
+  icon?: React.ReactNode;
 };
 
 type IconProps = {
@@ -131,7 +132,14 @@ export function PasswordInput({
   );
 }
 
-export function FormStatus({ tone, title, description }: StatusMessageProps) {
+export function FormStatus({ tone, title, description, icon }: StatusMessageProps) {
+  const content = (
+    <div className="min-w-0">
+      <p className="text-sm font-semibold">{title}</p>
+      {description ? <p className="mt-1 text-xs leading-6 opacity-85">{description}</p> : null}
+    </div>
+  );
+
   return (
     <div
       className={cn(
@@ -142,8 +150,19 @@ export function FormStatus({ tone, title, description }: StatusMessageProps) {
       )}
       role={tone === "error" ? "alert" : "status"}
     >
-      <p className="text-sm font-semibold">{title}</p>
-      {description ? <p className="mt-1 text-xs leading-6 opacity-85">{description}</p> : null}
+      {icon ? (
+        <div className="flex items-start gap-3">
+          <span
+            aria-hidden="true"
+            className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/75 text-lg shadow-[0_8px_18px_rgba(11,31,53,0.08)]"
+          >
+            {icon}
+          </span>
+          {content}
+        </div>
+      ) : (
+        content
+      )}
     </div>
   );
 }

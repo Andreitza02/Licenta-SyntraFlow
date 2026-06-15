@@ -25,20 +25,20 @@ export function Footer({ locale }: FooterProps) {
                 <p className="font-display text-lg font-semibold text-[#0b1f35]">{siteConfig.name}</p>
                 <p className="text-sm text-muted">
                   {locale === "ro"
-                    ? "Platforma web inteligenta pentru automatizarea interactiunii cu clientii"
-                    : "Smart web platform for automating customer interactions"}
+                    ? "Produse digitale pentru vanzare si conversie"
+                    : "Digital products for sales and conversion"}
                 </p>
               </div>
             </div>
             <p className="mt-5 max-w-2xl text-sm leading-7 text-muted">
               {locale === "ro"
-                ? "Platforma web inteligenta cu asistent virtual AI pentru automatizarea si optimizarea proceselor de interactiune cu clientii."
-                : "A smart web platform with an AI virtual assistant built to automate and optimize customer interaction processes."}
+                ? "SyntraFlow vinde produse digitale pentru clienti: Custom AI Assistant ca best seller, Website Builder pentru incredere si Hosting pentru stabilitate dupa lansare."
+                : "SyntraFlow sells digital products for clients: Custom AI Assistant as the best seller, Website Builder for trust, and Hosting for post-launch stability."}
             </p>
             <p className="mt-4 text-sm font-medium text-[#0b1f35]">
               {locale === "ro"
                 ? siteConfig.thesisTitle
-                : "Designed as a premium digital experience for faster responses, clearer requests, and scalable service workflows."}
+                : "Designed as a commercial product experience focused on selling the AI assistant first, then expanding into website and hosting packages."}
             </p>
           </div>
 
@@ -64,17 +64,17 @@ export function Footer({ locale }: FooterProps) {
               <ul className="mt-4 space-y-3 text-sm text-muted">
                 {locale === "ro" ? (
                   <>
-                    <li>Experienta premium pentru prezentare si demo</li>
-                    <li>Interactiuni mai rapide si mai clare</li>
-                    <li>Fundatie pentru extindere SaaS</li>
-                    <li>Automatizare si AI aplicat in servicii reale</li>
+                    <li>Custom AI Assistant ca best seller</li>
+                    <li>Website Builder pentru incredere</li>
+                    <li>Hosting lunar pentru stabilitate</li>
+                    <li>Demo, oferta si cos pentru vanzare</li>
                   </>
                 ) : (
                   <>
-                    <li>Premium experience for demos and presentations</li>
-                    <li>Faster, clearer customer interactions</li>
-                    <li>A strong base for SaaS expansion</li>
-                    <li>Applied automation and AI for real services</li>
+                    <li>Custom AI Assistant as best seller</li>
+                    <li>Website Builder for trust</li>
+                    <li>Monthly hosting for stability</li>
+                    <li>Demo, quote, and cart for sales</li>
                   </>
                 )}
               </ul>
@@ -85,10 +85,10 @@ export function Footer({ locale }: FooterProps) {
         <div className="mt-10 flex flex-col gap-3 border-t border-[#0d3358]/8 pt-6 text-sm text-muted md:flex-row md:items-center md:justify-between">
           <p>
             {locale === "ro"
-              ? `${year} ${siteConfig.name}. Concept original pentru prezentare moderna si extensie de produs.`
-              : `${year} ${siteConfig.name}. Original concept for modern presentation and product expansion.`}
+              ? `${year} ${siteConfig.name}. Produse digitale vandute cu focus pe Custom AI Assistant.`
+              : `${year} ${siteConfig.name}. Digital products sold with focus on Custom AI Assistant.`}
           </p>
-          <p>{locale === "ro" ? "Contact demo" : "Demo contact"}: help@syntraflow.com</p>
+          <p>{locale === "ro" ? "Contact vanzari" : "Sales contact"}: help@syntraflow.com</p>
         </div>
       </div>
     </footer>

@@ -11,8 +11,8 @@ export async function generateMetadata() {
   return buildMetadata(
     locale === "ro" ? "Intra in cont" : "Sign in",
     locale === "ro"
-      ? "Acces rapid la contul SyntraFlow pentru profil, preferinte si o experienta digitala mai personalizata."
-      : "Fast access to the SyntraFlow account for profile, preferences, and a more personalized digital experience.",
+      ? "Acces rapid la contul SyntraFlow pentru produse salvate, cos, oferta si preferinte."
+      : "Fast access to the SyntraFlow account for saved products, cart, offer, and preferences.",
     "/login",
     locale,
   );
@@ -27,13 +27,13 @@ export default async function LoginPage() {
         locale={locale}
         eyebrow={locale === "ro" ? "Acces cont" : "Account access"}
         currentLabel={locale === "ro" ? "Intra in cont" : "Sign in"}
-        title={locale === "ro" ? "Intra in cont sau creeaza un profil nou" : "Sign in or create a new profile"}
+        title={locale === "ro" ? "Intra in cont pentru produse, cos si oferta" : "Sign in for products, cart, and offer"}
         description={
           locale === "ro"
-            ? "Accesul la cont pastreaza experienta SyntraFlow pregatita pentru preferinte, profil si interactiuni mai relevante."
-            : "Account access keeps the SyntraFlow experience ready for preferences, profile, and more relevant interactions."
+            ? "Contul pastreaza produsele SyntraFlow aproape: Custom AI Assistant, Website Builder, Hosting si pasul rapid spre cerere."
+            : "The account keeps SyntraFlow products close: Custom AI Assistant, Website Builder, Hosting, and a fast path to request."
         }
-        highlights={locale === "ro" ? ["Acces rapid", "Profil personalizat", "Preferinte salvate", "Experienta fluida"] : ["Fast access", "Personalized profile", "Saved preferences", "Smooth experience"]}
+        highlights={locale === "ro" ? ["Acces rapid", "Produse salvate", "Cos pregatit", "Oferta clara"] : ["Fast access", "Saved products", "Ready cart", "Clear offer"]}
         compact
       />
       <Suspense fallback={null}>

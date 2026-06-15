@@ -9,8 +9,8 @@ export async function generateMetadata() {
   return buildMetadata(
     locale === "ro" ? "Informatii personale" : "Personal information",
     locale === "ro"
-      ? "Profil SyntraFlow actualizat pentru o experienta mai relevanta, mai rapida si mai bine personalizata."
-      : "Updated SyntraFlow profile for a more relevant, faster, and better-personalized experience.",
+      ? "Profil SyntraFlow actualizat pentru oferte mai clare, contact rapid si produse recomandate corect."
+      : "Updated SyntraFlow profile for clearer offers, fast contact, and better product recommendations.",
     "/account/information",
     locale,
   );
@@ -25,13 +25,13 @@ export default async function AccountInformationPage() {
         locale={locale}
         eyebrow={locale === "ro" ? "Detalii profil" : "Profile details"}
         currentLabel={locale === "ro" ? "Informatii personale" : "Personal information"}
-        title={locale === "ro" ? "Pastreaza profilul pregatit pentru interactiuni mai bune" : "Keep the profile ready for better interactions"}
+        title={locale === "ro" ? "Pastreaza profilul pregatit pentru oferta potrivita" : "Keep your profile ready for the right offer"}
         description={
           locale === "ro"
-            ? "Actualizeaza datele de profil folosite de dashboard si de experienta cu asistentul."
-            : "Update the profile details used by the dashboard and assistant experience."
+            ? "Datele de profil ajuta echipa sa recomande produsul corect: Custom AI Assistant, website, hosting sau pachet complet."
+            : "Profile details help the team recommend the right product: Custom AI Assistant, website, hosting, or complete package."
         }
-        highlights={locale === "ro" ? ["Nume", "Email", "Telefon", "Organizatie"] : ["Name", "Email", "Phone", "Organization"]}
+        highlights={locale === "ro" ? ["Nume", "Email", "Telefon", "Companie"] : ["Name", "Email", "Phone", "Company"]}
         compact
       />
       <AccountInformationClient locale={locale} />

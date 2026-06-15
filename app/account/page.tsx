@@ -9,8 +9,8 @@ export async function generateMetadata() {
   return buildMetadata(
     locale === "ro" ? "Cont" : "Account",
     locale === "ro"
-      ? "Dashboard de cont pentru profil, securitate si preferinte SyntraFlow."
-      : "Account dashboard for SyntraFlow profile, security, and preferences.",
+      ? "Dashboard de cont pentru profil, produse salvate, cos si oferte SyntraFlow."
+      : "Account dashboard for SyntraFlow profile, saved products, cart, and offers.",
     "/account",
     locale,
   );
@@ -25,13 +25,13 @@ export default async function AccountPage() {
         locale={locale}
         eyebrow={locale === "ro" ? "Zona de cont" : "Account area"}
         currentLabel={locale === "ro" ? "Cont" : "Account"}
-        title={locale === "ro" ? "Dashboard pentru profil, securitate si preferinte" : "Dashboard for profile, security, and preferences"}
+        title={locale === "ro" ? "Dashboard pentru produsele tale SyntraFlow" : "Dashboard for your SyntraFlow products"}
         description={
           locale === "ro"
-            ? "Gestioneaza datele personale si setarile importante intr-o interfata care urmeaza stilul SyntraFlow."
-            : "Manage personal details and key settings in an interface that follows the SyntraFlow style."
+            ? "Gestioneaza profilul, produsele salvate si pasii catre oferta pentru Custom AI Assistant sau pachetul complet."
+            : "Manage your profile, saved products, and offer steps for Custom AI Assistant or the complete package."
         }
-        highlights={locale === "ro" ? ["Profil", "Securitate", "Preferinte", "Dashboard"] : ["Profile", "Security", "Preferences", "Dashboard"]}
+        highlights={locale === "ro" ? ["Profil", "Favorite", "Cos", "Oferta"] : ["Profile", "Favorites", "Cart", "Offer"]}
         compact
       />
       <AccountOverviewClient locale={locale} />

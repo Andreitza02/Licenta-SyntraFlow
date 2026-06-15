@@ -3,9 +3,11 @@
 import { useEffect, useRef, useState } from "react";
 
 import { SiteLink } from "@/components/ui/site-link";
+import { useAuth } from "@/components/providers/auth-provider";
 import { useCart } from "@/components/providers/cart-provider";
+import { useProductPricing } from "@/components/providers/product-pricing-provider";
 import { cn } from "@/lib/utils";
-import { formatEuroPrice, getProductCatalogMap, type ProductCatalogItem } from "@/lib/product-catalog";
+import { formatEuroPrice, type ProductCatalogItem } from "@/lib/product-catalog";
 import type { Locale } from "@/lib/i18n";
 
 type CartPageClientProps = {
@@ -37,6 +39,12 @@ const productTones: Record<ProductCatalogItem["id"], ProductTone> = {
     icon: "border-[#b7791f]/16 bg-[#fff8e6] text-[#b7791f]",
     soft: "bg-[linear-gradient(135deg,rgba(183,121,31,0.1),rgba(240,180,41,0.08))]",
     price: "text-[#955f12]",
+  },
+  "maintenance-support": {
+    badge: "bg-[#0f766e]",
+    icon: "border-[#0f766e]/16 bg-[#ecfeff] text-[#0f766e]",
+    soft: "bg-[linear-gradient(135deg,rgba(15,118,110,0.1),rgba(19,181,186,0.08))]",
+    price: "text-[#0f766e]",
   },
 };
 
@@ -113,6 +121,15 @@ function ProductIcon({ id }: { id: ProductCatalogItem["id"] }) {
     );
   }
 
+  if (id === "maintenance-support") {
+    return (
+      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+        <path d="M12 3.5 18.5 6v5.4c0 4.1-2.6 7.3-6.5 9.1-3.9-1.8-6.5-5-6.5-9.1V6L12 3.5Z" />
+        <path d="m8.8 12.2 2.2 2.1 4.2-4.4" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    );
+  }
+
   return (
     <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
       <path d="M5 7h14a1.5 1.5 0 0 1 1.5 1.5V11h-17V8.5A1.5 1.5 0 0 1 5 7Z" />
@@ -124,10 +141,12 @@ function ProductIcon({ id }: { id: ProductCatalogItem["id"] }) {
 
 export function CartPageClient({ locale }: CartPageClientProps) {
   const { cartIds, removeFromCart, clearCart, isHydrated } = useCart();
+  const { status } = useAuth();
+  const { getCatalogMap } = useProductPricing();
   const [removingIds, setRemovingIds] = useState<string[]>([]);
   const timersRef = useRef<Record<string, number>>({});
   const isRomanian = locale === "ro";
-  const catalogMap = getProductCatalogMap(locale);
+  const catalogMap = getCatalogMap(locale);
   const items = cartIds.map((id) => catalogMap[id as keyof typeof catalogMap]).filter(Boolean);
   const total = items.reduce((sum, item) => sum + item.price, 0);
 
@@ -149,6 +168,9 @@ export function CartPageClient({ locale }: CartPageClientProps) {
         oneSelected: "selectat",
         ready: "Gata pentru pasul urmator",
         review: "Verifica produsele si continua spre contact pentru finalizarea comenzii.",
+        loginTitle: "Nu esti logat",
+        loginText: "Pentru a vedea cosul, a pastra produsele si a cumpara de pe SyntraFlow, trebuie sa intri in cont.",
+        loginCta: "Intra in cont",
       }
     : {
         title: "My cart",
@@ -167,6 +189,9 @@ export function CartPageClient({ locale }: CartPageClientProps) {
         oneSelected: "selected",
         ready: "Ready for the next step",
         review: "Review the products and continue to contact to finalize the order.",
+        loginTitle: "You are not signed in",
+        loginText: "To view the cart, keep your products, and buy from SyntraFlow, you need to sign in.",
+        loginCta: "Sign in",
       };
 
   useEffect(() => () => {
@@ -186,13 +211,49 @@ export function CartPageClient({ locale }: CartPageClientProps) {
     }, 340);
   };
 
-  if (!isHydrated) {
+  if (!isHydrated || status === "loading") {
     return (
       <main className="pb-12 pt-32">
         <section className="section-shell">
           <div className="rounded-2xl border border-[#d7e5f3] bg-white/84 px-6 py-8 shadow-[0_18px_48px_rgba(11,31,53,0.08)]">
             <div className="h-7 w-44 animate-pulse rounded-full bg-[#eef6ff]" />
             <div className="mt-5 h-20 max-w-3xl animate-pulse rounded-2xl bg-[#f4fbff]" />
+          </div>
+        </section>
+      </main>
+    );
+  }
+
+  if (status !== "authenticated") {
+    return (
+      <main className="pb-12 pt-32">
+        <section className="section-shell">
+          <div className="mx-auto max-w-2xl overflow-hidden rounded-3xl border border-[#d7e5f3] bg-white/92 text-center shadow-[0_24px_70px_rgba(11,31,53,0.12)]">
+            <div className="border-b border-[#e1edf8] bg-[linear-gradient(135deg,rgba(15,121,255,0.1),rgba(19,181,186,0.09))] px-6 py-8">
+              <span className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-[#0f79ff] text-white shadow-[0_16px_34px_rgba(15,121,255,0.24)]">
+                <CartIcon className="h-8 w-8" />
+              </span>
+              <p className="mt-5 text-xs font-semibold uppercase tracking-[0.1em] text-[#0b58d0]">{labels.eyebrow}</p>
+              <h1 className="font-display mt-2 text-4xl font-semibold tracking-[-0.04em] text-[#0b1f35]">
+                {labels.loginTitle}
+              </h1>
+              <p className="mx-auto mt-3 max-w-xl text-sm leading-7 text-muted">{labels.loginText}</p>
+            </div>
+
+            <div className="flex flex-col justify-center gap-3 px-6 py-6 sm:flex-row">
+              <SiteLink
+                href="/login?next=%2Fcart"
+                className="interactive-button inline-flex items-center justify-center rounded-full bg-[#0f79ff] px-5 py-3 text-sm font-semibold text-white shadow-[0_18px_38px_rgba(15,121,255,0.22)] transition duration-300 hover:-translate-y-0.5"
+              >
+                {labels.loginCta}
+              </SiteLink>
+              <SiteLink
+                href="/product"
+                className="interactive-button inline-flex items-center justify-center rounded-full border border-[#d7e5f3] bg-white px-5 py-3 text-sm font-semibold text-[#0b1f35] transition duration-300 hover:-translate-y-0.5 hover:border-[#0f79ff]/24"
+              >
+                {labels.continueShopping}
+              </SiteLink>
+            </div>
           </div>
         </section>
       </main>
@@ -248,6 +309,7 @@ export function CartPageClient({ locale }: CartPageClientProps) {
             <div className="space-y-4">
               {items.map((item) => {
                 const tone = productTones[item.id];
+                const showTag = item.id !== "website-builder" && item.id !== "hosting";
 
                 return (
                   <article
@@ -266,10 +328,17 @@ export function CartPageClient({ locale }: CartPageClientProps) {
 
                           <div className="min-w-0 flex-1">
                             <div className="flex flex-wrap items-center gap-2">
-                              <span className={cn("h-2 w-2 rounded-full", tone.badge)} />
-                              <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#557089]">
-                                {item.tag}
-                              </p>
+                              {showTag ? (
+                                <>
+                                  <span className={cn("h-2 w-2 rounded-full", tone.badge)} />
+                                  <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#557089]">
+                                    {item.tag}
+                                  </p>
+                                </>
+                              ) : null}
+                              <span className="rounded-full border border-[#d8e6f4] bg-white px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-[#0b58d0]">
+                                {item.code}
+                              </span>
                             </div>
                             <h2 className="font-display mt-2 text-2xl font-semibold tracking-[-0.04em] text-[#0b1f35]">
                               {item.title}

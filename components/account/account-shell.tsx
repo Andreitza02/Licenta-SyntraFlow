@@ -37,6 +37,7 @@ export function AccountShell({ children, locale }: AccountShellProps) {
         information: "Profil de business",
         security: "Securitate",
         preferences: "Preferinte",
+        admin: "Admin",
         logout: "Iesi din cont",
         signedIn: "Autentificat",
         logoutTitle: "Ai iesit din cont",
@@ -49,6 +50,7 @@ export function AccountShell({ children, locale }: AccountShellProps) {
         information: "Business profile",
         security: "Security",
         preferences: "Preferences",
+        admin: "Admin",
         logout: "Log out",
         signedIn: "Signed in",
         logoutTitle: "You are signed out",
@@ -80,6 +82,16 @@ export function AccountShell({ children, locale }: AccountShellProps) {
       active: false,
       icon: <SettingsIcon className="h-4 w-4" />,
     },
+    ...(user?.accountRole === "admin"
+      ? [
+          {
+            label: labels.admin,
+            href: "/account/admin",
+            active: pathname === "/account/admin",
+            icon: <SettingsIcon className="h-4 w-4" />,
+          },
+        ]
+      : []),
   ];
 
   function handleLogout() {

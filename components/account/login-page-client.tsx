@@ -59,6 +59,9 @@ export function LoginPageClient({ locale }: { locale: Locale }) {
         invalidEmail: "Foloseste un format de email valid.",
         requiredPassword: "Parola este obligatorie.",
         authError: "Autentificarea nu a putut fi finalizata.",
+        demoAccess: "Acces demo",
+        adminDemo: "Admin: admin@syntraflow.local / Admin123!",
+        clientDemo: "Client: andrei@syntraflow.local / Syntra123!",
       }
     : {
         loginTitle: "Premium access",
@@ -81,6 +84,9 @@ export function LoginPageClient({ locale }: { locale: Locale }) {
         invalidEmail: "Use a valid email format.",
         requiredPassword: "Password is required.",
         authError: "Sign in could not be completed.",
+        demoAccess: "Demo access",
+        adminDemo: "Admin: admin@syntraflow.local / Admin123!",
+        clientDemo: "Client: andrei@syntraflow.local / Syntra123!",
       };
 
   const [email, setEmail] = useState("");
@@ -233,6 +239,12 @@ export function LoginPageClient({ locale }: { locale: Locale }) {
               </li>
             ))}
           </ul>
+
+          <div className="mt-5 rounded-[1.35rem] border border-[#13b5ba]/18 bg-[#ecfeff] p-4 text-sm text-[#0b1f35]">
+            <p className="text-xs font-semibold uppercase tracking-[0.08em] text-[#0b7e84]">{labels.demoAccess}</p>
+            <p className="mt-2 font-semibold">{labels.adminDemo}</p>
+            <p className="mt-1 text-muted">{labels.clientDemo}</p>
+          </div>
 
           <button type="button" className={buttonVariants("secondary", "mt-6 w-full")} onClick={() => setRegisterOpen(true)}>
             {labels.createAccount}

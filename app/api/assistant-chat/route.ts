@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
 
+import { getPublicProductPrices } from "@/lib/server-database";
+import { defaultProductPrices, type ProductId } from "@/lib/product-catalog";
+
 type AssistantRequestMessage = {
   role?: unknown;
   content?: unknown;
@@ -44,14 +47,32 @@ ${transcript}
 Assistant reply:`;
 }
 
-function buildInstructions(locale: "ro" | "en") {
+function getCurrentPrice(products: Awaited<ReturnType<typeof getPublicProductPrices>>, productId: ProductId) {
+  const basePrice = products.products.find((product) => product.id === productId)?.price ?? defaultProductPrices[productId];
+
+  if (products.holidayDiscount.percent <= 0) {
+    return basePrice;
+  }
+
+  if (products.holidayDiscount.targetProductId !== "all" && products.holidayDiscount.targetProductId !== productId) {
+    return basePrice;
+  }
+
+  return Math.max(0, Math.round(basePrice * (100 - products.holidayDiscount.percent) / 100));
+}
+
+function buildInstructions(locale: "ro" | "en", products: Awaited<ReturnType<typeof getPublicProductPrices>>) {
+  const aiPrice = getCurrentPrice(products, "ai");
+  const websitePrice = getCurrentPrice(products, "website-builder");
+  const hostingPrice = getCurrentPrice(products, "hosting");
+
   return locale === "ro"
     ? `Esti asistentul comercial SyntraFlow pentru website-ul companiei.
 
 Produse si preturi:
-- Custom AI Assistant: 1000 EUR pentru setup initial.
-- Website Builder: 500 EUR pret orientativ pentru website de prezentare.
-- Website Hosting: 50 EUR pe luna pentru gazduire website.
+- Custom AI Assistant: ${aiPrice} EUR pentru setup initial.
+- Website Builder: ${websitePrice} EUR pret orientativ pentru website de prezentare.
+- Website Hosting: ${hostingPrice} EUR pe luna pentru gazduire website.
 
 Comportament:
 - Raspunde clar, cald si concis.
@@ -63,9 +84,9 @@ Comportament:
     : `You are the SyntraFlow sales assistant for the company website.
 
 Products and pricing:
-- Custom AI Assistant: EUR 1000 for the initial setup.
-- Website Builder: EUR 500 guide price for a presentation website.
-- Website Hosting: EUR 50 per month for website hosting.
+- Custom AI Assistant: EUR ${aiPrice} for the initial setup.
+- Website Builder: EUR ${websitePrice} guide price for a presentation website.
+- Website Hosting: EUR ${hostingPrice} per month for website hosting.
 
 Behavior:
 - Reply clearly, warmly, and concisely.
@@ -129,6 +150,7 @@ export async function POST(request: Request) {
     };
     const locale = body.locale === "en" ? "en" : "ro";
     const messages = normalizeMessages(body.messages);
+    const products = await getPublicProductPrices();
 
     if (messages.length === 0) {
       return NextResponse.json(
@@ -141,7 +163,7 @@ export async function POST(request: Request) {
     const model = process.env.OPENAI_ASSISTANT_MODEL || "gpt-4.1-mini";
     const response = await client.responses.create({
       model,
-      instructions: buildInstructions(locale),
+      instructions: buildInstructions(locale, products),
       max_output_tokens: 320,
       input: [
         {

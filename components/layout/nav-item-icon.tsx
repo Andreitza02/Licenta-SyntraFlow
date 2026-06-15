@@ -95,14 +95,6 @@ export function NavItemIcon({ itemId, className }: NavItemIconProps) {
           <path d="M8.5 17.5h7" />
         </IconSvg>
       );
-    case "arhitectura":
-      return (
-        <IconSvg className={className}>
-          <path d="m12 3.8 8 4.4-8 4.4-8-4.4 8-4.4Z" />
-          <path d="m5.7 12.4 6.3 3.5 6.3-3.5" />
-          <path d="m5.7 16.2 6.3 3.5 6.3-3.5" />
-        </IconSvg>
-      );
     case "parteneri":
       return (
         <IconSvg className={className}>

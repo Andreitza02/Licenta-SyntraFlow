@@ -13,10 +13,22 @@ type AssistantWidgetProps = {
   workflowId?: string;
 };
 
+const ASSISTANT_OPEN_EVENT = "syntraflow:open-assistant";
+
 export function AssistantWidget({ enabled, locale = "ro", workflowId = "" }: AssistantWidgetProps) {
   const [isOpen, setIsOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement | null>(null);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
+
+  useEffect(() => {
+    const openAssistant = () => setIsOpen(true);
+
+    window.addEventListener(ASSISTANT_OPEN_EVENT, openAssistant);
+
+    return () => {
+      window.removeEventListener(ASSISTANT_OPEN_EVENT, openAssistant);
+    };
+  }, []);
 
   useEffect(() => {
     if (!isOpen) {
