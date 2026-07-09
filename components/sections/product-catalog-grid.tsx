@@ -3,7 +3,6 @@
 import { SiteLink } from "@/components/ui/site-link";
 import { useCart } from "@/components/providers/cart-provider";
 import { useProductPricing } from "@/components/providers/product-pricing-provider";
-import { AssistantTryMeButton } from "@/components/ui/assistant-try-me-button";
 import type { Locale } from "@/lib/i18n";
 import { formatEuroPrice, type ProductCatalogItem } from "@/lib/product-catalog";
 import { cn } from "@/lib/utils";
@@ -190,7 +189,6 @@ export function ProductCatalogCard({ item: baseItem, locale }: ProductCatalogCar
   const visual = productVisuals[item.id];
   const favoriteActive = isFavorite(item.id);
   const cartActive = isInCart(item.id);
-  const showTag = item.id !== "website-builder" && item.id !== "hosting";
   const hasDiscount = item.discountPercent > 0 && item.price < (item.originalPrice ?? item.price);
   const cartLabel = !item.isAvailable
     ? (isRomanian ? "Out of stock" : "Out of stock")
@@ -202,35 +200,21 @@ export function ProductCatalogCard({ item: baseItem, locale }: ProductCatalogCar
     <article
       id={item.id}
       className={cn(
-        "group flex scroll-mt-28 flex-col self-start overflow-hidden rounded-2xl border bg-white/95 shadow-[0_18px_48px_rgba(11,31,53,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_28px_70px_rgba(11,31,53,0.12)]",
-        item.id === "ai"
-          ? "border-[#0f79ff]/28 ring-2 ring-[#0f79ff]/10 hover:border-[#0f79ff]/36"
-          : "border-[#d7e5f3] hover:border-[#0f79ff]/20",
+        "group flex h-full scroll-mt-28 flex-col self-stretch overflow-hidden rounded-2xl border border-[#d7e5f3] bg-white/95 shadow-[0_18px_48px_rgba(11,31,53,0.08)] transition duration-300 hover:-translate-y-1 hover:border-[#0f79ff]/20 hover:shadow-[0_28px_70px_rgba(11,31,53,0.12)]",
       )}
     >
-      <div className={cn("relative overflow-hidden px-5 py-4 text-white", visual.headerClass)}>
+      <div className={cn("relative flex min-h-[18.75rem] flex-col overflow-hidden px-5 py-4 text-white", visual.headerClass)}>
         <div className="pointer-events-none absolute inset-0 opacity-[0.16] [background-image:linear-gradient(rgba(255,255,255,0.55)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.45)_1px,transparent_1px)] [background-size:22px_22px]" />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-white/28" />
 
         <div className="relative flex items-start justify-between gap-4">
           <div className="min-w-0">
             <div className="flex flex-wrap items-center gap-2">
-              {showTag ? (
-                <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/12 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-white">
-                  <span className={cn("h-2 w-2 rounded-full", visual.dotClass)} />
-                  <span>{item.tag}</span>
-                </div>
-              ) : null}
               <span className="inline-flex rounded-full border border-white/22 bg-white px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-[#0b1f35]">
                 {item.code}
               </span>
             </div>
             <h2 className="font-display mt-3 text-2xl font-semibold tracking-[-0.03em] text-white">{item.title}</h2>
-            {item.id === "ai" ? (
-              <p className="mt-2 inline-flex rounded-full border border-white/22 bg-white/14 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-white">
-                {isRomanian ? "Focus principal" : "Main focus"}
-              </p>
-            ) : null}
           </div>
 
           <div className="flex shrink-0 gap-2">
@@ -266,7 +250,7 @@ export function ProductCatalogCard({ item: baseItem, locale }: ProductCatalogCar
           </div>
         </div>
 
-        <div className="relative mt-5 flex items-start gap-4">
+        <div className="relative mt-auto flex items-start gap-4 pt-5">
           <div className={cn("flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl", visual.iconClass)}>
             <ProductGlyph id={item.id} />
           </div>
@@ -303,14 +287,6 @@ export function ProductCatalogCard({ item: baseItem, locale }: ProductCatalogCar
           </div>
           <p className="max-w-[10rem] text-right text-xs leading-5 text-muted">{item.priceNote}</p>
         </div>
-
-        {item.id === "ai" ? (
-          <div className="mt-3 rounded-[1.15rem] border border-[#13b5ba]/18 bg-[#ecfeff] px-4 py-2.5 text-sm font-semibold text-[#0b7e84]">
-            {isRomanian
-              ? "Recomandarea principala pentru clientii care vor impact rapid."
-              : "The main recommendation for clients who want fast impact."}
-          </div>
-        ) : null}
 
         <div className="flex flex-1 flex-col">
           <p className="mt-4 text-sm leading-6 text-muted">{item.description}</p>
@@ -356,7 +332,6 @@ export function ProductCatalogCard({ item: baseItem, locale }: ProductCatalogCar
               <CartIcon />
               <span>{cartLabel}</span>
             </button>
-            {item.id === "ai" ? <AssistantTryMeButton locale={locale} /> : null}
           </div>
         </div>
       </div>
@@ -368,7 +343,7 @@ export function ProductCatalogGrid({ items, locale }: ProductCatalogGridProps) {
   return (
     <section className="pb-12">
       <div className="section-shell">
-        <div className="grid items-start gap-5 md:grid-cols-2 xl:grid-cols-4">
+        <div className="grid auto-rows-fr items-stretch gap-5 md:grid-cols-2 xl:grid-cols-4">
           {items.map((item) => (
             <ProductCatalogCard key={item.id} item={item} locale={locale} />
           ))}
