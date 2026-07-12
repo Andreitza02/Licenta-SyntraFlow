@@ -29,15 +29,6 @@ type ContactApiResponse = {
   success?: boolean;
 };
 
-type StepCardProps = {
-  active: boolean;
-  completed: boolean;
-  description: string;
-  index: number;
-  onClick: () => void;
-  title: string;
-};
-
 type FieldShellProps = {
   children: ReactNode;
   error?: string;
@@ -173,35 +164,20 @@ function hasStepOneErrors(errors: FormErrors) {
   return stepOneFields.some((field) => Boolean(errors[field]));
 }
 
-function StepCard({ active, completed, description, index, onClick, title }: StepCardProps) {
+function ProgressCheckIcon() {
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={cn(
-        "group rounded-[1.5rem] border p-4 text-left transition duration-300",
-        active
-          ? "border-[#0f79ff]/24 bg-[linear-gradient(180deg,rgba(238,246,255,0.96),rgba(255,255,255,0.96))] shadow-[0_18px_34px_rgba(15,121,255,0.1)]"
-          : "border-[#d8e6f4] bg-white/78 hover:-translate-y-1 hover:border-[#0f79ff]/16 hover:shadow-[0_18px_30px_rgba(11,31,53,0.08)]",
-      )}
+    <svg
+      viewBox="0 0 20 20"
+      className="h-4 w-4"
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2.2"
+      aria-hidden="true"
     >
-      <div className="flex items-start gap-3">
-        <span
-          className={cn(
-            "inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border text-sm font-semibold transition duration-300",
-            active || completed
-              ? "border-[#0f79ff]/18 bg-[#0f79ff] text-white shadow-[0_12px_24px_rgba(15,121,255,0.18)]"
-              : "border-[#d8e6f4] bg-[#f6fbff] text-[#0b58d0]",
-          )}
-        >
-          {completed ? "✓" : index}
-        </span>
-        <span>
-          <span className="block text-sm font-semibold text-[#0b1f35]">{title}</span>
-          <span className="mt-1 block text-xs leading-6 text-muted">{description}</span>
-        </span>
-      </div>
-    </button>
+      <path d="m5 10 3 3 7-7" />
+    </svg>
   );
 }
 
@@ -243,56 +219,16 @@ export function ContactForm({ locale = "ro" }: ContactFormProps) {
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
 
   const stepProgress = useMemo(() => (step === 1 ? "50%" : "100%"), [step]);
+  const progressPercentLabel = step === 1 ? "50%" : "100%";
   const interestOptions = useMemo(() => getInterestOptions(locale), [locale]);
-  const stepCards = locale === "ro"
+  const progressSteps = locale === "ro"
     ? [
-        {
-          title: "Identitate si context",
-          description: "Datele de baza pentru follow-up si personalizarea demo-ului.",
-        },
-        {
-          title: "Interes si mesaj",
-          description: "Obiectivul, tipul de flux si contextul companiei.",
-        },
+        { label: "Identitate" },
+        { label: "Mesaj" },
       ]
     : [
-        {
-          title: "Identity and context",
-          description: "Core details for follow-up and demo personalization.",
-        },
-        {
-          title: "Interest and message",
-          description: "The goal, workflow type, and company context.",
-        },
-      ];
-  const topHighlights = locale === "ro"
-    ? [
-        {
-          label: "2 pasi",
-          detail: "Parcurs clar pentru demo sau oferta",
-        },
-        {
-          label: "Validare live",
-          detail: "Campuri verificate inainte de trimitere",
-        },
-        {
-          label: "Feedback vizual",
-          detail: "Succes, eroare si progres afisate clar",
-        },
-      ]
-    : [
-        {
-          label: "2 steps",
-          detail: "A clear path for demo or quote requests",
-        },
-        {
-          label: "Live validation",
-          detail: "Fields checked before submission",
-        },
-        {
-          label: "Visual feedback",
-          detail: "Success, error, and progress shown clearly",
-        },
+        { label: "Identity" },
+        { label: "Message" },
       ];
   const messageLength = values.message.trim().length;
 
@@ -436,64 +372,53 @@ export function ContactForm({ locale = "ro" }: ContactFormProps) {
   return (
     <div className="panel-surface contact-card-hover reveal-section relative overflow-hidden rounded-[2.25rem] p-6 md:p-8">
       <div className="relative">
-        <div className="flex flex-wrap items-start justify-between gap-4">
-          <div>
+        <div className="rounded-[1.75rem] border border-[#d8e6f4] bg-white/78 p-4 shadow-[0_16px_34px_rgba(11,31,53,0.05)] md:p-5">
+          <div className="flex items-center justify-between gap-4">
             <p className="text-xs font-semibold uppercase tracking-[0.08em] text-[#0b58d0]">
-              {locale === "ro" ? "Mesaj rapid" : "Quick message"}
+              {locale === "ro" ? "Progres formular" : "Form progress"}
             </p>
-            <h2 className="font-display mt-3 text-2xl font-semibold tracking-[-0.03em] text-[#0b1f35] md:text-3xl">
-              {locale === "ro" ? "Spune-ne ce vrei sa construim impreuna" : "Tell us what you want to build together"}
-            </h2>
-            <p className="mt-3 max-w-2xl text-sm leading-7 text-muted">
-              {locale === "ro"
-                ? "Completeaza cateva detalii, iar echipa revine cu un raspuns clar pentru demo, oferta sau recomandarea potrivita."
-                : "Share a few details and the team will follow up with a clear response for a demo, quote, or the right recommendation."}
+            <p className="text-2xl font-semibold tracking-[-0.03em] text-[#0b58d0]">
+              {progressPercentLabel}
             </p>
           </div>
 
-          <div className="rounded-[1.45rem] border border-[#d8e6f4] bg-white/86 px-4 py-3 shadow-[0_14px_28px_rgba(11,31,53,0.05)]">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#0b58d0]">
-              {locale === "ro" ? `Pasul ${step} din 2` : `Step ${step} of 2`}
-            </p>
-            <p className="mt-2 text-sm font-semibold text-[#0b1f35]">
-              {step === 1
-                ? (locale === "ro" ? "Preluare identitate" : "Identity intake")
-                : (locale === "ro" ? "Clarificare interes" : "Interest clarification")}
-            </p>
-          </div>
-        </div>
-
-        <div className="mt-6 grid gap-3 md:grid-cols-3">
-          {topHighlights.map((item) => (
+          <div className="mt-4 h-2.5 overflow-hidden rounded-full bg-[#e7f3ff]">
             <div
-              key={item.label}
-              className="rounded-[1.35rem] border border-[#d8e6f4] bg-white/80 p-4 shadow-[0_12px_24px_rgba(11,31,53,0.04)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_32px_rgba(11,31,53,0.07)]"
-            >
-              <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#0b58d0]">{item.label}</p>
-              <p className="mt-2 text-xs leading-6 text-muted">{item.detail}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-6 grid gap-3 md:grid-cols-2">
-          {stepCards.map((item, index) => (
-            <StepCard
-              key={item.title}
-              active={step === index + 1}
-              completed={step === 2 && index === 0}
-              description={item.description}
-              index={index + 1}
-              onClick={() => navigateToStep((index + 1) as 1 | 2)}
-              title={item.title}
+              className="h-full rounded-full bg-gradient-to-r from-[#0f79ff] via-[#2d8dff] to-[#13b5ba] transition-all duration-500"
+              style={{ width: stepProgress }}
             />
-          ))}
-        </div>
+          </div>
 
-        <div className="mt-5 h-2 overflow-hidden rounded-full bg-[#e7f3ff]">
-          <div
-            className="h-full rounded-full bg-gradient-to-r from-[#0f79ff] via-[#2d8dff] to-[#13b5ba] transition-all duration-500"
-            style={{ width: stepProgress }}
-          />
+          <div className="mt-5 grid grid-cols-2 gap-3 sm:gap-4">
+            {progressSteps.map((item, index) => {
+              const stepNumber = (index + 1) as 1 | 2;
+              const active = step === stepNumber;
+              const completed = step > stepNumber;
+
+              return (
+                <button
+                  key={item.label}
+                  type="button"
+                  onClick={() => navigateToStep(stepNumber)}
+                  className="group flex flex-col items-center gap-2 rounded-[1.15rem] px-3 py-2 text-center transition duration-300 hover:bg-[#eef6ff]/70"
+                >
+                  <span
+                    className={cn(
+                      "inline-flex h-11 w-11 items-center justify-center rounded-full border text-sm font-semibold transition duration-300",
+                      active || completed
+                        ? "border-[#0f79ff]/18 bg-[#0f79ff] text-white shadow-[0_12px_24px_rgba(15,121,255,0.18)]"
+                        : "border-[#d8e6f4] bg-[#f6fbff] text-[#0b58d0] group-hover:border-[#0f79ff]/30",
+                    )}
+                  >
+                    {completed ? <ProgressCheckIcon /> : stepNumber}
+                  </span>
+                  <span className={cn("text-xs font-semibold", active ? "text-[#0b1f35]" : "text-muted")}>
+                    {item.label}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         <form onSubmit={handleSubmit} className="mt-6" noValidate>
