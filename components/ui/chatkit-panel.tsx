@@ -1,9 +1,10 @@
 "use client";
 
 import { ChatKit, useChatKit } from "@openai/chatkit-react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { useToast } from "@/components/providers/toast-provider";
+import { BasicAssistantChat } from "@/components/ui/basic-assistant-chat";
 import { LogoMark } from "@/components/ui/logo-mark";
 import { useLocalStorage } from "@/lib/hooks/use-local-storage";
 import type { Locale } from "@/lib/i18n";
@@ -15,6 +16,33 @@ type ChatKitPanelProps = {
   locale?: Locale;
   workflowId?: string;
 };
+
+const CHATKIT_ELEMENT_NAME = "openai-chatkit";
+const CHATKIT_SCRIPT_URL = "/api/chatkit/cdn/deployments/chatkit/chatkit.js?v=uuid-fix-1";
+
+type ChatKitScriptStatus = "loading" | "ready" | "error";
+
+function ensureRandomUuid() {
+  if (typeof window.crypto.randomUUID === "function") {
+    return;
+  }
+
+  const randomUUID = () => {
+    const bytes = new Uint8Array(16);
+    window.crypto.getRandomValues(bytes);
+    bytes[6] = (bytes[6] & 15) | 64;
+    bytes[8] = (bytes[8] & 63) | 128;
+
+    const hex = Array.from(bytes, (byte) => byte.toString(16).padStart(2, "0"));
+
+    return `${hex.slice(0, 4).join("")}-${hex.slice(4, 6).join("")}-${hex.slice(6, 8).join("")}-${hex.slice(8, 10).join("")}-${hex.slice(10, 16).join("")}`;
+  };
+
+  Object.defineProperty(window.crypto, "randomUUID", {
+    configurable: true,
+    value: randomUUID,
+  });
+}
 
 function createVisitorId() {
   if (typeof crypto !== "undefined" && "randomUUID" in crypto) {
@@ -122,19 +150,98 @@ export function ChatKitPanel({
   const isWidget = mode === "widget";
   const isRomanian = locale === "ro";
   const workflowStorageKey = workflowId || "default";
-  const [visitorId, setVisitorId, isVisitorHydrated] = useLocalStorage<string>("syntraflow-chatkit-user", "");
-  const [threadId, setThreadId, isThreadHydrated] = useLocalStorage<string | null>(
+  const [storedVisitorId, setStoredVisitorId, isVisitorHydrated] = useLocalStorage<unknown>(
+    "syntraflow-chatkit-user",
+    "",
+  );
+  const [storedThreadId, setStoredThreadId, isThreadHydrated] = useLocalStorage<unknown>(
     `syntraflow-chatkit-thread-${workflowStorageKey}-${locale}-${mode}`,
     null,
   );
+  const [scriptStatus, setScriptStatus] = useState<ChatKitScriptStatus>("loading");
+  const [scriptAttempt, setScriptAttempt] = useState(0);
+  const [chatKitInstanceKey, setChatKitInstanceKey] = useState(0);
+
+  const visitorId = typeof storedVisitorId === "string" ? storedVisitorId.trim() : "";
+  const threadId =
+    typeof storedThreadId === "string" && storedThreadId.trim().length > 0
+      ? storedThreadId.trim()
+      : null;
 
   useEffect(() => {
-    if (isVisitorHydrated && !visitorId) {
-      setVisitorId(createVisitorId());
+    if (!enabled) {
+      return;
     }
-  }, [isVisitorHydrated, setVisitorId, visitorId]);
 
-  const isReady = isVisitorHydrated && isThreadHydrated && visitorId.length > 0;
+    ensureRandomUuid();
+
+    if (window.customElements.get(CHATKIT_ELEMENT_NAME)) {
+      setScriptStatus("ready");
+      return;
+    }
+
+    setScriptStatus("loading");
+
+    document
+      .querySelectorAll<HTMLScriptElement>(`script[data-syntraflow-chatkit-script="true"]`)
+      .forEach((script) => script.remove());
+
+    const script = document.createElement("script");
+    script.src = scriptAttempt > 0 ? `${CHATKIT_SCRIPT_URL}&retry=${scriptAttempt}` : CHATKIT_SCRIPT_URL;
+    script.async = true;
+    script.crossOrigin = "anonymous";
+    script.dataset.syntraflowChatkitScript = "true";
+
+    let isActive = true;
+    const markAsFailed = () => {
+      if (isActive) {
+        setScriptStatus("error");
+      }
+    };
+    const timeoutId = window.setTimeout(markAsFailed, 15_000);
+
+    script.addEventListener("error", markAsFailed, { once: true });
+    document.head.appendChild(script);
+
+    window.customElements.whenDefined(CHATKIT_ELEMENT_NAME).then(() => {
+      if (!isActive) {
+        return;
+      }
+
+      window.clearTimeout(timeoutId);
+      setScriptStatus("ready");
+    });
+
+    return () => {
+      isActive = false;
+      window.clearTimeout(timeoutId);
+      script.removeEventListener("error", markAsFailed);
+    };
+  }, [enabled, scriptAttempt]);
+
+  useEffect(() => {
+    if (!isVisitorHydrated) {
+      return;
+    }
+
+    if (!visitorId) {
+      setStoredVisitorId(createVisitorId());
+    } else if (storedVisitorId !== visitorId) {
+      setStoredVisitorId(visitorId);
+    }
+  }, [isVisitorHydrated, setStoredVisitorId, storedVisitorId, visitorId]);
+
+  useEffect(() => {
+    if (isThreadHydrated && storedThreadId !== null && !threadId) {
+      setStoredThreadId(null);
+    }
+  }, [isThreadHydrated, setStoredThreadId, storedThreadId, threadId]);
+
+  const isReady =
+    isVisitorHydrated &&
+    isThreadHydrated &&
+    visitorId.length > 0 &&
+    scriptStatus === "ready";
   const { control } = useChatKit({
     api: {
       async getClientSecret() {
@@ -198,9 +305,26 @@ export function ChatKitPanel({
       prompts: buildStartPrompts(locale),
     },
     onThreadChange(event) {
-      setThreadId(event.threadId);
+      setStoredThreadId(event.threadId);
     },
     onError(event) {
+      const errorText = `${event.error.name} ${event.error.message}`;
+      const failedToLoadStoredThread =
+        Boolean(threadId) && /initial thread|load conversation|load initial/i.test(errorText);
+
+      if (failedToLoadStoredThread) {
+        setStoredThreadId(null);
+        setChatKitInstanceKey((current) => current + 1);
+        pushToast({
+          tone: "info",
+          title: isRomanian ? "Conversatie noua" : "New conversation",
+          description: isRomanian
+            ? "Conversatia veche nu mai era disponibila. Am pornit automat una noua."
+            : "The previous conversation was no longer available. A new one was started automatically.",
+        });
+        return;
+      }
+
       pushToast({
         tone: "error",
         title: isRomanian ? "ChatKit indisponibil" : "ChatKit unavailable",
@@ -211,6 +335,16 @@ export function ChatKitPanel({
 
   if (!enabled) {
     return <ChatKitUnavailable mode={mode} locale={locale} />;
+  }
+
+  if (scriptStatus === "error") {
+    return (
+      <BasicAssistantChat
+        mode={mode}
+        locale={locale}
+        onRetryChatKit={() => setScriptAttempt((current) => current + 1)}
+      />
+    );
   }
 
   if (!isReady) {
@@ -235,7 +369,7 @@ export function ChatKitPanel({
           !isWidget && "h-[40rem]",
         )}
       >
-        <ChatKit control={control} className="h-full w-full" />
+        <ChatKit key={chatKitInstanceKey} control={control} className="h-full w-full" />
       </div>
     </div>
   );
